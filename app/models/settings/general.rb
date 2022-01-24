@@ -23,6 +23,9 @@ module Settings
     # Google Analytics Tracking ID, e.g. UA-71991000-1
     setting :ga_tracking_id, type: :string, default: ApplicationConfig["GA_TRACKING_ID"]
 
+    # Google Adsense Publisher ID, e.g. ca-pub-0261018540053685
+    setting :ga_publisher_id, type: :string, default: ApplicationConfig["GA_PUBLISHER_ID"]
+
     # Images
     setting :main_social_image,
             type: :string,

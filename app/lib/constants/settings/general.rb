@@ -31,6 +31,10 @@ module Constants
           description: "Google Analytics Tracking ID, e.g. UA-71991000-1",
           placeholder: ""
         },
+        ga_publisher_id: {
+          description: "Google Adsense Publisher ID, e.g. ca-pub-0261018540053685",
+          placeholder: ""
+        },
         health_check_token: {
           description: "Used to authenticate with your health check endpoints.",
           placeholder: "a secure token"
