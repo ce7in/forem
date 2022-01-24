@@ -35,6 +35,10 @@ module Constants
           description: "Google Adsense Publisher ID, e.g. ca-pub-0261018540053685",
           placeholder: ""
         },
+        qa_id: {
+          description: "This is a dummy desc.",
+          placeholder: ""
+        },
         health_check_token: {
           description: "Used to authenticate with your health check endpoints.",
           placeholder: "a secure token"
