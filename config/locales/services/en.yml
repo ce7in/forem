@@ -80,7 +80,7 @@ en:
             %{url}
         article_published:
           body: |
-            New Question Published: %{title}
+            New Question Asked: %{title}
             %{url}
         feedback:
           anonymous_report: "*Anonymous report:"

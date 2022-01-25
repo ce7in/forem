@@ -39,8 +39,8 @@ en:
         code: 123
         placeholder: "comma separated, space is optional. Example: 1,2,3"
       published:
-        one: 1 question published
-        other: "%{count} questions published"
+        one: 1 question asked
+        other: "%{count} questions asked"
       sidebar:
         about: 'about #%{tag}'
         admin: Admin
@@ -51,7 +51,7 @@ en:
         new: Ask Question
         older: 'Older #%{tag} questions'
         published:
-          one: 1 Question Published
-          other: "%{count} Question Published"
+          one: 1 Question Asked
+          other: "%{count} Question Asked"
         sponsor: "%{tag} is sponsored by"
       sponsor: "| Sponsored by %{org} ❤️"

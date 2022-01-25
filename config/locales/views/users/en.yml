@@ -55,8 +55,8 @@ en:
         post:
           icon: Post
           text:
-            one: 1 question published
-            other: "%{count} questions published"
+            one: 1 question asked
+            other: "%{count} questions asked"
         tag:
           icon: Tag
           text:
