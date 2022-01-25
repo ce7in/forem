@@ -5,9 +5,9 @@ en:
     if_continued_trouble_html: <a href="/contact">Contact us</a> if you continue having trouble.
     if_we_can_help_html: <a href="/contact">Contact us</a> if there is anything we can help with.
   core:
-    add_comment: Add comment
+    add_comment: Answer
     beta: beta
-    comment: Comment
+    comment: Answer
     copy_link: Copy link
     edit_profile: Edit profile
     follow: Follow

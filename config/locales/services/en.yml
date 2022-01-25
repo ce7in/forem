@@ -2,7 +2,7 @@
 en:
   services:
     analytics_service:
-      no_stats: You can't view this article's stats
+      no_stats: You can't view this question's stats
     article_with_video_creation_service:
       unpublished_video: Unpublished Video ~ %{rand}
     authentication:
@@ -55,7 +55,7 @@ en:
         same_user: You cannot merge the same two user IDs
     notifications:
       new_comment:
-        new: "💬 New Comment"
+        new: "💬 New Answer"
       new_mention:
         new: "🗣️ New Mention"
     payments:
@@ -76,11 +76,11 @@ en:
       messengers:
         article_fetched_feed:
           body: |
-            New Article Retrieved via RSS: %{title}
+            New Question Retrieved via RSS: %{title}
             %{url}
         article_published:
           body: |
-            New Article Published: %{title}
+            New Question Published: %{title}
             %{url}
         feedback:
           anonymous_report: "*Anonymous report:"
@@ -103,7 +103,7 @@ en:
           body: "%{user} bought a %{type} sponsorship for %{organization}\n"
     spam:
       article_handler:
-        suspended_too_many: User suspended for too many spammy articles, triggered by autovomit.
+        suspended_too_many: User suspended for too many spammy questions, triggered by autovomit.
     user_subscriptions:
       create_from_controller_params:
         source_not_found: Source not found.

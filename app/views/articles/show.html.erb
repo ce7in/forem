@@ -1,3 +1,7 @@
+<%= content_for :html do %>
+  <html lang="en" itemscope itemtype="https://schema.org/QAPage">
+<% end %>
+
 <% title @article.title_with_query_preamble(user_signed_in?) %>
 
 <%= render "shared/payment_pointer", user: @article.user %>
@@ -14,10 +18,12 @@
 <% end %>
 
 <% cache("content-related-optional-scripts-#{@article.id}-#{@article.updated_at}-#{internal_navigation?}-#{user_signed_in?}", expires_in: 30.hours) do %>
-  <% unless internal_navigation? || user_signed_in? %>
-    <script type="application/ld+json">
-      <%= @article_json_ld.to_json.html_safe %>
-    </script>
+  <% if @article_json_ld %>
+    <% unless internal_navigation? || user_signed_in? %>
+      <script type="application/ld+json">
+        <%= @article_json_ld.to_json.html_safe %>
+      </script>
+    <% end %>
   <% end %>
 <% end %>
 
@@ -87,7 +93,10 @@
         data-published="<%= @article.published? %>"
         data-pin-path="<%= stories_feed_pinned_article_path %>"
         data-pinned-article-id="<%= @pinned_article_id %>"
-        <%= @article.pinned? ? "data-pinned" : " " %>>
+        <%= @article.pinned? ? "data-pinned" : " " %>
+        itemprop="mainEntity"
+        itemscope
+        itemtype="https://schema.org/Question">
         <header class="crayons-article__header" id="main-title">
           <% if @article.video.present? %>
             <%= render "articles/video_player", meta_tags: true, article: @article %>
@@ -112,7 +121,7 @@
                   <% end %>
                 </div>
                 <div class="pl-3 flex-1">
-                  <a href="/<%= @user.username %>" class="crayons-link fw-bold"><%= @user.name %></a>
+                  <a href="/<%= @user.username %>" class="crayons-link fw-bold" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><%= @user.name %></span></a>
                   <% if @organization %>
                     <%= t("views.articles.for_org_html",
                           start: tag("span", { class: "color-base-60" }, true),
@@ -144,9 +153,27 @@
                   </p>
                 </div>
               </div>
+              <% if @article.comments_count > 0 %>
+                <% if @article.has_featured_comment %>
+                  <div id="badge-space" class="mb-4 s:ml-4 s:mb-0 s:order-last">
+                    <a class="crayons-btn crayons-btn--success px-2 w-100" href="<%= app_url("#{@article.path}#comments") %>"><%= t("views.articles.solved") %>
+                      (<span itemprop="answerCount"><%= @article.comments_count %></span>)</a>
+                  </div>
+                <% else %>
+                  <div id="badge-space" class="mb-4 s:ml-4 s:mb-0 s:order-last">
+                    <a class="crayons-btn crayons-btn--brand px-2 w-100" href="<%= app_url("#{@article.path}#comments") %>"><%= t("views.articles.answered") %>
+                      (<span itemprop="answerCount"><%= @article.comments_count %></span>)</a>
+                  </div>
+                <% end %>
+              <% else %>
+                <div id="badge-space" class="mb-4 s:ml-4 s:mb-0 s:order-last">
+                  <a class="crayons-btn crayons-btn--secondary px-2 w-100" href="<%= app_url("#{@article.path}#comments") %>"><%= t("views.articles.notanswered") %>
+                    (<span itemprop="answerCount"><%= @article.comments_count %></span>)</a>
+                </div>
+              <% end %>
             </div>
 
-            <h1 class="fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-2 <%= @article.title_length_classification %>">
+            <h1 class="fs-3xl m:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-2 <%= @article.title_length_classification %>" itemprop="name">
               <% if @article.search_optimized_title_preamble.present? && !user_signed_in? %>
                 <span class="fs-xl color-base-70 block"><%= @article.search_optimized_title_preamble %></span>
               <% end %>
@@ -163,7 +190,7 @@
           </div>
         </header>
 
-        <div class="crayons-article__main">
+        <div class="crayons-article__main<%= " pb-0" if @article.processed_html.blank? %>">
           <% if @collection %>
             <%= render "articles/collection",
                        rendered_article: @article,
@@ -171,7 +198,7 @@
                        articles: @collection_articles %>
           <% end %>
 
-          <div class="crayons-article__body text-styles spec__body" data-article-id="<%= @article.id %>" id="article-body">
+          <div class="crayons-article__body text-styles spec__body" data-article-id="<%= @article.id %>" id="article-body"<% if @article.processed_html.present? %> itemprop="text"<% end %>>
             <%= @article.processed_html.html_safe %>
           </div>
 

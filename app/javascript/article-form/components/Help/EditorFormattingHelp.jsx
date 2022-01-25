@@ -13,7 +13,7 @@ export const EditorFormattingHelp = ({ openModal }) => (
         <a href="#markdown" onClick={() => openModal('markdownShowing')}>
           Markdown
         </a>{' '}
-        to write and format posts.
+        to write and format questions.
         <details className="fs-s my-1">
           <summary class="cursor-pointer">Commonly used syntax</summary>
           <table className="crayons-card crayons-card--secondary crayons-table crayons-table--compact w-100 mt-2 mb-4 lh-tight">
@@ -115,7 +115,7 @@ export const EditorFormattingHelp = ({ openModal }) => (
         to add rich content such as Tweets, YouTube videos, etc.
       </li>
       <li>
-        In addition to images for the post's content, you can also drag and drop
+        In addition to images for the question's content, you can also drag and drop
         a cover image
       </li>
     </ul>

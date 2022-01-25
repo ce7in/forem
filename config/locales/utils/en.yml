@@ -3,7 +3,7 @@ en:
   xml:
     opensearch:
       short_name: "%{community} Search"
-      description: Find posts from %{community}.
+      description: Find questions from %{community}.
     user:
       image: "%{user} profile image"
   json:

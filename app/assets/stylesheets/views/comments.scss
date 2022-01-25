@@ -243,6 +243,17 @@
     }
   }
 
+  &__meta {
+    padding: 0;
+    margin: var(--su-n-1) var(--su-n-1) 0 var(--su-n-1);
+
+    &__badge {
+      cursor: default !important;
+      border-bottom-left-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+    }
+  }
+
   &__body {
     padding: 0 var(--su-3);
     margin: var(--su-2) 0 var(--su-4);

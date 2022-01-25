@@ -60,7 +60,7 @@ export const Options = ({
           Danger Zone
         </div>
         <Button variant="primary" destructive onClick={onSaveDraft}>
-          Unpublish post
+          Unpublish question
         </Button>
       </div>
     );
@@ -70,8 +70,8 @@ export const Options = ({
       <Button
         id="post-options-btn"
         icon={CogIcon}
-        title="Post options"
-        aria-label="Post options"
+        title="Question options"
+        aria-label="Question options"
       />
 
       <Dropdown
@@ -80,7 +80,7 @@ export const Options = ({
         dropdownContentCloseButtonId="post-options-done-btn"
         className="reverse left-2 s:left-0 right-2 s:left-auto p-4"
       >
-        <h3 className="mb-6">Post options</h3>
+        <h3 className="mb-6">Question options</h3>
         <div className="crayons-field mb-6">
           <label htmlFor="canonicalUrl" className="crayons-field__label">
             Canonical URL
@@ -90,13 +90,13 @@ export const Options = ({
             {` `}
             <code>canonical_url</code>
             {` `}
-            if this post was first published elsewhere (like your own blog).
+            if this question was first published elsewhere (like your own blog).
           </p>
           <input
             type="text"
             value={canonicalUrl}
             className="crayons-textfield"
-            placeholder="https://yoursite.com/post-title"
+            placeholder="https://yoursite.com/question-title"
             name="canonicalUrl"
             onKeyUp={onConfigChange}
             id="canonicalUrl"
@@ -107,8 +107,8 @@ export const Options = ({
             Series
           </label>
           <p className="crayons-field__description">
-            Will this post be part of a series? Give the series a unique name.
-            (Series visible once it has multiple posts)
+            Will this question be part of a series? Give the series a unique name.
+            (Series visible once it has multiple questions)
           </p>
           <input
             type="text"

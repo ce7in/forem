@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<% if content_for?(:html) %>
+  <%= yield(:html) %>
+<% else %>
+  <html lang="en">
+<% end %>
   <head>
     <meta charset="utf-8">
     <% title = yield(:title) %>

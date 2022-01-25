@@ -7,7 +7,7 @@ en:
         button: Copy link
       more:
         title: More...
-        aria_label: Share post options
+        aria_label: Share question options
       share:
         facebook:
           text: Share to Facebook
@@ -20,5 +20,5 @@ en:
         twitter:
           text: Share to Twitter
           query: '"%{article}" by %{author}'
-        link: Share Post via...
+        link: Share Question via...
         report: Report Abuse

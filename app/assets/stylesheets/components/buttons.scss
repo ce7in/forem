@@ -101,6 +101,16 @@
     cursor: not-allowed;
   }
 
+  &--xs {
+    --vertical-padding: var(--su-1);
+    --horizontal-padding: var(--su-3);
+    --font-size: var(--fs-xs);
+    --with-icon-padding: var(--su-2);
+    --icon-margin: var(--su-1);
+    font-weight: var(--fw-bold);
+    line-height: var(--su-4);
+  }
+
   &--s {
     --vertical-padding: var(--su-1);
     --horizontal-padding: var(--su-3);
@@ -171,6 +181,17 @@ label[class*='crayons-btn']:focus-within // label for input[type="file"] made to
   --color-hover: var(--base-inverted);
   --bg-inverted: var(--accent-danger);
   --bg-inverted-hover: var(--accent-danger-darker);
+  --color-inverted: var(--base-inverted);
+  --color-inverted-hover: var(--base-inverted);
+}
+
+.crayons-btn--success {
+  --bg: var(--accent-success);
+  --bg-hover: var(--accent-success-darker);
+  --color: var(--base-inverted);
+  --color-hover: var(--base-inverted);
+  --bg-inverted: var(--accent-success);
+  --bg-inverted-hover: var(--accent-success-darker);
   --color-inverted: var(--base-inverted);
   --color-inverted-hover: var(--base-inverted);
 }

@@ -7,13 +7,13 @@ en:
       heading: Dashboard
       actions:
         mobile:
-          posts: Posts (%{num})
+          posts: Questions (%{num})
           followers: Followers (%{num})
           following_tags: Following tags (%{num})
           following_users: Following users (%{num})
           following_orgs: Following organizations (%{num})
           following_pods: Following podcasts (%{num})
-        posts: Posts
+        posts: Questions
         series: Series
         followers: Followers
         following_tags: Following tags
@@ -52,11 +52,11 @@ en:
             one: "%{num} reaction"
             other: "%{num} reactions"
         comments:
-          title: Comments
+          title: Answers
           icon: Comments
           text_html:
-            one: "%{num} comment"
-            other: "%{num} comments"
+            one: "%{num} answer"
+            other: "%{num} answers"
         views:
           title: Views
           icon: Views
@@ -76,19 +76,19 @@ en:
           button: Pin to profile
           text: Pin
         manage:
-          aria_label: 'Manage post: %{title}'
+          aria_label: 'Manage question: %{title}'
           text: Manage
         lock: Lock discussion
         unlock: Unlock discussion
         edit:
-          aria_label: 'Edit post: %{title}'
+          aria_label: 'Edit question: %{title}'
           text: Edit
         more:
-          title: 'More options for post: %{title}'
+          title: 'More options for question: %{title}'
           icon: More...
         stats: Stats
-        archive: Archive post
-        unarchive: Unarchive post
+        archive: Archive question
+        unarchive: Unarchive question
         author: Author
         author_is: 'AUTHOR: '
         save: Save
@@ -120,20 +120,20 @@ en:
         meta:
           title: Listings Dashboard
       posts:
-        heading: Posts
+        heading: Questions
         archived: Show archived
         option:
           creation-desc: Recently Created
           published-desc: Recently Published
           views-desc: Most Views
           reactions-desc: Most Reactions
-          comments-desc: Most Comments
+          comments-desc: Most Answers
           aria_label: Sort By
         org: "%{name} (%{num})"
         personal: Personal
         empty:
-          desc: This is where you can manage your posts, but you haven't written anything yet.
-          new: Write your first post now
+          desc: This is where you can manage your questions, but you haven't written anything yet.
+          new: Ask your first question now
       subscriptions:
         meta:
           title: Subscriptions %{title}
@@ -143,8 +143,8 @@ en:
           for: for
         empty: You don't have any subscribers for this %{kind} yet...
       summary:
-        reactions: Total post reactions
-        views: Total post views
+        reactions: Total question reactions
+        views: Total question views
         listings: Listings created
         credits: Credits available
         lt_500: "< 500"

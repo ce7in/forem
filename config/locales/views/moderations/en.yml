@@ -7,11 +7,11 @@ en:
         meta:
           title: Moderating %{title}
           title2: "[Moderate] %{title}"
-        heading: Moderate Post
-        subtitle: Rate the quality of this post
+        heading: Moderate Question
+        subtitle: Rate the quality of this question
         abusive:
           subtitle_html: Flag %{user} as Abusive
-          desc_html: This is the equivalent of vomiting on <b>all</b> of this user's articles and will lower their article scores.
+          desc_html: This is the equivalent of vomiting on <b>all</b> of this user's questions and will lower their question scores.
         adjust:
           heading: Adjust tags
           subtitle: Add or remove tags
@@ -28,10 +28,10 @@ en:
         checkmark: Checkmark
         close: Close moderator actions panel
         delete:
-          subtitle: Delete This Comment
-          button: Delete Comment
+          subtitle: Delete This Answer
+          button: Delete Answer
         edit:
-          post: Edit Post
+          post: Edit Question
           article_admin: Admin:Article
           comment_admin: Admin:Comment
           user_admin: Admin:User
@@ -41,11 +41,11 @@ en:
           other: "%{count} errors prohibited this block from being saved:"
         experience:
           heading: Set experience level
-          heading2: Experience Level of Post
-          subtitle: Curate the most appropriate audience for this post
+          heading2: Experience Level of Question
+          subtitle: Curate the most appropriate audience for this question
           aria_label: Open experience level section
           icon: Book
-          desc_html: Who <em>might</em> find this post most valuable, based on overall experience level?
+          desc_html: Who <em>might</em> find this question most valuable, based on overall experience level?
           from: "%{lvl} - "
           level:
             Advanced: Advanced
@@ -56,14 +56,14 @@ en:
         flag: Flag user
         how: How does this work?
         hidden:
-          subtitle: Hidden Comments
-          by: Comment by %{user}
+          subtitle: Hidden Answers
+          by: Answer by %{user}
         hint:
           subtitle: All negative reactions are private.
           desc_html: |-
-            Use <b>High Quality</b> to move this content "up" for any reason (quality, usefulness, etc.).
+            Use <b>High Quality</b> to move this question "up" for any reason (quality, usefulness, etc.).
             <br />
-            Use <b>Low Quality</b> to move this content "down" for any reason (quality, usefulness, etc.).
+            Use <b>Low Quality</b> to move this question "down" for any reason (quality, usefulness, etc.).
             <br />
             Use <b>Flag to Admins</b> for code of conduct violations (harassment, being a jerk, spam, etc.).
         other: Other things you can do
@@ -89,13 +89,13 @@ en:
         thumb_down: Thumb down
         thumb_up: Thumb up
         toggle: Toggle section
-        unpublish: Unpublish Article
+        unpublish: Unpublish Question
         vote_down: Low Quality
         flag_to_admins: Flag to Admins
         vote_up: High Quality
-      all: All topics
+      all: All questions
       aside:
-        all: All topics
+        all: All questions
         code_of_conduct: Code of Conduct
         external: External link
         feedback:
@@ -119,4 +119,4 @@ en:
         code_of_conduct: Code of Conduct
         tag: Tag Moderation Guide
         trusted: Trusted User Guide
-      post: Post
+      post: Question

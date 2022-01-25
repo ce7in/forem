@@ -8,7 +8,15 @@
                          class: "reaction-icon not-reacted",
                          title: t("views.comments.footer.heart.icon")) %>
     <%= crayons_icon_tag("small-heart-filled", class: "crayons-icon reaction-icon--like reaction-icon reacted", title: t("views.comments.footer.heart.icon")) %>
-    <%= t("views.comments.footer.heart.count_html", num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count"), likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block")) %>
+    <% if is_page_article == true && comment.root? %>
+      <%= t("views.comments.footer.heart.count_html",
+            num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count", itemprop: "upvoteCount"),
+            likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block")) %>
+    <% else %>
+      <%= t("views.comments.footer.heart.count_html",
+            num: tag.span((comment.public_reactions_count if comment.public_reactions_count.positive?), class: "reactions-count"),
+            likes: tag.span(like_button_text(comment).html_safe, class: "reactions-label hidden m:inline-block")) %>
+    <% end %>
   </button>
 
   <% unless @discussion_lock %>

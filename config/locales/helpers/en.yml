@@ -6,7 +6,7 @@ en:
         body_markdown: Body Markdown
         expires_at: Custom Expire Date
         location: Location
-        organization_id: Post under an organization
+        organization_id: Ask a question under an organization
         tag_list: Tags
         title: Title
       organization:
@@ -45,7 +45,7 @@ en:
         website_url: Website url
       response_template:
         title: Title
-        content: Comment body (Markdown)
+        content: Answer body (Markdown)
       user:
         name: Name
         email: Email
@@ -53,19 +53,19 @@ en:
         profile_image: Profile image
       users_notification_setting:
         email_newsletter: Send me weekly newsletter emails
-        email_digest_periodic: Send me a periodic digest of top posts from my tags
+        email_digest_periodic: Send me a periodic digest of top questions from my tags
         email_membership_newsletter: Send me sustaining membership newsletter emails
         email_tag_mod_newsletter: Send me tag moderator newsletter emails
         email_community_mod_newsletter: Send me community moderator newsletter emails
-        email_comment_notifications: Send me an email when someone replies to me in a comment thread
+        email_comment_notifications: Send me an email when someone replies to me in an answer thread
         email_follower_notifications: Send me an email when someone new follows me
         email_mention_notifications: Send me an email when someone mentions me
         email_badge_notifications: Send me an email when I receive a badge
         email_unread_notifications: Send me occasional reminders that I have unread notifications on %{community}
         mobile_mention_notifications: Send me a push notification when someone mentions me
-        mobile_comment_notifications: Send me a push notification when someone replies to me in a comment thread
+        mobile_comment_notifications: Send me a push notification when someone replies to me in an answer thread
         welcome_notifications: Send me occasional tips on how to enhance my %{community} experience
-        reaction_notifications: Send notifications when someone reacts to my comments or posts
+        reaction_notifications: Send notifications when someone reacts to my answers or questions
         mod_roundrobin_notifications: Send me occasional community-success mod notifications
       users_setting:
         feed_url: RSS Feed URL
@@ -105,15 +105,15 @@ en:
           default: Follow
       required: Required
       subtitle:
-        week: Top posts this week
-        month: Top posts this month
-        year: Top posts this year
-        infinity: All posts
-        latest: Latest posts
+        week: Top questions this week
+        month: Top questions this month
+        year: Top questions this year
+        infinity: All questions
+        latest: Latest questions
       title_text: "%{title} - %{timeframe}"
     articles_helper:
       logo: "%{service_name} logo"
-      most_comments: Most Comments
+      most_comments: Most Answers
       most_reactions: Most Reactions
       most_views: Most Views
       recently_created: Recently Created
@@ -157,7 +157,7 @@ en:
         body: |
           Hi there,
 
-          We noticed some comments (made by others) on your post that violate the %{community} Code of Conduct and/or our Terms of Use. We have zero tolerance for such behavior and are
+          We noticed some answers (made by others) on your question that violate the %{community} Code of Conduct and/or our Terms of Use. We have zero tolerance for such behavior and are
           taking appropriate action.
 
           Thanks for being awesome, and please don't hesitate to email us with any questions! We welcome all feedback and ideas as we continue working to foster an open and inclusive community.
@@ -176,12 +176,12 @@ en:
         other: days
       general: How many %{thing} can a new member (%{timeframe} or less) create within any 5 minute period?
       published:
-        title: Limit number of posts created
-        description: How many posts can someone create within any 30 second period?
+        title: Limit number of questions asked
+        description: How many questions can someone create within any 30 second period?
       antispam:
-        title: Limit number of posts created by a new member
+        title: Limit number of questions created by a new member
       update:
-        title: Limit number of updates to a post
+        title: Limit number of updates to a question
         description: How many updates can someone make within any 30 second period? Update API docs when changed.
       upload:
         title: Limit number of images uploaded
@@ -193,19 +193,19 @@ en:
         title: Limit number of followers someone can follow daily
         description: How many people can someone follow in a day?
       reaction:
-        title: Limit number of reactions to a post or comment
-        description: How many times can someone react to a post or comment within any 30 second period?
+        title: Limit number of reactions to a question or answer
+        description: How many times can someone react to a question or answer within any 30 second period?
       feedback:
         title: Limit number of times someone can report abuse
         description: How many times can someone report abuse within any 5 minute period?
       comment:
-        title: Limit number of comments created
-        description: How many comments can someone create within any 30 second period?
+        title: Limit number of answers created
+        description: How many answers can someone create within any 30 second period?
       comment_antispam:
-        title: Limit number of comments created by a new member
+        title: Limit number of answers created by a new member
       mention:
-        title: Limit number of @-mentions in a post or comment
-        description: How many times can someone @-mention other users in a post or comment?
+        title: Limit number of @-mentions in a question or answer
+        description: How many times can someone @-mention other users in a question or answer?
       listing:
         title: Limit number of listings created
         description: How many listings can someone create within any 1 minute period?
@@ -222,8 +222,8 @@ en:
         title: Limit number of confirmation emails we send
         description: How many times can we send a confirmation email to someone within a 2 minute period?
       thing:
-        posts: posts
-        comments: comments
+        posts: questions
+        comments: answers
     settings_helper:
       advanced: Advanced
       beginner: Beginner

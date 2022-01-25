@@ -11,7 +11,7 @@ en:
     codesandbox_tag:
       invalid_id: 'CodeSandbox Error: Invalid ID'
     comment_tag:
-      invalid_comment: Invalid Comment ID or URL
+      invalid_comment: Invalid Answer ID or URL
     dotnet_fiddle_tag:
       invalid_dotnetfiddle_url: Invalid DotnetFiddle URL
     gist_tag:
@@ -42,8 +42,8 @@ en:
     kotlin_tag:
       invalid_kotlin_playground: Invalid Kotlin Playground URL
     link_tag:
-      not_exist: 'The article you''re looking for does not exist: %{slug}'
-      not_exist_link: 'The article you''re looking for does not exist: {% link %{slug} %}'
+      not_exist: 'The question you''re looking for does not exist: %{slug}'
+      not_exist_link: 'The question you''re looking for does not exist: {% link %{slug} %}'
     liquid_tag_base:
       invalid_context: Invalid context. This liquid tag can only be used in %{valid}.
       no_source_found: No source found

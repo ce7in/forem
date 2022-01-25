@@ -130,7 +130,7 @@ module Admin
 
     def unpublish_all_articles
       Moderator::UnpublishAllArticlesWorker.perform_async(params[:id].to_i)
-      flash[:success] = "Posts are being unpublished in the background. The job will complete soon."
+      flash[:success] = "Questions are being unpublished in the background. The job will complete soon."
       redirect_to admin_users_path
     end
 

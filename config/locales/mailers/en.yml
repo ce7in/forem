@@ -3,15 +3,15 @@ en:
   mailers:
     digest_mailer:
       from: Digest
-      more_top_posts: more top %{community} posts
-      more_top_posts_based: more top %{community} posts based on your interests
+      more_top_posts: more top %{community} questions
+      more_top_posts_based: more top %{community} questions based on your interests
       more_top_posts_from: more top reads from the community
-      more_trending_posts: more trending %{community} posts
-      more_trending_posts_picked: more trending %{community} posts picked for you
-      other_posts: other posts you might like
-      other_community_posts: other %{community} posts you might like
-      other_top_posts: other top %{community} posts
-      other_trending_posts: other trending %{community} posts
+      more_trending_posts: more trending %{community} questions
+      more_trending_posts_picked: more trending %{community} questions picked for you
+      other_posts: other questions you might like
+      other_community_posts: other %{community} questions you might like
+      other_top_posts: other top %{community} questions
+      other_trending_posts: other trending %{community} questions
     notify_mailer:
       account_deleted: "%{community} - Account Deletion Confirmation"
       deletion_requested: "%{community} - Account Deletion Requested"

@@ -20,12 +20,12 @@ en:
         visit_html: Visit %{settings} to manage your notifications.
         settings: Settings
       comment:
-        commented_html: "%{user} commented on %{title}"
-        first_html: "%{user} wrote their first comment on %{title}"
+        commented_html: "%{user} answered on %{title}"
+        first_html: "%{user} wrote their first answer on %{title}"
         first_reply: "Give them their first reply! 🎉"
-        left_html: "%{user} just left a comment on %{title}."
+        left_html: "%{user} just left a answer on %{title}."
         replied_html: "%{user} replied to a thread in %{title}"
-        report: All negative reactions are 100% private. If this comment violates the code of conduct, please downvote/report as inappropriate.
+        report: All negative reactions are 100% private. If this answer violates the code of conduct, please downvote/report as inappropriate.
         welcome_html: Since they are new to the community, could you leave a nice reply to help them feel welcome? <strong>Thank you!</strong>
       error:
         subtitle: An error occurred!
@@ -41,13 +41,13 @@ en:
         single_html: "%{name} followed you!"
       load: Load More
       mention:
-        article_html: "%{user} mentioned you in a post%{if_org}"
-        comment_html: "%{user} mentioned you in a comment"
-        article_mobile: "%{user} mentioned you in the post %{title}"
-        comment_mobile: "%{user} mentioned you in a comment on %{title}"
+        article_html: "%{user} mentioned you in a question%{if_org}"
+        comment_html: "%{user} mentioned you in a answer"
+        article_mobile: "%{user} mentioned you in the question %{title}"
+        comment_mobile: "%{user} mentioned you in a answer on %{title}"
         if_org_html: " under %{org}"
       milestone:
-        heading_html: Your post %{title} passed %{type}!
+        heading_html: Your question %{title} passed %{type}!
         check: Check your dashboard
         intro: "🎉🎉🎉🎉🎉🎉🎉🎉"
         type:
@@ -60,11 +60,11 @@ en:
       nav:
         aria_label: Notifications
         all: All
-        comments: Comments
-        posts: Posts
+        comments: Answers
+        posts: Questions
       new_post:
         if_org_html: " under %{org}"
-        verb_html: "%{user} made a new post%{if_org}"
+        verb_html: "%{user} asked a new question%{if_org}"
       reacted:
         and_html: "%{first} and %{last}"
         and_other_html:
@@ -74,14 +74,14 @@ en:
           one: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
           other: "%{start}%{actors} reacted to %{title} with%{end} %{reactions}"
         your:
-          article: your article
-          comment: your comment
+          article: your question
+          comment: your answer
       settings: Settings
       tag:
         heading: "Hey there 👋"
-        add_html: Moderators added the <strong>%{tag}</strong> tag to your post %{title}. Mods felt this tag represented your article.
+        add_html: Moderators added the <strong>%{tag}</strong> tag to your question %{title}. Mods felt this tag represented your question.
         check_html: Check out %{other} which may be more appropriate
         other: other popular tags
         reason: 'Reason for action:'
-        remove_html: Moderators removed the <strong>%{tag}</strong> tag from your post %{title}. Certain tags have special submission guidelines, and mods need to adjust tags to best fit the community.
+        remove_html: Moderators removed the <strong>%{tag}</strong> tag from your question %{title}. Certain tags have special submission guidelines, and mods need to adjust tags to best fit the community.
         support_html: "Thanks for being part of %{community}! %{email} 🤗"

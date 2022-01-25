@@ -6,20 +6,20 @@ en:
         description_tagged: "%{tag} content on %{name}"
         page: " Page %{page}"
         rss: "%{name} RSS Feed"
-      heading: Posts
+      heading: Questions
       discuss: "#discuss"
       follow: Follow
       menu:
         aria_left: nav-button-left
         aria_right: nav-button-right
       sort:
-        aria_label: View posts by
-        aria_tagged: View tagged posts by
+        aria_label: View questions by
+        aria_tagged: View tagged questions by
         relevant: Relevant
         week: Week
         month: Month
         year: Year
         infinity: Infinity
         latest: Latest
-        signin_html: "👋 <a href=\"%{path}\">Sign in</a> for the ability sort posts by <strong>top</strong> and  <strong>latest</strong>."
+        signin_html: "👋 <a href=\"%{path}\">Sign in</a> for the ability sort questions by <strong>top</strong> and  <strong>latest</strong>."
         top: Top

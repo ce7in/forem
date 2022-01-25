@@ -13,7 +13,7 @@ en:
       name: "🏅 %{title} Badge 🏅"
     campaign:
       subtitle: Stories (%{count})
-      view: See all posts
+      view: See all questions
     deep_links:
       subtitle: Opening the mobile app...
       alert:
@@ -60,16 +60,16 @@ en:
       close: Close Welcome Message
       settings_html: "<span class=\"emoji\">💅🏼</span>Customize your profile"
       welcome_html: "<span class=\"emoji\">😊</span>Join the Welcome thread"
-      write_html: "<span class=\"emoji\">✍🏾</span>Write your first %{community} post"
+      write_html: "<span class=\"emoji\">✍🏾</span>Ask your first %{community} question"
     pins:
       article: Pinned
-      pinned: "📌 Pinned! (pinned posts display chronologically, 5 max)"
+      pinned: "📌 Pinned! (pinned questions display chronologically, 5 max)"
       removed: "🗑 Pin removed"
       error: You can only have five pins
     reading_list:
       meta:
         title: Reading List
-        description: My saved posts.
+        description: My saved questions.
         og:
           title: Reading List - %{community}
     search:
@@ -80,11 +80,11 @@ en:
         aria_label: Search
         title: Search
       nav:
-        posts: Posts
+        posts: Questions
         podcasts: Podcasts
         people: People
-        comments: Comments
-        my_posts: My posts only
+        comments: Answers
+        my_posts: My questions only
       sort:
         aria_label: Search result sort options
         relevance: Most Relevant
@@ -100,14 +100,14 @@ en:
       heading: "%{user}'s Series"
       empty: This user doesn't have any series
       list:
-        heading: "%{series} Series' Articles"
+        heading: "%{series} Series' Questions"
         back: Back to %{user}'s Series
-        empty: This series doesn't have any articles
+        empty: This series doesn't have any questions
     sponsor:
       seek: Become a sponsor
     stats:
       meta:
-        title: Stats for Your Article
+        title: Stats for Your Question
       heading_html: Stats for "%{article}"
       period:
         aria_label: Analytics period
@@ -117,7 +117,7 @@ en:
       readers: Readers Summary
       followers: New Followers Summary
       reactions: "Reactions Summary ❤🦄🔖"
-      comments: "Comments Summary 💬"
+      comments: "Answers Summary 💬"
       traffic:
         text: "Traffic Source Summary 🚦"
         source: Source
@@ -129,7 +129,7 @@ en:
       hot: Hot
       location: Location
       more_from_html: More from %{actor}
-      no_summary: Posts in this tag
+      no_summary: Questions in this tag
       trending_html: Trending on %{app}
     videos:
       meta:

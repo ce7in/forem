@@ -7,19 +7,19 @@ en:
           title: "%{user} — %{community} Profile"
       comments:
         all:
-          one: All %{count} comments
-          other: All %{count} comments
+          one: All %{count} answers
+          other: All %{count} answers
         last:
-          one: Last %{count} comments
-          other: Last %{count} comments
-        recent: Recent comments
+          one: Last %{count} answers
+          other: Last %{count} answers
+        recent: Recent answers
         view: View all activity
         view_all:
-          one: View all %{count} comments
-          other: View all %{count} comments
+          one: View all %{count} answers
+          other: View all %{count} answers
         view_last:
-          one: View last 1 Comment
-          other: View last %{count} Comments
+          one: View last 1 Answer
+          other: View last %{count} Answers
       github:
         heading: GitHub Repositories
         fork: Fork
@@ -49,14 +49,14 @@ en:
         comment:
           icon: Comment
           text:
-            one: 1 comment written
-            other: "%{count} comments written"
+            one: 1 answer written
+            other: "%{count} answers written"
         org: Organizations
         post:
           icon: Post
           text:
-            one: 1 post published
-            other: "%{count} posts published"
+            one: 1 question published
+            other: "%{count} questions published"
         tag:
           icon: Tag
           text:

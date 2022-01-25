@@ -80,11 +80,11 @@ export const EditorBody = ({
         autoResize
         onChange={onChange}
         onFocus={switchHelpContext}
-        aria-label="Post Content"
+        aria-label="Question Content"
         name="body_markdown"
         id="article_body_markdown"
         defaultValue={defaultValue}
-        placeholder="Write your post content here..."
+        placeholder="Write your question content here..."
         className="crayons-textfield crayons-textfield--ghost crayons-article-form__body__field ff-monospace fs-l h-100"
       />
     </div>

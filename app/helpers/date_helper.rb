@@ -7,6 +7,7 @@ module DateHelper
       l(datetime, format: format),
       datetime: datetime.utc.iso8601,
       class: "date#{'-no-year' unless show_year}",
+      itemprop: "dateCreated",
     )
   end
 end

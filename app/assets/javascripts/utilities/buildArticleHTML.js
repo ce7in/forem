@@ -64,7 +64,7 @@ function buildArticleHTML(article) {
     }
 
     var commentsAriaLabelText =
-      ' aria-label="Comments for post ' +
+      ' aria-label="Answers for question ' +
       article.title +
       ' (' +
       commentsCount +
@@ -80,10 +80,10 @@ function buildArticleHTML(article) {
       if (commentsCount > 0) {
         commentsDisplay +=
           commentsCount +
-          '<span class="hidden s:inline">&nbsp;comments</span></a>';
+          '<span class="hidden s:inline">&nbsp;answers</span></a>';
       } else {
         commentsDisplay +=
-          '<span class="hidden s:inline">Add&nbsp;Comment</span></a>';
+          '<span class="hidden s:inline">Answer</span></a>';
       }
     }
 

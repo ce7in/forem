@@ -37,7 +37,7 @@ export const CommentListItem = ({ comment }) => (
         </span>
         {comment.name}
       </a>
-      <a href={comment.path} className="crayons-story__tertiary ml-1">
+      <a href={comment.path} className="crayons-story__tertiary ml-1" rel="nofollow">
         <time>
           {timeAgo({
             oldTimeInSeconds: comment.published_at_int,

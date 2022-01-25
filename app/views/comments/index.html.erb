@@ -27,11 +27,15 @@
     <meta name="twitter:title" content="<%= t("views.comments.meta.og.title_rel", root: truncate(strip_tags(@root_comment.processed_html), length: 50), site: community_name) %>">
     <meta property="og:image" content="<%= comment_social_image_url(@root_comment) %>" />
     <meta name="twitter:image" content="<%= comment_social_image_url(@root_comment) %>">
-    <% if @root_comment.score < 0 || @commentable.score < 0 %>
-      <meta name="googlebot" content="noindex">
-      <meta name="googlebot" content="nofollow">
+    <% if @root_comment.score < 0 || strip_tags(@root_comment.processed_html).length <= 400 %>
+      <meta name="robots" content="noindex">
+      <meta name="robots" content="nofollow">
     <% end %>
   <% else %>
+    <% if @commentable.comments_count <= 30 %>
+      <meta name="robots" content="noindex">
+      <meta name="robots" content="nofollow">
+    <% end %>
     <link rel="canonical" href="<%= app_url("#{@commentable.path}/comments") %>" />
     <meta property="og:url" content="<%= app_url("#{@commentable.path}/comments") %>" />
     <meta property="og:title" content="<%= t("views.comments.meta.og.title_root", title: @commentable.title, site: community_name) %>" />
@@ -73,19 +77,20 @@
         </div>
       </header>
 
-      <% if @commentable.processed_html.present? %>
-        <div class="crayons-article__main">
-          <div class="crayons-article__body text-styles -mt-1 m:-mt-2">
-            <% if @commentable.processed_html.size < 350 %>
-              <%= sanitize_rendered_markdown(@commentable.processed_html) %>
-            <% else %>
-              <%= truncate(sanitize(@commentable.processed_html, tags: []), length: 150) %>
-              <div class="pt-6">
-                <a class="crayons-btn crayons-btn--outlined" href="<%= @commentable.path %>"><%= t("views.comments.parent.read") %></a>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <div class="crayons-article__main<%= " pb-0" if @article.processed_html.blank? %>">
+          <% if @commentable.processed_html.present? %>
+            <div class="crayons-article__body text-styles -mt-1 m:-mt-2">
+              <% if @commentable.processed_html.size < 350 %>
+                <%= sanitize_rendered_markdown(@commentable.processed_html) %>
+              <% else %>
+                <%= truncate(sanitize(@commentable.processed_html, tags: []), length: 150) %>
+                <div class="pt-6">
+                  <a class="crayons-btn crayons-btn--outlined" href="<%= @commentable.path %>"><%= t("views.comments.parent.read") %></a>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+      </div>
     </article>
   <% else %>
     <div id="response-templates-data" class="hidden"></div>

@@ -2,6 +2,9 @@
 fr:
   views:
     articles:
+      answered: 🗸 Answered
+      solved: 🗸 Solved
+      notanswered: Not Answered
       meta:
         description: An article from the community
       actions:
@@ -10,7 +13,9 @@ fr:
         aria_label: Comments for post %{title} (%{num})
         subtitle_html: Discussion %{num}
         num: "(%{num})"
+        featured_answer: ⭐ Featured Answer
         subscribe: Subscribe
+        deleted: Answer deleted
       conduct:
         aria_label: Conduct controls
         code: Code of Conduct

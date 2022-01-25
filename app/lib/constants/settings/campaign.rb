@@ -3,7 +3,7 @@ module Constants
     module Campaign
       DETAILS = {
         articles_expiry_time: {
-          description: "Sets the expiry time for articles (in weeks) to be displayed in campaign sidebar",
+          description: "Sets the expiry time for questions (in weeks) to be displayed in campaign sidebar",
           placeholder: ""
         },
         articles_require_approval: {
@@ -15,7 +15,7 @@ module Constants
           placeholder: "Share your project"
         },
         featured_tags: {
-          description: "Posts with which tags will be featured in the campaign sidebar (comma separated, letters only)",
+          description: "Questions with which tags will be featured in the campaign sidebar (comma separated, letters only)",
           placeholder: "List of campaign tags: comma separated, letters only e.g. shecoded,theycoded"
         },
         hero_html_variant_name: {

@@ -3,11 +3,15 @@
 <div class="comment__inner">
   <%= render partial: "comments/comment_avatar", locals: { comment: comment } %>
 
-  <div class="inner-comment comment__details">
+  <% if is_page_article == true && comment.root? %>
+    <div class="inner-comment comment__details<%= " comment--featured" if comment.featured %>" itemprop="<% if comment.featured? %>acceptedAnswer<% else %>suggestedAnswer<% end %>" itemscope itemtype="https://schema.org/Answer">
+  <% else %>
+    <div class="inner-comment comment__details">
+  <% end %>
     <div class="comment__content crayons-card">
       <% if comment.deleted %>
         <div class="p-6 align-center opacity-50 fs-s">
-          <span class="js-comment-username">Comment deleted</span>
+          <span class="js-comment-username"><%= t("views.articles.comments.deleted") %></span>
         </div>
       <% else %>
         <%= render partial: "comments/comment_quality_marker", locals: {
@@ -15,10 +19,19 @@
               decorated_comment: decorated_comment
             } %>
 
+        <% if comment.featured %>
+          <%= render partial: "comments/comment_meta", locals: {
+            comment: comment,
+            commentable: commentable,
+            decorated_comment: decorated_comment
+          } %>
+        <% end %>
+
         <%= render partial: "comments/comment_header", locals: {
               comment: comment,
               commentable: commentable,
-              decorated_comment: decorated_comment
+              decorated_comment: decorated_comment,
+              is_page_article: is_page_article
             } %>
 
         <div
@@ -29,7 +42,7 @@
             body
             <%= "color-base-60" if comment.decorate.low_quality %>
             <%= should_be_hidden?(comment, @root_comment) ? "element-hidden-by-commentable-user" : "" %>
-          ">
+          "<% if is_page_article == true && comment.root? %> itemprop="text"<% end %>>
           <%= comment.safe_processed_html %>
         </div>
 
@@ -45,7 +58,8 @@
           (render partial: "comments/comment_footer", locals: {
             comment: comment,
             commentable: commentable,
-            is_childless: is_childless
+            is_childless: is_childless,
+            is_page_article: is_page_article
           })
         end %>
   </div>

@@ -26,7 +26,7 @@ const commonProps = {
 };
 
 describe('<Article /> component', () => {
-  it('should have no a11y violations for a standard article', async () => {
+  it('should have no a11y violations for a standard question', async () => {
     const { container } = render(
       <Article
         {...commonProps}
@@ -40,7 +40,7 @@ describe('<Article /> component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('should have no a11y violations for a featured article', async () => {
+  it('should have no a11y violations for a featured question', async () => {
     const { container } = render(
       <Article
         {...commonProps}
@@ -55,7 +55,7 @@ describe('<Article /> component', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('should render a standard article', () => {
+  it('should render a standard question', () => {
     const { container, queryByAltText } = render(
       <Article
         {...commonProps}
@@ -71,7 +71,7 @@ describe('<Article /> component', () => {
     expect(queryByAltText('Emil99 profile')).toBeDefined();
   });
 
-  it('should render a featured article', () => {
+  it('should render a featured question', () => {
     const { container, queryByAltText } = render(
       <Article
         {...commonProps}
@@ -102,7 +102,7 @@ describe('<Article /> component', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('should render a featured article for an organization', () => {
+  it('should render a featured question for an organization', () => {
     const { container, queryByAltText } = render(
       <Article
         {...commonProps}
@@ -120,7 +120,7 @@ describe('<Article /> component', () => {
     expect(queryByAltText('Emil99 profile')).toBeDefined();
   });
 
-  it('should render a featured article for a video post', () => {
+  it('should render a featured question for a video question', () => {
     const { queryByTitle } = render(
       <Article
         {...commonProps}
@@ -186,7 +186,7 @@ describe('<Article /> component', () => {
     expect(reactions.textContent).toEqual(`232 ${locale('core.reaction')}s`);
   });
 
-  it('should render with comments', () => {
+  it('should render with answers', () => {
     const { getByTitle } = render(
       <Article
         {...commonProps}
@@ -195,12 +195,12 @@ describe('<Article /> component', () => {
       />,
     );
 
-    const comments = getByTitle('Number of comments');
+    const comments = getByTitle('Number of answers');
 
     expect(comments.textContent).toEqual(`213 ${locale('core.comment')}s`);
   });
 
-  it('should render with an add comment button when there are no comments', () => {
+  it('should render with an add answer button when there are no answers', () => {
     const { queryByTestId } = render(
       <Article {...commonProps} isBookmarked={false} article={article} />,
     );
@@ -224,7 +224,7 @@ describe('<Article /> component', () => {
     expect(queryByText('Save', { selector: 'button' })).toBeDefined();
   });
 
-  it('should render a video article', () => {
+  it('should render a video question', () => {
     const { queryByTitle } = render(
       <Article
         {...commonProps}
@@ -237,7 +237,7 @@ describe('<Article /> component', () => {
     expect(queryByTitle(/video duration/i)).toBeDefined();
   });
 
-  it('should render a podcast article', () => {
+  it('should render a podcast question', () => {
     const { queryByAltText, queryByText } = render(
       <Article
         {...commonProps}
@@ -258,7 +258,7 @@ describe('<Article /> component', () => {
     expect(queryByText('podcast', { selector: 'span' })).toBeDefined();
   });
 
-  it('should render a user article', () => {
+  it('should render a user question', () => {
     const { queryByText } = render(<Article article={userArticle} />);
 
     expect(queryByText('person', { selector: 'span' })).toBeDefined();

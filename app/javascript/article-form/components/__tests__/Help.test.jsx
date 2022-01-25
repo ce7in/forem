@@ -37,17 +37,17 @@ describe('<Help />', () => {
     const titleHelp = getByTestId('title-help');
 
     getByTestId('article-form__help-section');
-    getByText(/writing a great post title/i);
+    getByText(/writing a great question title/i);
 
     expect(
       titleHelp.textContent.includes(
-        'Think of your post title as a super short (but compelling!) description — like an overview of the actual post in one short sentence.',
+        'Think of your question title as a super short (but compelling!) description — like an overview of the actual question in one short sentence.',
       ),
     ).toEqual(true);
 
     expect(
       titleHelp.textContent.includes(
-        'Use keywords where appropriate to help ensure people can find your post by search.',
+        'Use keywords where appropriate to help ensure people can find your question by search.',
       ),
     ).toEqual(true);
   });

@@ -28,7 +28,7 @@
 
         <div class="comments" id="comment-trees-container">
           <% if @article.comments_count > 0 %>
-            <%= render partial: "articles/comment_tree", collection: Comment.tree_for(@article, @comments_to_show_count), as: :comment_node, cached: proc { |comment, _sub_comments| comment } %>
+            <%= render partial: "articles/comment_tree", locals: { is_page_article: true }, collection: Comment.tree_for(@article, @comments_to_show_count), as: :comment_node, cached: proc { |comment, _sub_comments| comment } %>
           <% end %>
         </div>
       </div>

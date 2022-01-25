@@ -56,7 +56,7 @@ describe('<Options />', () => {
     expect(results).toHaveNoViolations();
   });
 
-  it('shows the danger zone once an article is published', () => {
+  it('shows the danger zone once a question is published', () => {
     const passedData = getPassedData();
     passedData.published = true;
 
@@ -72,11 +72,11 @@ describe('<Options />', () => {
 
     expect(queryByTestId('options__danger-zone')).toBeDefined();
     expect(getByText(/danger zone/i)).toBeDefined();
-    expect(getByText(/unpublish post/i)).toBeDefined();
+    expect(getByText(/unpublish question/i)).toBeDefined();
     expect(getByText(/done/i)).toBeDefined();
   });
 
-  it('unpublishes an article when the unpublish post button is clicked', () => {
+  it('unpublishes a question when the unpublish question button is clicked', () => {
     const passedData = getPassedData();
     passedData.published = true;
 
@@ -91,7 +91,7 @@ describe('<Options />', () => {
       />,
     );
 
-    const unpublishPostButton = getByText(/unpublish post/i);
+    const unpublishPostButton = getByText(/unpublish question/i);
 
     unpublishPostButton.click();
 
