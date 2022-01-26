@@ -48,7 +48,7 @@ en:
           heading: Listings
           all: See all
           new: Create a Listing
-        trend: trending guides/resources
+        trend: trending questions
         recent: recently queried
       tags:
         aria_label: Customize tag priority

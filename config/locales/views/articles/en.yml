@@ -2,9 +2,9 @@
 en:
   views:
     articles:
-      answered: 🗸 Answered
-      solved: 🗸 Solved
-      notanswered: Not Answered
+      answered: ✨ Answered
+      solved: 👌 Solved
+      notanswered: No Answer
       meta:
         description: A question from the community
       actions:
