@@ -3,7 +3,7 @@
 <div class="comment__inner">
   <%= render partial: "comments/comment_avatar", locals: { comment: comment } %>
 
-  <% if is_page_article == true && comment.root? %>
+  <% if is_page_article == true && comment.root? && !comment.deleted %>
     <div class="inner-comment comment__details<%= " comment--featured" if comment.featured %>" itemprop="<% if comment.featured? %>acceptedAnswer<% else %>suggestedAnswer<% end %>" itemscope itemtype="https://schema.org/Answer">
   <% else %>
     <div class="inner-comment comment__details">
