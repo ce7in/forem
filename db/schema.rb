@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.integer "comment_score", default: 0
     t.string "comment_template"
     t.integer "comments_count", default: 0, null: false
-    t.boolean "completed", default: true
+    # t.boolean "completed", default: true
     t.datetime "created_at", null: false
     t.datetime "crossposted_at"
     t.string "description"
@@ -1254,7 +1254,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.datetime "profile_updated_at", default: "2017-01-01 05:00:00"
     t.integer "rating_votes_count", default: 0, null: false
     t.integer "reactions_count", default: 0, null: false
-    t.integer "referenced_comments_count", default: 0, null: false
+    # t.integer "referenced_comments_count", default: 0, null: false
     t.boolean "registered", default: true
     t.datetime "registered_at"
     t.datetime "remember_created_at"
