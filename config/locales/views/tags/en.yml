@@ -52,6 +52,6 @@ en:
         older: 'Older #%{tag} questions'
         published:
           one: 1 Question Asked
-          other: "%{count} Question Asked"
+          other: "%{count} Questions Asked"
         sponsor: "%{tag} is sponsored by"
       sponsor: "| Sponsored by %{org} ❤️"
