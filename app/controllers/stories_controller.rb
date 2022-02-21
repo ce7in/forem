@@ -129,7 +129,7 @@ class StoriesController < ApplicationController
     get_latest_campaign_articles if Campaign.current.show_in_sidebar?
     @article_index = true
     set_surrogate_key_header "main_app_home_page"
-    set_cache_control_headers(7.days.to_i,
+    set_cache_control_headers(1.day.to_i,
                               stale_while_revalidate: 30,
                               stale_if_error: 86_400)
 

@@ -13,7 +13,7 @@ module CachingHeaders
   # custom config example:
   #  {cache_control: 'public, no-cache, maxage=xyz', surrogate_control: 'max-age: 100'}
   def set_cache_control_headers(
-    max_age = 1.days.to_i,
+    max_age = 1.day.to_i,
     surrogate_control: nil,
     stale_while_revalidate: nil,
     stale_if_error: 26_400
