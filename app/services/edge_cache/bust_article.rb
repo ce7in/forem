@@ -11,6 +11,7 @@ module EdgeCache
 
       article.comments.includes(:user).find_each do |comment|
         EdgeCache::BustComment.call(comment.commentable)
+        EdgeCache::BustUser.call(comment.user)
       end
 
       article.purge
