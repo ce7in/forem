@@ -9,8 +9,9 @@ module EdgeCache
     def self.call(article)
       return unless article
 
+      EdgeCache::BustComment.call(article)
+
       article.comments.includes(:user).find_each do |comment|
-        EdgeCache::BustComment.call(comment.commentable)
         EdgeCache::BustUser.call(comment.user)
       end
 
