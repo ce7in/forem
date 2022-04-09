@@ -835,9 +835,15 @@ class Article < ApplicationRecord
       comment.user.touch(:last_comment_at)
       EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
 
-      async_bust_for_comments(comment.id)
+      # Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
 
-      Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
+      if comment.root_exists?
+        comment.root.touch
+      else
+        comment.touch
+      end
+
+      Comments::BustCacheWorker.perform_async(comment.id)
     end
   end
 
@@ -852,10 +858,6 @@ class Article < ApplicationRecord
 
   def async_bust
     Articles::BustCacheWorker.perform_async(id)
-  end
-
-  def async_bust_for_comments(id)
-    Comments::BustCacheWorker.perform_async(id)
   end
 
   def touch_collection
