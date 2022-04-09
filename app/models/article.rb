@@ -834,7 +834,12 @@ class Article < ApplicationRecord
       comment.commentable.touch(:last_comment_at) if comment.commentable.respond_to?(:last_comment_at)
       comment.user.touch(:last_comment_at)
       EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
-      comment.expire_root_fragment
+
+      if comment.root_exists?
+        comment.root.touch
+      else
+        comment.touch
+      end
 
       Comments::BustCacheWorker.perform_async(comment.id)
 
