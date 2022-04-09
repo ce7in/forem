@@ -819,14 +819,14 @@ class Article < ApplicationRecord
   end
 
   def bust_cache(destroying: false)
-    bust_cache_for_comments
-
     cache_bust = EdgeCache::Bust.new
     cache_bust.call(path)
     cache_bust.call("#{path}?i=i")
     cache_bust.call("#{path}?preview=#{password}")
     async_bust
     touch_actor_latest_article_updated_at(destroying: destroying)
+
+    bust_cache_for_comments
   end
 
   def bust_cache_for_comments
