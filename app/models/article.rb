@@ -849,6 +849,11 @@ class Article < ApplicationRecord
                "commentable_type=Comment"
       cache_bust.call(path)
 
+      Comments::BustCacheWorker.new.perform(comment.id)
+
+      Users::BustCacheWorker.perform_async(comment.user.id)
+      comment.user.touch(:last_comment_at)
+
       # Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
     end
   end
