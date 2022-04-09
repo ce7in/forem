@@ -819,12 +819,24 @@ class Article < ApplicationRecord
   end
 
   def bust_cache(destroying: false)
+    bust_cache_for_comments
+
     cache_bust = EdgeCache::Bust.new
     cache_bust.call(path)
     cache_bust.call("#{path}?i=i")
     cache_bust.call("#{path}?preview=#{password}")
     async_bust
     touch_actor_latest_article_updated_at(destroying: destroying)
+  end
+
+  def bust_cache_for_comments
+    comments.includes(:user).find_each do |comment|
+      comment.commentable.touch(:last_comment_at) if comment.commentable.respond_to?(:last_comment_at)
+      comment.user.touch(:last_comment_at)
+      EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
+
+      async_bust_for_comments(comment.id)
+    end
   end
 
   def calculate_base_scores
@@ -838,6 +850,10 @@ class Article < ApplicationRecord
 
   def async_bust
     Articles::BustCacheWorker.perform_async(id)
+  end
+
+  def async_bust_for_comments(id)
+    Comments::BustCacheWorker.perform_async(id)
   end
 
   def touch_collection

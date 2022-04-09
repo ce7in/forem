@@ -9,12 +9,6 @@ module EdgeCache
     def self.call(article)
       return unless article
 
-      EdgeCache::BustComment.call(article)
-
-      article.comments.includes(:user).find_each do |comment|
-        EdgeCache::BustUser.call(comment.user)
-      end
-
       article.purge
 
       cache_bust = EdgeCache::Bust.new

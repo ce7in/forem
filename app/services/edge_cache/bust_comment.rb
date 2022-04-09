@@ -13,7 +13,6 @@ module EdgeCache
       commentable.comments.includes(:user).find_each do |comment|
         cache_bust.call(comment.path)
         cache_bust.call("#{comment.path}?i=i")
-        comment.purge
       end
 
       cache_bust.call("#{commentable.path}/comments/*")
