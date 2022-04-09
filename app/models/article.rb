@@ -819,34 +819,18 @@ class Article < ApplicationRecord
   end
 
   def bust_cache(destroying: false)
-    bust_cache_for_comments
     cache_bust = EdgeCache::Bust.new
     cache_bust.call(path)
     cache_bust.call("#{path}?i=i")
     cache_bust.call("#{path}?preview=#{password}")
     async_bust
     touch_actor_latest_article_updated_at(destroying: destroying)
+    bust_cache_for_comments
   end
 
   def bust_cache_for_comments
-    cache_bust = EdgeCache::Bust.new
-
     comments.includes(:user).find_each do |comment|
-      comment.commentable.touch(:last_comment_at) if comment.commentable.respond_to?(:last_comment_at)
-      comment.user.touch(:last_comment_at)
-      cache_bust.call(comment.commentable.path.to_s) if comment.commentable
-
-      if comment.root_exists?
-        comment.root.touch
-      else
-        comment.touch
-      end
-
-      Comments::BustCacheWorker.new.perform(comment.id)
-
-      comment.user.touch(:last_comment_at)
-
-      # Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
+      Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
     end
   end
 
@@ -860,9 +844,7 @@ class Article < ApplicationRecord
   end
 
   def async_bust
-    Comments::BustCacheWorker.perform_async(comment.id)
     Articles::BustCacheWorker.perform_async(id)
-    Users::BustCacheWorker.perform_async(comment.user.id)
   end
 
   def touch_collection
