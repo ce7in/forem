@@ -836,8 +836,6 @@ class Article < ApplicationRecord
       EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
 
       async_bust_for_comments(comment.id)
-
-      comment.expire_root_fragment
     end
   end
 
