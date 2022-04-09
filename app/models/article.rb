@@ -836,7 +836,7 @@ class Article < ApplicationRecord
       EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
       comment.expire_root_fragment
 
-      comment.bust_cache
+      Comments::BustCacheWorker.perform_async(comment.id)
 
       # Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
     end
