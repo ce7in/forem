@@ -825,10 +825,10 @@ class Article < ApplicationRecord
     cache_bust.call("#{path}?preview=#{password}")
     async_bust
     touch_actor_latest_article_updated_at(destroying: destroying)
-    bust_cache_for_comments
+    create_first_reactions
   end
 
-  def bust_cache_for_comments
+  def create_first_reactions
     comments.includes(:user).find_each do |comment|
       Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
     end
