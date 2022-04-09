@@ -831,11 +831,8 @@ class Article < ApplicationRecord
 
   def bust_cache_for_comments
     comments.includes(:user).find_each do |comment|
-      comment.commentable.touch(:last_comment_at) if comment.commentable.respond_to?(:last_comment_at)
-      comment.user.touch(:last_comment_at)
-      EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
-
-      async_bust_for_comments(comment.id)
+      comment.synchronous_bust
+      comment.bust_cache
     end
   end
 
@@ -850,10 +847,6 @@ class Article < ApplicationRecord
 
   def async_bust
     Articles::BustCacheWorker.perform_async(id)
-  end
-
-  def async_bust_for_comments(id)
-    Comments::BustCacheWorker.perform_async(id)
   end
 
   def touch_collection
