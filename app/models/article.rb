@@ -830,10 +830,12 @@ class Article < ApplicationRecord
   end
 
   def bust_cache_for_comments
+    cache_bust = EdgeCache::Bust.new
+
     comments.includes(:user).find_each do |comment|
       comment.commentable.touch(:last_comment_at) if comment.commentable.respond_to?(:last_comment_at)
       comment.user.touch(:last_comment_at)
-      EdgeCache::Bust.call(comment.commentable.path.to_s) if comment.commentable
+      cache_bust.call(comment.commentable.path.to_s) if comment.commentable
 
       if comment.root_exists?
         comment.root.touch
@@ -842,6 +844,10 @@ class Article < ApplicationRecord
       end
 
       Comments::BustCacheWorker.perform_async(comment.id)
+
+      path = "/reactions?commentable_id=#{comment.id}&" \
+               "commentable_type=Comment"
+      cache_bust.call(path)
 
       # Comments::CreateFirstReactionWorker.perform_async(comment.id, 2)
     end
