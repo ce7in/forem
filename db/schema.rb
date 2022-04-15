@@ -165,7 +165,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.index ["comments_count"], name: "index_articles_on_comments_count"
     t.index ["featured_number"], name: "index_articles_on_featured_number"
     t.index ["feed_source_url"], name: "index_articles_on_feed_source_url", unique: true, where: "(published IS TRUE)"
-    t.index ["has_featured_comment"], name: "index_articles_on_has_featured_comment", order: :desc
+    t.index ["has_featured_comment"], name: "index_articles_on_has_featured_comment"
     t.index ["hotness_score", "comments_count"], name: "index_articles_on_hotness_score_and_comments_count"
     t.index ["hotness_score"], name: "index_articles_on_hotness_score"
     # t.index ["main_category_id"], name: "index_articles_on_main_category_id"
@@ -380,7 +380,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
 		t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["created_at"], name: "index_comments_on_created_at"
     t.index ["deleted"], name: "index_comments_on_deleted", where: "(deleted = false)"
-    t.index ["featured"], name: "index_comments_on_featured", where: "(featured IS TRUE)"
+    t.index ["featured"], name: "index_comments_on_featured", order: :desc
 		t.index ["hidden_by_commentable_user"], name: "index_comments_on_hidden_by_commentable_user", where: "(hidden_by_commentable_user = false)"
     t.index ["score"], name: "index_comments_on_score"
     t.index ["user_id"], name: "index_comments_on_user_id"
