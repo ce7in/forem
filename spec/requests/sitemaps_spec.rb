@@ -46,7 +46,7 @@ RSpec.describe "Sitemaps", type: :request do
         get "/sitemap-index.xml"
         expect(response.body).to include("<sitemapindex xmlns=")
         expect(response.body).to include("sitemap-posts.xml")
-        expect(response.body).to include("sitemap-users.xml")
+        # expect(response.body).to include("sitemap-users.xml")
         expect(response.body).to include("sitemap-tags.xml")
       end
 
@@ -130,38 +130,38 @@ RSpec.describe "Sitemaps", type: :request do
       end
     end
 
-    context "with users in param" do
-      before do
-        create_list(:user, 8)
-        User.all.each do |user|
-          user.update_column(:comments_count, rand(100_000))
-        end
-      end
-
-      it "renders hottest tags if /sitemap-users", :aggregate_failures do
-        get "/sitemap-users.xml"
-        expect(response.body).to include(User.order("comments_count DESC").first.username)
-        expect(response.body).not_to include(User.order("comments_count DESC").last.username)
-      end
-
-      it "renders second page if /sitemap-users-1", :aggregate_failures do
-        get "/sitemap-users-1.xml"
-        expect(response.body).not_to include(User.order("comments_count DESC").first.username)
-        expect(response.body).to include(User.order("comments_count DESC").last.username)
-      end
-
-      it "renders first page if /sitemap-users-randomn0tnumber", :aggregate_failures do
-        get "/sitemap-users-randomn0tnumber.xml"
-        expect(response.body).to include(User.order("comments_count DESC").first.username)
-        expect(response.body).not_to include(User.order("comments_count DESC").last.username)
-      end
-
-      it "renders empty if /sitemap-users-2", :aggregate_failures do
-        # no posts this far down.
-        get "/sitemap-users-2.xml"
-        expect(response.body).not_to include(User.order("comments_count DESC").first.username)
-        expect(response.body).not_to include(User.order("comments_count DESC").last.username)
-      end
-    end
+    # context "with users in param" do
+    #   before do
+    #     create_list(:user, 8)
+    #     User.all.each do |user|
+    #       user.update_column(:comments_count, rand(100_000))
+    #     end
+    #   end
+    #
+    #   it "renders hottest tags if /sitemap-users", :aggregate_failures do
+    #     get "/sitemap-users.xml"
+    #     expect(response.body).to include(User.order("comments_count DESC").first.username)
+    #     expect(response.body).not_to include(User.order("comments_count DESC").last.username)
+    #   end
+    #
+    #   it "renders second page if /sitemap-users-1", :aggregate_failures do
+    #     get "/sitemap-users-1.xml"
+    #     expect(response.body).not_to include(User.order("comments_count DESC").first.username)
+    #     expect(response.body).to include(User.order("comments_count DESC").last.username)
+    #   end
+    #
+    #   it "renders first page if /sitemap-users-randomn0tnumber", :aggregate_failures do
+    #     get "/sitemap-users-randomn0tnumber.xml"
+    #     expect(response.body).to include(User.order("comments_count DESC").first.username)
+    #     expect(response.body).not_to include(User.order("comments_count DESC").last.username)
+    #   end
+    #
+    #   it "renders empty if /sitemap-users-2", :aggregate_failures do
+    #     # no posts this far down.
+    #     get "/sitemap-users-2.xml"
+    #     expect(response.body).not_to include(User.order("comments_count DESC").first.username)
+    #     expect(response.body).not_to include(User.order("comments_count DESC").last.username)
+    #   end
+    # end
   end
 end

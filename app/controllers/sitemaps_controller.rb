@@ -30,10 +30,6 @@ class SitemapsController < ApplicationController
 
   def resource_sitemap(resource)
     case resource
-    when "users"
-      @users = User.order("comments_count DESC")
-        .where("score > -1") # Spam mitigation
-        .limit(RESULTS_LIMIT).offset(offset).pluck(:username, :profile_updated_at)
     when "posts"
       @articles = Article.published.order("published_at DESC")
         .where("score >= ?", Settings::UserExperience.index_minimum_score)
@@ -77,7 +73,7 @@ class SitemapsController < ApplicationController
   end
 
   def valid_resource_sitemap?
-    %w[posts users tags].include?(resource_string)
+    %w[posts tags].include?(resource_string)
   end
 
   def resource_string
