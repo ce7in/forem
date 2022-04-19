@@ -2,6 +2,7 @@
 <meta name="description" content="<%= @user.tag_line %>">
 <%= meta_keywords_default %>
 
+<meta name="robots" content="noindex">
 <meta property="og:type" content="website" />
 <meta property="og:url" content="<%= user_url(@user) %>" />
 <meta property="og:title" content="<%= t("views.users.meta.og.title", user: @user.name, community: community_name) %>" />
