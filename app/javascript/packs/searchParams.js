@@ -212,6 +212,7 @@ const waitingOnSearch = setInterval(() => {
       substories &&
       document.getElementsByClassName('search-results-loaded').length === 0
     ) {
+      substories.innerHtml = '<div class="p-9 align-center crayons-card">searching...</div>';
       searchMain(substories);
     }
   }
