@@ -5,7 +5,7 @@ function getQueryParams(qs) {
   qs = qs.split('+').join(' ');
 
   const params = {},
-    re = /[?&]?([^=]+)=([^&]*)/g;
+      re = /[?&]?([^=]+)=([^&]*)/g;
   let tokens;
 
   while ((tokens = re.exec(qs))) {
@@ -24,7 +24,7 @@ function searchMain(substories) {
   const sortDirection = filterXSS(params.sort_direction || '');
 
   substories.innerHTML =
-    '<div class="p-9 align-center crayons-card">searching...</div>';
+      '<div class="p-9 align-center crayons-card"><p>Searching...</p><p>Depending on the complexity of your search query, it may take about a minute.</p></div>';
   if (document.getElementById('query-wrapper')) {
     search(query, filters, sortBy, sortDirection);
     initializeFilters(query, filters);
@@ -34,7 +34,7 @@ function searchMain(substories) {
 
 function initializeSortingTabs(query) {
   const sortingTabs = document.querySelectorAll(
-    '#sorting-option-tabs .crayons-navigation__item',
+      '#sorting-option-tabs .crayons-navigation__item',
   );
 
   for (let i = 0; i < sortingTabs.length; i++) {
@@ -49,9 +49,9 @@ function initializeSortingTabs(query) {
 
       if (filters) {
         window.history.pushState(
-          null,
-          null,
-          `/search?q=${query}&filters=${filters}${sortString}`,
+            null,
+            null,
+            `/search?q=${query}&filters=${filters}${sortString}`,
         );
         search(query, filters, sortBy, sortDirection);
       } else {
@@ -85,17 +85,17 @@ function initializeFilters(query, filters) {
       const sortString = buildSortString(sortBy, sortDirection);
 
       if (
-        e.target.classList.contains('my-posts-query-button') &&
-        !checkUserLoggedIn()
+          e.target.classList.contains('my-posts-query-button') &&
+          !checkUserLoggedIn()
       ) {
         showLoginModal();
         return;
       }
       const filters = e.target.dataset.filter;
       window.history.pushState(
-        null,
-        null,
-        `/search?q=${query}&filters=${filters}${sortString}`,
+          null,
+          null,
+          `/search?q=${query}&filters=${filters}${sortString}`,
       );
       const { className } = e.target;
       for (let i = 0; i < filterButts.length; i++) {
@@ -104,16 +104,16 @@ function initializeFilters(query, filters) {
       if (className.indexOf('crayons-navigation__item--current') === -1) {
         e.target.classList.add('crayons-navigation__item--current');
         window.history.replaceState(
-          null,
-          null,
-          `/search?q=${query}&filters=${filters}${sortString}`,
+            null,
+            null,
+            `/search?q=${query}&filters=${filters}${sortString}`,
         );
         search(query, filters, sortBy, sortDirection);
       } else {
         window.history.replaceState(
-          null,
-          null,
-          `/search?q=${query}${sortString}`,
+            null,
+            null,
+            `/search?q=${query}${sortString}`,
         );
         search(query, '', sortBy, sortDirection);
       }
@@ -123,8 +123,8 @@ function initializeFilters(query, filters) {
 
 function buildSortString(sortBy, sortDirection) {
   return sortBy && sortDirection
-    ? `&sort_by=${sortBy}&sort_direction=${sortDirection}`
-    : '';
+      ? `&sort_by=${sortBy}&sort_direction=${sortDirection}`
+      : '';
 }
 
 function search(query, filters, sortBy, sortDirection) {
@@ -182,35 +182,35 @@ function search(query, filters, sortBy, sortDirection) {
     },
     credentials: 'same-origin',
   })
-    .then((response) => response.json())
-    .then((content) => {
-      const resultDivs = [];
-      content.result.forEach((story) => {
-        resultDivs.push(buildArticleHTML(story));
+      .then((response) => response.json())
+      .then((content) => {
+        const resultDivs = [];
+        content.result.forEach((story) => {
+          resultDivs.push(buildArticleHTML(story));
+        });
+        document.getElementById('substories').innerHTML = resultDivs.join('');
+        initializeReadingListIcons();
+        document
+            .getElementById('substories')
+            .classList.add('search-results-loaded');
+        if (content.result.length === 0) {
+          document.getElementById('substories').innerHTML =
+              '<div class="p-9 align-center crayons-card"><p>No results match that query. 😞</p><p>Alternatively, you can ask this question to our experts.</p><a class="crayons-btn mt-5" href="/new">Ask Our Experts</a></div>';
+        }
       });
-      document.getElementById('substories').innerHTML = resultDivs.join('');
-      initializeReadingListIcons();
-      document
-        .getElementById('substories')
-        .classList.add('search-results-loaded');
-      if (content.result.length === 0) {
-        document.getElementById('substories').innerHTML =
-          '<div class="p-9 align-center crayons-card">No results match that query</div>';
-      }
-    });
 }
 
 const waitingOnSearch = setInterval(() => {
   if (
-    typeof search === 'function' &&
-    typeof filterXSS === 'function' &&
-    typeof buildArticleHTML === 'function'
+      typeof search === 'function' &&
+      typeof filterXSS === 'function' &&
+      typeof buildArticleHTML === 'function'
   ) {
     clearInterval(waitingOnSearch);
     const substories = document.getElementById('substories');
     if (
-      substories &&
-      document.getElementsByClassName('search-results-loaded').length === 0
+        substories &&
+        document.getElementsByClassName('search-results-loaded').length === 0
     ) {
       searchMain(substories);
     }
