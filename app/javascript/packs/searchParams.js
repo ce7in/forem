@@ -195,7 +195,7 @@ function search(query, filters, sortBy, sortDirection) {
             .classList.add('search-results-loaded');
         if (content.result.length === 0) {
           document.getElementById('substories').innerHTML =
-              '<div class="p-9 align-center crayons-card"><p>No results match that query. 😞</p><p>Alternatively, you can ask this question to our experts.</p><a class="crayons-btn mt-5" href="/new">Ask Our Experts</a></div>';
+              '<div class="p-9 align-center crayons-card"><p>No results match that query. 😞</p><p>Alternatively, you can ask this question to our experts for totally free.</p><a class="crayons-btn mt-5" href="/new">Ask Our Experts</a></div>';
         }
       });
 }
