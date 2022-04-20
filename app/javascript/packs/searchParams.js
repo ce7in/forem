@@ -24,7 +24,7 @@ function searchMain(substories) {
   const sortDirection = filterXSS(params.sort_direction || '');
 
   substories.innerHTML =
-    '<div class="p-9 align-center crayons-card"><br></div>';
+    '<div class="p-9 align-center crayons-card">searching...</div>';
   if (document.getElementById('query-wrapper')) {
     search(query, filters, sortBy, sortDirection);
     initializeFilters(query, filters);
@@ -212,7 +212,6 @@ const waitingOnSearch = setInterval(() => {
       substories &&
       document.getElementsByClassName('search-results-loaded').length === 0
     ) {
-      substories.innerHtml = '<div class="p-9 align-center crayons-card">searching...</div>';
       searchMain(substories);
     }
   }
