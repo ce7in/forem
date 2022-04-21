@@ -16,6 +16,7 @@ fr:
         aria_label: View posts by
         aria_tagged: View tagged posts by
         relevant: Pertinent
+        unanswered: Sans réponse
         week: Semaine
         month: Mois
         year: Année

@@ -129,7 +129,7 @@ class StoriesController < ApplicationController
     get_latest_campaign_articles if Campaign.current.show_in_sidebar?
     @article_index = true
     set_surrogate_key_header "main_app_home_page"
-    set_cache_control_headers(1.day.to_i,
+    set_cache_control_headers(240.days.to_i,
                               stale_while_revalidate: 30,
                               stale_if_error: 86_400)
 
@@ -233,10 +233,11 @@ class StoriesController < ApplicationController
     elsif params[:timeframe] == Timeframe::LATEST_TIMEFRAME
       @stories = Articles::Feeds::Latest.call
     else
-      @default_home_feed = true
-      feed = Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
-      @featured_story, @stories = feed.featured_story_and_default_home_feed(user_signed_in: user_signed_in?)
-      @stories = @stories.to_a
+      # @default_home_feed = true
+      # feed = Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
+      # @featured_story, @stories = feed.featured_story_and_default_home_feed(user_signed_in: user_signed_in?)
+      # @stories = @stories.to_a
+      @stories = Articles::Feeds::Unanswered.call
     end
 
     @pinned_article = pinned_article&.decorate

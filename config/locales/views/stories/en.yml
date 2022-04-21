@@ -16,6 +16,7 @@ en:
         aria_label: View questions by
         aria_tagged: View tagged questions by
         relevant: Relevant
+        unanswered: Unanswered
         week: Week
         month: Month
         year: Year
