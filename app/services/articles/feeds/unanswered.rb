@@ -5,8 +5,7 @@ module Articles
 				articles = ::Articles::Feeds::Tag.call(tag)
 
 				articles
-					.where("comments_count = 0")
-					.order(published_at: :desc)
+					.order(comments_count: :asc, published_at: :desc)
 					.page(page)
 					.per(number_of_articles)
 			end

@@ -25,10 +25,12 @@ module Stories
                   timeframe_feed
                 elsif params[:timeframe] == Timeframe::LATEST_TIMEFRAME
                   latest_feed
-                elsif user_signed_in?
-                  signed_in_base_feed
+                # elsif user_signed_in?
+                #   signed_in_base_feed
+                # else
+                #   signed_out_base_feed
                 else
-                  signed_out_base_feed
+                  unanswered_feed
                 end
 
       ArticleDecorator.decorate_collection(stories)
@@ -94,6 +96,10 @@ module Stories
 
     def latest_feed
       Articles::Feeds::Latest.call(tag: params[:tag], page: @page)
+    end
+
+    def unanswered_feed
+      Articles::Feeds::Unanswered.call(tag: params[:tag], page: @page)
     end
   end
 end
