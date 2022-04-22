@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.index ["feed_source_url"], name: "index_articles_on_feed_source_url", unique: true, where: "(published IS TRUE)"
     t.index ["has_featured_comment"], name: "index_articles_on_has_featured_comment"
     t.index ["hotness_score", "comments_count"], name: "index_articles_on_hotness_score_and_comments_count"
+    t.index ["comments_count" => :asc, "published_at" => :desc], name: "index_articles_on_comments_count_published_at"
     t.index ["hotness_score"], name: "index_articles_on_hotness_score"
     # t.index ["main_category_id"], name: "index_articles_on_main_category_id"
     t.index ["path"], name: "index_articles_on_path"
