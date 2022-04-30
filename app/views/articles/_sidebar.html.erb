@@ -1,6 +1,6 @@
 <div id="sidebar-wrapper-left" class="sidebar-wrapper sidebar-wrapper-left crayons-layout__sidebar-left">
   <aside class="side-bar" aria-label="Primary sidebar">
-    <% cache(release_adjusted_cache_key("main-sidebar-nav--#{user_signed_in?}"), expires_in: 15.minutes) do %>
+    <% cache(release_adjusted_cache_key("main-sidebar-nav--#{user_signed_in?}"), expires_in: 7.days) do %>
       <%= render "shared/auth_widget" unless user_signed_in? %>
       <%= render "layouts/main_nav" %>
       <%= render "layouts/sidebar_tags" %>
@@ -19,7 +19,7 @@
         </div>
       <% end %>
     <% end %>
-    <% cache("display-area-left-#{rand(5)}", expires_in: 5.minutes) do %>
+    <% cache("display-area-left-#{rand(5)}", expires_in: 7.days) do %>
       <% @left_sidebar_ad = DisplayAd.for_display("sidebar_left") %>
       <% if @left_sidebar_ad %>
         <div class="crayons-card crayons-card--secondary p-3 crayons-sponsorship-widget" data-display-unit data-id="<%= @left_sidebar_ad.id %>">
@@ -27,7 +27,7 @@
         </div>
       <% end %>
     <% end %>
-    <% cache("display-area-left-2-#{rand(5)}", expires_in: 5.minutes) do %>
+    <% cache("display-area-left-2-#{rand(5)}", expires_in: 7.days) do %>
       <% @second_left_sidebar_ad = DisplayAd.for_display("sidebar_left_2") %>
       <% if @second_left_sidebar_ad %>
         <div class="mt-4 crayons-card crayons-card--secondary p-3 crayons-sponsorship-widget" data-display-unit data-id="<%= @second_left_sidebar_ad.id %>">

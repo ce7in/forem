@@ -342,7 +342,7 @@ class Article < ApplicationRecord
 
     relation = Article.published
       .order(organic_page_views_past_month_count: :desc)
-      .where("score > ?", 8)
+      .where("score > ?", 3)
       .where("published_at > ?", time_ago)
       .limit(20)
 
