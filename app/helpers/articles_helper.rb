@@ -63,6 +63,6 @@ module ArticlesHelper
   end
 
   def active_threads(...)
-    Articles::ActiveThreadsQuery.call(...)
+    # Articles::ActiveThreadsQuery.call(...)
   end
 end
