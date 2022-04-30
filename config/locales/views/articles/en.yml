@@ -88,6 +88,7 @@ en:
       missing: Question No Longer Available
       posted_html: Asked on %{date}
       read_next: Read next
+      similar_questions: Similar questions
       reading_time:
         one: "1 min read"
         other: "%{count} min read"

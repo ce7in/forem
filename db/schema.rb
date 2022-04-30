@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.text "body_markdown"
     t.text "cached_organization"
     t.string "cached_tag_list"
+    t.string "cached_related_list"
     t.text "cached_user"
     t.string "cached_user_name"
     t.string "cached_user_username"

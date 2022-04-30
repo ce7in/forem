@@ -24,7 +24,7 @@ function searchMain(substories) {
   const sortDirection = filterXSS(params.sort_direction || '');
 
   substories.innerHTML =
-      '<div class="p-9 align-center crayons-card"><p>Searching...</p><p>Depending on the complexity of your search query, it may take about a minute.</p></div>';
+      '<div class="p-9 align-center crayons-card"><p><b>Searching</b> among over <b>4.5 million</b> questions and over <b>11 million</b> answers...</p><p>Depending on the complexity of your search query, it may take about a minute.</p></div>';
   if (document.getElementById('query-wrapper')) {
     search(query, filters, sortBy, sortDirection);
     initializeFilters(query, filters);
@@ -195,7 +195,7 @@ function search(query, filters, sortBy, sortDirection) {
             .classList.add('search-results-loaded');
         if (content.result.length === 0) {
           document.getElementById('substories').innerHTML =
-              '<div class="p-9 align-center crayons-card"><p>No results match that query. 😞</p><p>Alternatively, you can ask this question to our experts for totally free.</p><a class="crayons-btn mt-5" href="/new">Ask Our Experts</a></div>';
+              '<div class="p-9 align-center crayons-card"><p>We could not find your query among over <b>4.5 million</b> questions and over <b>11 million</b> answers. 😞</p><p>Alternatively, you can ask this question to our experts for totally free.</p><a class="crayons-btn mt-5" href="/new">Ask Our Experts</a></div>';
         }
       });
 }

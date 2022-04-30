@@ -224,7 +224,7 @@ class StoriesController < ApplicationController
     redirect_if_show_view_param
     return if performed?
 
-    render template: "articles/show"
+    render template: "articles/show_v2"
   end
 
   def assign_feed_stories

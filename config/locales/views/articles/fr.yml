@@ -88,6 +88,7 @@ fr:
       missing: Article No Longer Available
       posted_html: Posted on %{date}
       read_next: Lire ensuite
+      similar_questions: Questions similaires
       reading_time:
         one: "1 min read"
         other: "%{count} min read"
