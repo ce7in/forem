@@ -45,7 +45,7 @@
             function downloadJsAtOnload() {
                 setTimeout(function downloadJs() {
                     var element = document.createElement("script");
-                    element.setAttribute("data-ad-client", <%= Settings::General.ga_publisher_id %>);
+                    element.setAttribute("data-ad-client", "<%= Settings::General.ga_publisher_id %>");
                     element.async = true;
                     element.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
                     document.body.appendChild(element);
