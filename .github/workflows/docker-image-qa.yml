@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ main, qa, adsense ]
+    branches: [ main, qa, google-adsense ]
 
 jobs:
 
