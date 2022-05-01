@@ -194,7 +194,7 @@
 
 .crayons-layout--question {
   --layout-gap: 0;
-  --site-width: 900px;
+  --site-width: 1024px;
   @media (min-width: $breakpoint-m) {
     --layout-gap: var(--su-2);
     --layout-sidebar-left-width: var(--su-9);

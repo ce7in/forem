@@ -24,7 +24,7 @@ function searchMain(substories) {
   const sortDirection = filterXSS(params.sort_direction || '');
 
   substories.innerHTML =
-      '<div class="p-9 align-center crayons-card"><p><b>Searching</b> among over <b>4.5 million</b> questions and over <b>11 million</b> answers...</p><p>Depending on the complexity of your search query, it may take about a minute.</p></div>';
+      '<div class="p-9 align-center crayons-card"><p>Searching...</p><br><p><i>Depending on the complexity of your search query, it may take about a minute to find the results among over <b>4.5 million</b> questions and over <b>11 million</b> answers.</i></p></div>';
   if (document.getElementById('query-wrapper')) {
     search(query, filters, sortBy, sortDirection);
     initializeFilters(query, filters);
