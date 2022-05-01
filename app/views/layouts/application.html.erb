@@ -24,10 +24,6 @@
       <% else %>
         <%= javascript_packs_with_chunks_tag "base", "Search", "runtimeBanner", defer: true %>
       <% end %>
-      <% if Settings::General.ga_publisher_id %>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= Settings::General.ga_publisher_id %>"
-                crossorigin="anonymous"></script>
-      <% end %>
       <%= yield(:page_meta) %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
       <%= favicon_link_tag Images::Optimizer.call(Settings::General.favicon_url, width: 32) %>
@@ -41,10 +37,27 @@
       <meta name="application-name" content="<%= Settings::General.app_domain %>">
       <meta name="theme-color" content="#000000" />
       <link rel="search" href="<%= URL.url("open-search.xml") %>" type="application/opensearchdescription+xml" title="<%= community_name %>" />
-
       <meta property="forem:name" content="<%= community_name %>" />
       <meta property="forem:logo" content="<%= optimized_image_url(Settings::General.logo_png, width: 512, fetch_format: "png") %>" />
       <meta property="forem:domain" content="<%= Settings::General.app_domain %>" />
+      <% if Settings::General.ga_publisher_id %>
+        <script type="text/javascript">
+            function downloadJsAtOnload() {
+                setTimeout(function downloadJs() {
+                    var element = document.createElement("script");
+                    element.setAttribute("data-ad-client", <%= Settings::General.ga_publisher_id %>);
+                    element.async = true;
+                    element.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
+                    document.body.appendChild(element);
+                }, 4000);
+            };
+            if (window.addEventListener)
+                window.addEventListener("load", downloadJsAtOnload, false);
+            else if (window.attachEvent)
+                window.attachEvent("onload", downloadJsAtOnload);
+            else window.onload = downloadJsAtOnload;
+        </script>
+      <% end %>
     <% end %>
   </head>
   <% unless internal_navigation? %>
