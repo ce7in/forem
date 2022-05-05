@@ -29,22 +29,8 @@
         <%= javascript_packs_with_chunks_tag "base", "Search", "runtimeBanner", defer: true %>
       <% end %>
       <% if Settings::General.ga_publisher_id %>
-        <script type="text/javascript">
-            function downloadJsAtOnload() {
-                setTimeout(function downloadJs() {
-                    var element = document.createElement("script");
-                    element.setAttribute("data-ad-client", "<%= Settings::General.ga_publisher_id %>");
-                    element.async = true;
-                    element.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js";
-                    document.body.appendChild(element);
-                }, 3000);
-            };
-            if (window.addEventListener)
-                window.addEventListener("load", downloadJsAtOnload, false);
-            else if (window.attachEvent)
-                window.attachEvent("onload", downloadJsAtOnload);
-            else window.onload = downloadJsAtOnload;
-        </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= Settings::General.ga_publisher_id %>"
+                crossorigin="anonymous"></script>
       <% end %>
       <%= yield(:page_meta) %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
