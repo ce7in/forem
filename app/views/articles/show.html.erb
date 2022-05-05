@@ -175,6 +175,18 @@
             <%= @article.processed_html.html_safe %>
           </div>
 
+          <aside class="mx-auto my-4" id="end-content">
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-0261018540053685"
+                 data-ad-slot="5107891218"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </aside>
+
           <% if @article.long_markdown? && @collection %>
             <%= render "articles/collection",
                        rendered_article: @article,
@@ -185,6 +197,17 @@
         <%= render "articles/full_comment_area" %>
 
       </article>
+
+      <aside class="mb-4 print-hidden" id="bottom-content-multiplex-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-format="autorelaxed"
+             data-ad-client="ca-pub-0261018540053685"
+             data-ad-slot="6637166121"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </aside>
 
       <% cache("article-bottom-content-#{@article.id}-#{user_signed_in?}-#{(@organization || @user).latest_article_updated_at}", expires_in: 18.hours) do %>
         <% suggested_articles = Articles::Suggest.call(@article, max: 4) %>
