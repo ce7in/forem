@@ -171,11 +171,7 @@
                        articles: @collection_articles %>
           <% end %>
 
-          <div class="crayons-article__body text-styles spec__body" data-article-id="<%= @article.id %>" id="article-body">
-            <%= @article.processed_html.html_safe %>
-          </div>
-
-          <aside class="mx-auto my-4" id="end-content">
+          <div class="mx-auto my-4" id="end-content">
             <ins class="adsbygoogle"
                  style="display:block; text-align:center;"
                  data-ad-layout="in-article"
@@ -185,7 +181,23 @@
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-          </aside>
+          </div>
+
+          <div class="crayons-article__body text-styles spec__body" data-article-id="<%= @article.id %>" id="article-body">
+            <%= @article.processed_html.html_safe %>
+          </div>
+
+          <div class="mx-auto my-4" id="end-content">
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-0261018540053685"
+                 data-ad-slot="5107891218"></ins>
+            <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+          </div>
 
           <% if @article.long_markdown? && @collection %>
             <%= render "articles/collection",
