@@ -202,7 +202,7 @@
             <%= @article.processed_html.html_safe %>
           </div>
 
-          <aside class="mx-auto my-4" id="end-content">
+          <div class="mx-auto my-4" id="end-content">
             <ins class="adsbygoogle"
                  style="display:block; text-align:center;"
                  data-ad-layout="in-article"
@@ -212,7 +212,7 @@
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-          </aside>
+          </div>
 
           <% if @article.long_markdown? && @collection %>
             <%= render "articles/collection",
@@ -223,17 +223,6 @@
         </div>
         <%= render "articles/full_comment_area" %>
       </article>
-
-      <aside class="mb-4 print-hidden" id="bottom-content-multiplex-ad">
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-format="autorelaxed"
-             data-ad-client="ca-pub-0261018540053685"
-             data-ad-slot="6637166121"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-      </aside>
 
       <% cache("article-bottom-content-#{@article.id}-#{@article.cached_tag_list}-#{@article.published_at}}", expires_in: 240.days) do %>
         <% suggested_articles = Articles::SuggestV2.call(@article, max: 10) %>
