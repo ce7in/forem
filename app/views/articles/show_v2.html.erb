@@ -208,17 +208,19 @@
             <%= @article.processed_html.html_safe %>
           </div>
 
-          <div class="mx-auto<%= " mt-4" unless @article.processed_html.blank? %>" id="end-content">
-            <ins class="adsbygoogle"
-                 style="display:block; text-align:center;"
-                 data-ad-layout="in-article"
-                 data-ad-format="fluid"
-                 data-ad-client="ca-pub-0261018540053685"
-                 data-ad-slot="5107891218"></ins>
-            <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </div>
+          <% if Settings::General.ga_publisher_id && is_page_article == true && comment.featured %>
+            <div class="mx-auto<%= " mt-4" unless @article.processed_html.blank? %>" id="end-content">
+              <ins class="adsbygoogle"
+                   style="display:block; text-align:center;"
+                   data-ad-layout="in-article"
+                   data-ad-format="fluid"
+                   data-ad-client="<%= Settings::General.ga_publisher_id %>"
+                   data-ad-slot="5107891218"></ins>
+              <script>
+                  (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+            </div>
+          <% end %>
 
           <% if @article.long_markdown? && @collection %>
             <%= render "articles/collection",
