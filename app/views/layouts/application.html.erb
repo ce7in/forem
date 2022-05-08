@@ -28,9 +28,6 @@
       <% else %>
         <%= javascript_packs_with_chunks_tag "base", "Search", "runtimeBanner", defer: true %>
       <% end %>
-      <% if content_for?(:google_ads) %>
-        <%= yield(:google_ads) %>
-      <% end %>
       <%= yield(:page_meta) %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
       <%= favicon_link_tag Images::Optimizer.call(Settings::General.favicon_url, width: 32) %>
@@ -48,6 +45,9 @@
       <meta property="forem:name" content="<%= community_name %>" />
       <meta property="forem:logo" content="<%= optimized_image_url(Settings::General.logo_png, width: 512, fetch_format: "png") %>" />
       <meta property="forem:domain" content="<%= Settings::General.app_domain %>" />
+    <% end %>
+    <% if content_for?(:google_ads) %>
+      <%= yield(:google_ads) %>
     <% end %>
   </head>
   <% unless internal_navigation? %>
