@@ -28,9 +28,8 @@
       <% else %>
         <%= javascript_packs_with_chunks_tag "base", "Search", "runtimeBanner", defer: true %>
       <% end %>
-      <% if Settings::General.ga_publisher_id %>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= Settings::General.ga_publisher_id %>"
-                crossorigin="anonymous"></script>
+      <% if content_for?(:google_ads) %>
+        <%= yield(:google_ads) %>
       <% end %>
       <%= yield(:page_meta) %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
