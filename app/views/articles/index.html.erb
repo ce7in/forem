@@ -1,5 +1,5 @@
 <% if Settings::General.ga_publisher_id %>
-  <%= content_for :html do %>
+  <%= content_for :google_ads do %>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= Settings::General.ga_publisher_id %>" crossorigin="anonymous"></script>
   <% end %>
 <% end %>

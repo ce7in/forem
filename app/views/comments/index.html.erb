@@ -7,6 +7,7 @@
 
 <% if @commentable %>
   <% indexable = true %>
+
   <%= content_for :page_meta do %>
     <meta name="description" content="<%= @commentable.description || t("views.comments.meta.description") %>">
     <%= meta_keywords_article %>
@@ -51,7 +52,7 @@
   <% end %>
 
   <% if Settings::General.ga_publisher_id and indexable %>
-    <%= content_for :html do %>
+    <%= content_for :google_ads do %>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=<%= Settings::General.ga_publisher_id %>" crossorigin="anonymous"></script>
     <% end %>
   <% end %>
