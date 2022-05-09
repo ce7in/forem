@@ -208,7 +208,7 @@
             <%= @article.processed_html.html_safe %>
           </div>
 
-          <% if Settings::General.ga_publisher_id && comment.featured %>
+          <% if Settings::General.ga_publisher_id %>
             <div class="mx-auto<%= " mt-4" unless @article.processed_html.blank? %>" id="end-content">
               <ins class="adsbygoogle"
                    style="display:block; text-align:center;"
