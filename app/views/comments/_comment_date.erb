@@ -1,6 +1,6 @@
 <span class="color-base-30 px-2 m:pl-0" role="presentation">&bull;</span>
 
-<a<% if is_page_article == true && comment.root? %> href="#<%= decorated_comment.id_code_generated %>" id="<%= decorated_comment.id_code_generated %>" itemprop="url"<% else %> href="<%= URL.comment(decorated_comment) %>"<% if decorated_comment.score < 0 || strip_tags(decorated_comment.processed_html).length <= 400 %> rel="noindex, nofollow"<% end %><% end %> class="comment-date crayons-link crayons-link--secondary fs-s">
+<a<% if is_page_article == true && comment.root? %> href="#<%= decorated_comment.id_code_generated %>" id="<%= decorated_comment.id_code_generated %>" itemprop="url"<% else %> href="<%= URL.comment(decorated_comment) %>"<% if decorated_comment.commentable.comments_count <= 30 || decorated_comment.score < 0 || strip_tags(decorated_comment.processed_html).length <= 400 %> rel="noindex, nofollow"<% end %><% end %> class="comment-date crayons-link crayons-link--secondary fs-s">
   <time<% if is_page_article == true && comment.root? %> itemprop="dateCreated"<% end %> datetime="<%= decorated_comment.published_timestamp %>">
     <%= decorated_comment.readable_publish_date %>
   </time>

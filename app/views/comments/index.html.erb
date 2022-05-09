@@ -23,24 +23,28 @@
     <meta name="twitter:description" content="<%= @commentable.description || t("views.comments.meta.og.description", site: community_name) %>">
 
     <% if @root_comment.present? %>
-      <link rel="canonical" href="<%= app_url(@root_comment.path) %>" />
       <meta property="og:url" content="<%= app_url(@root_comment.path) %>" />
       <meta property="og:title" content="<%= t("views.comments.meta.og.title_rel", root: truncate(strip_tags(@root_comment.processed_html), length: 50), site: community_name) %>" />
       <meta name="twitter:title" content="<%= t("views.comments.meta.og.title_rel", root: truncate(strip_tags(@root_comment.processed_html), length: 50), site: community_name) %>">
       <meta property="og:image" content="<%= comment_social_image_url(@root_comment) %>" />
       <meta name="twitter:image" content="<%= comment_social_image_url(@root_comment) %>">
-      <% if @root_comment.score < 0 || strip_tags(@root_comment.processed_html).length <= 400 %>
+      <% if @commentable.comments_count <= 30 || @root_comment.score < 0 || strip_tags(@root_comment.processed_html).length <= 400 %>
         <% indexable = false %>
         <meta name="robots" content="noindex">
         <meta name="robots" content="nofollow">
+        <link rel="canonical" href="<%= app_url(@commentable.path) %>#<%= @root_comment.id_code_generated %>" />
+      <% else %>
+        <link rel="canonical" href="<%= app_url(@root_comment.path) %>" />
       <% end %>
     <% else %>
       <% if @commentable.comments_count <= 30 %>
         <% indexable = false %>
         <meta name="robots" content="noindex">
         <meta name="robots" content="nofollow">
+        <link rel="canonical" href="<%= app_url("#{@commentable.path}#comments") %>" />
+      <% else %>
+        <link rel="canonical" href="<%= app_url("#{@commentable.path}/comments") %>" />
       <% end %>
-      <link rel="canonical" href="<%= app_url("#{@commentable.path}/comments") %>" />
       <meta property="og:url" content="<%= app_url("#{@commentable.path}/comments") %>" />
       <meta property="og:title" content="<%= t("views.comments.meta.og.title_root", title: @commentable.title, site: community_name) %>" />
       <meta name="twitter:title" content="<%= t("views.comments.meta.og.title_root", title: @commentable.title, site: community_name) %>">

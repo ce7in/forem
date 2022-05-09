@@ -34,15 +34,7 @@
               is_page_article: is_page_article
             } %>
 
-        <div
-          class="
-            comment__body
-            text-styles
-            text-styles--secondary
-            body
-            <%= "color-base-60" if comment.decorate.low_quality %>
-            <%= should_be_hidden?(comment, @root_comment) ? "element-hidden-by-commentable-user" : "" %>
-          "<% if is_page_article == true && comment.root? %> itemprop="text"<% end %>>
+        <div class="comment__body text-styles text-styles--secondary body <%= "color-base-60" if comment.decorate.low_quality %> <%= should_be_hidden?(comment, @root_comment) ? "element-hidden-by-commentable-user" : "" %>"<% if is_page_article == true && comment.root? %> itemprop="text"<% end %>>
           <%= comment.safe_processed_html %>
           <% if Settings::General.ga_publisher_id && is_page_article == true && comment.featured %>
             <div class="mx-auto mt-4" id="end-featured-answer">

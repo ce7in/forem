@@ -30,7 +30,7 @@
     <div id="comment-dropdown-<%= comment.id %>" class="crayons-dropdown right-1 s:right-0 s:left-auto fs-base dropdown">
       <ul class="m-0">
         <li><a href="<%= URL.comment(comment) %>" class="crayons-link crayons-link--block permalink-copybtn"
-               <% if comment.score < 0 || strip_tags(comment.processed_html).length <= 400 %> rel="noindex, nofollow"
+               <% if commentable.comments_count <= 30 || comment.score < 0 || strip_tags(comment.processed_html).length <= 400 %> rel="noindex, nofollow"
                <% end %> aria-label="<%= t("views.comments.menu.copy.aria_label", user: comment.user.name) %>" data-no-instant><%= t("views.comments.menu.copy.text") %></a>
         </li>
         <li class="comment-actions hidden" data-user-id="<%= comment.user_id %>" data-action="settings-button" data-path="<%= URL.comment(comment) %>/settings" aria-label="<%= t("views.comments.menu.settings.aria_label", user: comment.user.name) %>"></li>
