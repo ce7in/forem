@@ -53,9 +53,19 @@ module Api
 
       def show_by_slug
         @article = Article.published
-          .select(SHOW_ATTRIBUTES_FOR_SERIALIZATION)
-          .find_by!(path: "/#{params[:username]}/#{params[:slug]}")
-          .decorate
+                          .select(SHOW_ATTRIBUTES_FOR_SERIALIZATION)
+                          .find_by!(path: "/#{params[:username]}/#{params[:slug]}")
+                          .decorate
+
+        set_surrogate_key_header @article.record_key
+        render "show"
+      end
+
+      def show_snippet_by_slug
+        @article = Article.published
+                          .select(SHOW_ATTRIBUTES_FOR_SERIALIZATION)
+                          .find_by!(path: "/s/#{params[:slug]}")
+                          .decorate
 
         set_surrogate_key_header @article.record_key
         render "show"
