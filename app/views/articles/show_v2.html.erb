@@ -116,17 +116,7 @@
             <div class="flex s:items-start flex-col s:flex-row">
               <div id="action-space" class="crayons-article__actions mb-4 s:mb-0 s:order-last"></div>
               <div class="flex flex-1 mb-5 items-start">
-                <div class="relative">
-                  <% if @organization %>
-                    <a href="<%= @organization.path %>"><img src="<%= @organization.profile_image_url_for(length: 50) %>" class="radius-default align-middle" width="40" height="40" alt="<%= @organization.name %> profile image"></a>
-                    <a href="/<%= @user.username %>" class="absolute -right-2 -bottom-2 radius-full border border-solid border-2 border-base-inverted inline-flex">
-                      <img class="radius-full align-middle" src="<%= @user.profile_image_url_for(length: 50) %>" width="24" height="24" alt="<%= @user.name %>" />
-                    </a>
-                  <% else %>
-                    <a href="/<%= @user.username %>"><img class="radius-full align-middle" src="<%= @user.profile_image_url_for(length: 50) %>" width="40" height="40" alt="<%= @user.name %>" /></a>
-                  <% end %>
-                </div>
-                <div class="pl-3 flex-1">
+                <div class="flex-1">
                   <a href="/<%= @user.username %>" class="crayons-link fw-bold" itemprop="author" itemscope itemtype="https://schema.org/Person"><span itemprop="name"><%= @user.name %></span></a>
                   <% if @organization %>
                     <%= t("views.articles.for_org_html",
