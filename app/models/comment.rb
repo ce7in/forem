@@ -121,6 +121,12 @@ class Comment < ApplicationRecord
       .gsub("podcastepisode", "episode")
   end
 
+  def id_path
+    "#{commentable.path}##{id_code_generated}"
+  rescue StandardError
+    "/404.html"
+  end
+
   def id_code_generated
     # 26 is the conversion base
     # eg. 1000.to_s(26) would be "1cc"

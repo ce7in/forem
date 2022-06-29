@@ -32,7 +32,6 @@
         <% indexable = false %>
         <meta name="robots" content="noindex">
         <meta name="robots" content="nofollow">
-        <link rel="canonical" href="<%= app_url(@commentable.path) %>#<%= @root_comment.id_code_generated %>" />
       <% else %>
         <link rel="canonical" href="<%= app_url(@root_comment.path) %>" />
       <% end %>
@@ -41,7 +40,6 @@
         <% indexable = false %>
         <meta name="robots" content="noindex">
         <meta name="robots" content="nofollow">
-        <link rel="canonical" href="<%= app_url("#{@commentable.path}#comments") %>" />
       <% else %>
         <link rel="canonical" href="<%= app_url("#{@commentable.path}/comments") %>" />
       <% end %>
