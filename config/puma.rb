@@ -37,6 +37,20 @@ nakayoshi_fork
 #
 preload_app!
 
+# Verifies that all workers have checked in to the master process within
+# the given timeout. If not the worker process will be restarted. This is
+# not a request timeout, it is to protect against a hung or dead process.
+# Setting this value will not protect against slow requests.
+# Default value is 60 seconds.
+#
+worker_timeout 600
+
+# Change the default worker timeout for booting
+#
+# If unspecified, this defaults to the value of worker_timeout.
+#
+worker_boot_timeout 600
+
 # Allow puma to be restarted by `rails restart` command.
 plugin :tmp_restart
 
