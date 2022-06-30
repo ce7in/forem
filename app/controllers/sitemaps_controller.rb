@@ -32,7 +32,6 @@ class SitemapsController < ApplicationController
     case resource
     when "posts"
       @articles = Article.published.order("published_at DESC")
-        .where("score >= ?", Settings::UserExperience.index_minimum_score)
         .limit(RESULTS_LIMIT).offset(offset).pluck(:path, :last_comment_at)
     when "tags" # tags
       @tags = Tag.order("hotness_score DESC")
