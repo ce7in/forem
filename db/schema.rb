@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.integer "hotness_score", default: 0
     t.datetime "last_comment_at", default: "2017-01-01 05:00:00"
     t.datetime "last_experience_level_rating_at"
-    # t.bigint "main_category_id"
+    t.bigint "main_tag_id"
     t.string "main_image"
     t.string "main_image_background_hex_color", default: "#dddddd"
     t.integer "nth_published_by_author", default: 0
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.integer "previous_positive_reactions_count", default: 0
     t.integer "previous_public_reactions_count", default: 0, null: false
     t.integer "privileged_users_reaction_points_sum", default: 0
+    t.integer "priority"
     t.text "processed_html"
     t.integer "public_reactions_count", default: 0, null: false
     t.boolean "published", default: false
@@ -170,8 +171,9 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
     t.index ["hotness_score", "comments_count"], name: "index_articles_on_hotness_score_and_comments_count"
     t.index ["comments_count" => :asc, "published_at" => :desc], name: "index_articles_on_comments_count_published_at"
     t.index ["hotness_score"], name: "index_articles_on_hotness_score"
-    # t.index ["main_category_id"], name: "index_articles_on_main_category_id"
+    t.index ["main_tag_id"], name: "index_articles_on_main_tag_id"
     t.index ["path"], name: "index_articles_on_path"
+    t.index ["priority"], name: "index_articles_on_priority", order: :desc
     t.index ["public_reactions_count"], name: "index_articles_on_public_reactions_count", order: :desc
     t.index ["published"], name: "index_articles_on_published"
     t.index ["published_at"], name: "index_articles_on_published_at"
@@ -1387,6 +1389,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_040359) do
   add_foreign_key "articles", "collections", on_delete: :nullify
   add_foreign_key "articles", "organizations", on_delete: :nullify
   add_foreign_key "articles", "users", on_delete: :cascade
+  add_foreign_key "articles", "tags", column: "main_tag_id", on_delete: :nullify, on_update: :cascade
   add_foreign_key "audit_logs", "users"
   add_foreign_key "badge_achievements", "badges"
   add_foreign_key "badge_achievements", "users"
