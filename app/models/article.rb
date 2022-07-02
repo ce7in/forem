@@ -356,7 +356,7 @@ class Article < ApplicationRecord
 
     fields = %i[path title comments_count created_at]
     if tag
-      relation.alternative_tagged_with(tag.id, tag.name).pluck(*fields)
+      relation.cached_tagged_with(tag).pluck(*fields)
     else
       relation.pluck(*fields)
     end
@@ -370,7 +370,7 @@ class Article < ApplicationRecord
 
     fields = %i[path search_optimized_title_preamble comments_count created_at]
     if tag
-      relation.alternative_tagged_with(tag.id, tag.name).pluck(*fields)
+      relation.cached_tagged_with(tag).pluck(*fields)
     else
       relation.pluck(*fields)
     end
