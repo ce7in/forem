@@ -216,6 +216,14 @@ class Article < ApplicationRecord
       .tagged_with(tag_name)
   }
 
+  scope :alternative_tagged_with, lambda { |id, name|
+    if id <= 34
+      where("main_tag_id = ?", id)
+    else
+      cached_tagged_with(name)
+    end
+  }
+
   scope :cached_tagged_with, lambda { |tag|
     case tag
     when String, Symbol
@@ -227,7 +235,7 @@ class Article < ApplicationRecord
     when Array
       tag.reduce(self) { |acc, elem| acc.cached_tagged_with(elem) }
     when Tag
-      cached_tagged_with(tag.name)
+      alternative_tagged_with(tag.id, tag.name)
     else
       raise TypeError, "Cannot search tags for: #{tag.inspect}"
     end
@@ -348,7 +356,7 @@ class Article < ApplicationRecord
 
     fields = %i[path title comments_count created_at]
     if tag
-      relation.cached_tagged_with(tag).pluck(*fields)
+      relation.alternative_tagged_with(tag.id, tag.name).pluck(*fields)
     else
       relation.pluck(*fields)
     end
@@ -362,7 +370,7 @@ class Article < ApplicationRecord
 
     fields = %i[path search_optimized_title_preamble comments_count created_at]
     if tag
-      relation.cached_tagged_with(tag).pluck(*fields)
+      relation.alternative_tagged_with(tag.id, tag.name).pluck(*fields)
     else
       relation.pluck(*fields)
     end

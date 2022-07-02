@@ -18,7 +18,7 @@ module Badges
           .not_authored_by(past_winner_user_ids)
           .order(score: :desc)
           .where("published_at > ?", 7.5.days.ago) # More than seven days, to have some wiggle room.
-          .cached_tagged_with(tag).first
+          .alternative_tagged_with(tag.id, tag.name).first
         next unless winning_article
 
         user = winning_article.user

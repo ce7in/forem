@@ -158,7 +158,7 @@ class Tag < ActsAsTaggableOn::Tag
     # Furthermore, we need to first convert to an array then call
     # `.first`.  The ActiveRecord query handler is ill-prepared to
     # call "first" on this.
-    score_attributes = Article.cached_tagged_with(name)
+    score_attributes = Article.alternative_tagged_with(id, name)
       .where("articles.featured_number > ?", 7.days.ago.to_i)
       .select("(SUM(comments_count) * 14 + SUM(score)) AS partial_score, COUNT(id) AS article_count")
       .to_a
