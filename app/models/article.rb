@@ -250,7 +250,7 @@ class Article < ApplicationRecord
         .map { |tag| cached_tagged_with(tag) }
         .reduce { |acc, elem| acc.or(elem) }
     when Tag
-      cached_tagged_with(tags.name)
+      cached_tagged_with(tags)
     else
       raise TypeError, "Cannot search tags for: #{tags.inspect}"
     end
