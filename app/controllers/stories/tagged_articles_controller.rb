@@ -55,7 +55,8 @@ module Stories
     end
 
     def tagged_count(tag:)
-      tag.articles.published.where(score: Settings::UserExperience.tag_feed_minimum_score..).count
+      Article.published.cached_tagged_with(tag).where(score: Settings::UserExperience.tag_feed_minimum_score..).count
+      # tag.articles.published.where(score: Settings::UserExperience.tag_feed_minimum_score..).count
     end
 
     def not_found_if_not_established(stories:, tag:)
