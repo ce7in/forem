@@ -19,13 +19,3 @@
 <meta name="twitter:creator" content="@<%= display_tag_name %>">
 <meta name="twitter:title" content="<%= title_with_timeframe(page_title: display_tag_name, timeframe: params[:timeframe]) %>">
 <meta name="twitter:description" content="<%= t("views.stories.meta.description_tagged", tag: display_tag_name, name: community_name) %>">
-
-<% if @tag %>
-  <meta name="twitter:card" content="summary_large_image">
-  <meta property="og:image" content="<%= tag_social_preview_url(@tag, format: :png) %>">
-  <meta name="twitter:image:src" content="<%= tag_social_preview_url(@tag, format: :png) %>">
-<% else %>
-  <meta property="og:image" content="<%= Settings::General.main_social_image %>">
-  <meta name="twitter:image:src" content="<%= Settings::General.main_social_image %>">
-  <meta name="twitter:card" content="summary_large_image">
-<% end %>
