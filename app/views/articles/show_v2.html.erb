@@ -219,7 +219,7 @@
       </article>
 
       <% cache("article-bottom-content-#{@article.id}-#{@article.cached_tag_list}-#{@article.published_at}}", expires_in: 240.days) do %>
-        <% suggested_articles = Articles::SuggestV2.call(@article, max: 10) %>
+        <% suggested_articles = Articles::SuggestV2.call(@article, max: 20) %>
         <%= render "articles/bottom_content_v2", articles: suggested_articles %>
       <% end %>
     </div>
