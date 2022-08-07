@@ -11,10 +11,8 @@ module Articles
 
       def default_home_feed(**_kwargs)
         articles = Article.published
-          .order(hotness_score: :desc)
-          .where(score: 0..)
+          .order(comments_count: :asc, published_at: :desc)
           .limit(@number_of_articles)
-          .limited_column_select.includes(top_comments: :user)
         return articles unless @user
 
         articles = articles.where.not(user_id: UserBlock.cached_blocked_ids_for_blocker(@user.id))

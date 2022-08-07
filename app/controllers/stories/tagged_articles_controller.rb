@@ -70,7 +70,7 @@ module Stories
         stories.where("published_at > ?", Timeframe.datetime(params[:timeframe]))
           .order(public_reactions_count: :desc)
       elsif params[:timeframe] == Timeframe::LATEST_TIMEFRAME
-        stories.where(score: -20..).order(published_at: :desc)
+        stories.order(published_at: :desc)
       else
         stories.order(comments_count: :asc, published_at: :desc).with_at_least_home_feed_minimum_score
       end
