@@ -67,7 +67,16 @@ module Stories
     end
 
     def signed_out_base_feed
-      feed = Articles::Feeds::Basic.new(user: nil, page: @page, tag: params[:tag])
+      strategy = AbExperiment.get(experiment: :feed_strategy_round_4, controller: self, user: current_user,
+                                  default_value: AbExperiment::ORIGINAL_VARIANT)
+      feed = if strategy.weighted_query_strategy?
+               Articles::Feeds::WeightedQueryStrategy.new(user: current_user, page: @page, tags: params[:tag])
+             elsif Settings::UserExperience.feed_strategy == "basic"
+               # I'm a bit uncertain why we're skipping the user on this call.
+               Articles::Feeds::Basic.new(user: nil, page: @page, tag: params[:tag])
+             else
+               Articles::Feeds::LargeForemExperimental.new(user: current_user, page: @page, tag: params[:tag])
+             end
       Datadog.tracer.trace("feed.query",
                            span_type: "db",
                            resource: "#{self.class}.#{__method__}",
