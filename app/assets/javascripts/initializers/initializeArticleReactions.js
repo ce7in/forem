@@ -139,15 +139,19 @@ function requestReactionCounts(articleId) {
   }
   ajaxReq.onreadystatechange = () => {
     if (ajaxReq.readyState === XMLHttpRequest.DONE) {
-      var json = JSON.parse(ajaxReq.response);
-      json.article_reaction_counts.forEach((reaction) => {
-        setReactionCount(reaction.category, reaction.count);
-      });
-      json.reactions.forEach((reaction) => {
-        if (document.getElementById('reaction-butt-' + reaction.category)) {
-          showUserReaction(reaction.category, 'not-user-animated');
+        try {
+            var json = JSON.parse(ajaxReq.response);
+            json.article_reaction_counts.forEach((reaction) => {
+                setReactionCount(reaction.category, reaction.count);
+            });
+            json.reactions.forEach((reaction) => {
+                if (document.getElementById('reaction-butt-' + reaction.category)) {
+                    showUserReaction(reaction.category, 'not-user-animated');
+                }
+            });
+        } catch (e) {
+            // Do nothing
         }
-      });
     }
   };
   ajaxReq.open('GET', '/reactions?article_id=' + articleId, true);
