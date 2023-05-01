@@ -1,26 +1,13 @@
 require "rails_helper"
 
-RSpec.describe "Editor", type: :request do
+RSpec.describe "Editor" do
   describe "GET /new" do
     subject(:request_call) { get new_path }
 
     let(:user) { create(:user) }
 
     context "when not authenticated" do
-      it { within_block_is_expected.to raise_error ApplicationPolicy::UserRequiredError }
-    end
-
-    context "when authenticated but not authorized" do
-      before do
-        login_as user
-        allow(ArticlePolicy).to receive(:limit_post_creation_to_admins?).and_return(true)
-      end
-
-      # [@jeremyf] We're handling the authentication and authorization exceptions just a bit
-      #            differently.  In this case (e.g. they don't have permission) we are relying on
-      #            the application configuration to gracefully handle the authorization error (as it
-      #            has prior and up to <2022-02-17 Thu>).
-      it { within_block_is_expected.to raise_error(Pundit::NotAuthorizedError) }
+      it { is_expected.to eq(200) }
     end
 
     context "when authenticated and authorized" do
@@ -68,16 +55,45 @@ RSpec.describe "Editor", type: :request do
     end
 
     context "when logged-in" do
-      it "returns json" do
+      before do
         sign_in user
+        allow(FeatureFlag).to receive(:enabled?).with(:consistent_rendering, any_args).and_return(false)
+      end
+
+      it "returns json" do
         post "/articles/preview", headers: headers
         expect(response.media_type).to eq("application/json")
       end
+
+      it "returns successfully with frontmatter" do
+        article_body = <<~MARKDOWN
+          ---
+          ---
+
+          Hello
+        MARKDOWN
+
+        post "/articles/preview",
+             headers: headers,
+             params: { article_body: article_body },
+             as: :json
+
+        expect(response).to be_successful
+      end
     end
 
-    context "with front matter" do
-      it "returns successfully" do
+    context "when logged-in + consistent rendering" do
+      before do
         sign_in user
+        allow(FeatureFlag).to receive(:enabled?).with(:consistent_rendering, any_args).and_return(true)
+      end
+
+      it "returns json" do
+        post "/articles/preview", headers: headers
+        expect(response.media_type).to eq("application/json")
+      end
+
+      it "returns successfully" do
         article_body = <<~MARKDOWN
           ---
           ---

@@ -1,12 +1,33 @@
 ENV["RAILS_ENV"] = "test"
 require "knapsack_pro"
+require "simplecov"
+require "simplecov_json_formatter"
+
+if ENV["CI"]
+  SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+end
 KnapsackPro::Adapters::RSpecAdapter.bind
+KnapsackPro::Hooks::Queue.before_queue do |_queue_id|
+  SimpleCov.command_name("rspec_ci_node_#{KnapsackPro::Config::Env.ci_node_index}")
+end
+
+TMP_RSPEC_XML_REPORT = "tmp/rspec.xml".freeze
+FINAL_RSPEC_XML_REPORT = "tmp/rspec_final_results.xml".freeze
+
+KnapsackPro::Hooks::Queue.after_subset_queue do |_queue_id, _subset_queue_id|
+  if File.exist?(TMP_RSPEC_XML_REPORT)
+    FileUtils.mv(TMP_RSPEC_XML_REPORT, FINAL_RSPEC_XML_REPORT)
+  end
+end
 
 require "spec_helper"
 
 require File.expand_path("../config/environment", __dir__)
 require "rspec/rails"
 abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+Rake.application = Rake::Application.new
+Rails.application.load_tasks
 
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -67,10 +88,11 @@ Browser::Bot.matchers.delete(Browser::Bot::EmptyUserAgentMatcher)
 
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = Rails.root.join("spec/fixtures")
 
   config.include ActionMailer::TestHelper
   config.include ApplicationHelper
+  config.include CommentsHelpers
   config.include Devise::Test::ControllerHelpers, type: :view
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include Devise::Test::IntegrationHelpers, type: :system
@@ -111,7 +133,7 @@ RSpec.configure do |config|
 
   config.before do
     # Worker jobs shouldn't linger around between tests
-    Sidekiq::Worker.clear_all
+    Sidekiq::Job.clear_all
     # Disable SSRF protection for CarrierWave specs
     # See: https://github.com/carrierwaveuploader/carrierwave/issues/2531
     # rubocop:disable RSpec/AnyInstance
@@ -145,6 +167,21 @@ RSpec.configure do |config|
     else
       VCR.turned_off { ex.run }
     end
+  end
+
+  # [@jeremyf] <2022-02-07 Mon> :: In https://github.com/forem/forem/pull/16423 we were discussing
+  #
+  # There are three use cases to consider regarding the Listing feature:
+  #
+  # - Those who will have it enabled (e.g., DEV.to), if they so choose to enable the flag.
+  # - Those who will not have it enabled (e.g., those that do nothing)
+  # - Our test suite
+  #
+  # We want our test suite to behave as though it's enabled by default.  This rspec configuration
+  # helps with that.  I envision this to be a placeholder.  But we need something to get the RFC out
+  # the door (https://github.com/forem/rfcs/issues/291).
+  config.before do
+    allow(Listing).to receive(:feature_enabled?).and_return(true)
   end
 
   config.before do
@@ -186,15 +223,19 @@ RSpec.configure do |config|
     # Default to have field a field test available.
     if AbExperiment::CURRENT_FEED_STRATEGY_EXPERIMENT.blank?
       config = { "experiments" =>
-        { "wut" =>
-          { "variants" => %w[base var_1],
-            "weights" => [50, 50],
-            "goals" => %w[user_creates_comment
-                          user_creates_comment_four_days_in_week
-                          user_views_article_four_days_in_week
-                          user_views_article_four_hours_in_day
-                          user_views_article_nine_days_in_two_week
-                          user_views_article_twelve_hours_in_five_days] } },
+                { "wut" =>
+                 { "start_date" => 30.days.ago,
+                   "variants" => %w[base var_1],
+                   "weights" => [50, 50],
+                   "goals" => %w[user_creates_comment
+                                 user_creates_comment_four_days_in_week
+                                 user_views_article_four_days_in_week
+                                 user_views_article_four_hours_in_day
+                                 user_views_article_nine_days_in_two_week
+                                 user_views_article_twelve_hours_in_five_days
+                                 user_publishes_post
+                                 user_publishes_post_at_least_two_times_within_week
+                                 user_publishes_post_at_least_two_times_within_two_weeks] } },
                  "exclude" => { "bots" => true },
                  "cache" => true,
                  "cookies" => false }

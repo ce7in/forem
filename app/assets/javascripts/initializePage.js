@@ -1,40 +1,21 @@
 /*
   global initializeLocalStorageRender, initializeBodyData,
   initializeAllTagEditButtons, initializeUserFollowButts,
-  initializeBaseTracking, initializeCommentsPage,
-  initializeArticleDate, initializeArticleReactions, initNotifications,
-  initializeCommentDate, initializeSettings,
-  initializeCommentPreview, initializeRuntimeBanner,
-  initializeTimeFixer, initializeDashboardSort,
-  initializeArchivedPostFilter, initializeCreditsPage,
-  initializeProfileInfoToggle, initializePodcastPlayback,
-  initializeVideoPlayback, initializeDrawerSliders, initializeProfileBadgesToggle,
-  initializeHeroBannerClose, initializeOnboardingTaskCard, initScrolling,
-  nextPage:writable, fetching:writable, done:writable, adClicked:writable,
-  initializePaymentPointers, initializeBroadcast, initializeDateHelpers,
-  Runtime
+  initializeCommentsPage,
+  initializeSettings, initializeRuntimeBanner,
+  initializeCreditsPage,
+  initializeOnboardingTaskCard,
+  initScrolling, nextPage:writable,
+  fetching:writable, done:writable, initializePaymentPointers,
+  initializeBroadcast
 */
 
 function callInitializers() {
-  initializeBaseTracking();
   initializePaymentPointers();
   initializeCommentsPage();
-  initializeArticleDate();
-  initializeArticleReactions();
-  initNotifications();
-  initializeCommentDate();
   initializeSettings();
-  initializeCommentPreview();
-  initializeTimeFixer();
-  initializeDashboardSort();
-  initializeArchivedPostFilter();
   initializeCreditsPage();
-  initializeProfileInfoToggle();
-  initializeProfileBadgesToggle();
-  initializeDrawerSliders();
-  initializeHeroBannerClose();
   initializeOnboardingTaskCard();
-  initializeDateHelpers();
 }
 
 function initializePage() {
@@ -50,12 +31,10 @@ function initializePage() {
       }
       initializeBroadcast();
       initializeReadingListIcons();
-      initializeSponsorshipVisibility();
+      initializeDisplayAdVisibility();
       if (document.getElementById('sidebar-additional')) {
         document.getElementById('sidebar-additional').classList.add('showing');
       }
-      initializePodcastPlayback();
-      initializeVideoPlayback();
     }
   }, 1);
 
@@ -68,14 +47,10 @@ function initializePage() {
   nextPage = 0;
   fetching = false;
   done = false;
-  adClicked = false;
   setTimeout(function undone() {
     done = false;
   }, 300);
   if (!initScrolling.called) {
     initScrolling();
   }
-
-  // Initialize data-runtime context to the body data-attribute
-  document.body.dataset.runtime = Runtime.currentContext();
 }

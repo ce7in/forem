@@ -1,6 +1,6 @@
 <%= content_for :page_meta do %>
   <% title_with_timeframe(
-       page_title: "#{community_name} #{community_emoji}",
+       page_title: community_name,
        timeframe: params[:timeframe],
        content_for: true,
      ) %>
@@ -36,7 +36,7 @@
 
     <%# BEGIN Feed menu bar %>
     <main class="articles-list crayons-layout__content" id="main-content" data-follow-button-container="true">
-      <%= render(partial: "onboardings/task_card") if user_signed_in? %>
+      <%= render(partial: "users/onboardings/task_card") if user_signed_in? %>
 
       <header class="p-2 px-3 m:p-0 m:px-0 m:mb-2 fs-l">
         <h1 class="screen-reader-only"><%= t("views.stories.heading") %></h1>
@@ -86,6 +86,8 @@
         </nav>
       </header>
 
+      <%= render "articles/reaction_category_resources" %>
+
       <% if user_signed_in? %>
         <div id="homepage-feed" style="min-height: 90vh"></div>
       <% else %>
@@ -101,5 +103,5 @@
     <%= render "articles/sidebar_additional" %>
   </div>
 
-  <%= javascript_packs_with_chunks_tag "storiesList", "followButtons", "feedPreviewCards", defer: true %>
+  <%= javascript_packs_with_chunks_tag "storiesList", "followButtons", "feedPreviewCards", "heroBannerClose", "localizeArticleDates", defer: true %>
 <% end %>

@@ -2,7 +2,7 @@ require "rails_helper"
 
 # This test file can be removed once we have a longterm solution for
 # ForemWebView contexts when Apple Auth isn't enabled
-RSpec.describe "Conditional registration (ForemWebView)", type: :system do
+RSpec.describe "Conditional registration (ForemWebView)" do
   let(:all_providers) { Authentication::Providers.available }
   let(:all_providers_except_apple) { Authentication::Providers.available - %i[apple] }
   let(:all_providers_minus_apple_forem) { Authentication::Providers.available - %i[apple forem] }
@@ -11,8 +11,8 @@ RSpec.describe "Conditional registration (ForemWebView)", type: :system do
     "Mozilla/5.0 (iPhone) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 ForemWebView/1.0"
   end
   let(:flow_b_fallback_text) do
-    "Unfortunately, we do not support creating new accounts right now on our "\
-      "mobile app. If you want create a new account to join "\
+    "Unfortunately, we do not support creating new accounts right now on our " \
+      "mobile app. If you want create a new account to join " \
       "#{Settings::Community.community_name}, please do that on the web at"
   end
 

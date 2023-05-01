@@ -44,8 +44,9 @@ RSpec.describe Users::Update, type: :service do
 
   it "updates the profile_updated_at column" do
     create(:profile_field, label: "Test field")
+    attribute_name = ProfileField.find_by(label: "Test field").attribute_name
     expect do
-      described_class.call(user, profile: { test_field: "false" })
+      described_class.call(user, profile: { attribute_name => "false" })
     end.to change { user.reload.profile_updated_at }
   end
 
@@ -141,12 +142,6 @@ RSpec.describe Users::Update, type: :service do
     it "enqueues resave articles job when changing bg_color_hex" do
       sidekiq_assert_resave_article_worker(user) do
         described_class.call(user, user_settings: { brand_color1: "#12345F" })
-      end
-    end
-
-    it "enqueues resave articles job when changing text_color_hex" do
-      sidekiq_assert_resave_article_worker(user) do
-        described_class.call(user, user_settings: { brand_color2: "#12345F" })
       end
     end
 

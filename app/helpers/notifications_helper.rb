@@ -1,16 +1,27 @@
 module NotificationsHelper
-  REACTION_IMAGES = {
-    "like" => "heart-filled.svg",
-    "unicorn" => "unicorn-filled.svg",
-    "hands" => "twemoji/hands.svg",
-    "thinking" => "twemoji/thinking.svg",
-    "readinglist" => "save-filled.svg",
-    "thumbsdown" => "twemoji/thumb-down.svg",
-    "vomit" => "twemoji/suspicious.svg"
-  }.freeze
+  def reaction_image(slug)
+    return unless (category = ReactionCategory[slug] || ReactionCategory["like"])
 
-  def reaction_image(category)
-    REACTION_IMAGES[category]
+    "#{category.icon}.svg"
+  end
+
+  def reaction_category_name(slug)
+    ReactionCategory[slug]&.name.presence || "unknown"
+  end
+
+  def render_each_notification_or_error(notifications, error:, &block)
+    notifications.each do |notification|
+      concat render_notification_or_error(notification, error: error, &block)
+    end
+  end
+
+  def render_notification_or_error(notification, error:)
+    capture { yield(notification) }
+  rescue StandardError => e
+    raise if Rails.env.development?
+
+    Honeybadger.notify(e, context: { notification_id: notification.id })
+    capture { render error }
   end
 
   def message_user_acted_maybe_org(data, action, if_org: "")

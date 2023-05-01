@@ -12,11 +12,11 @@ FactoryBot.define do
     name do
       "#{Faker::Name.first_name} \"#{Faker::Name.first_name}\" \\:/ #{Faker::Name.last_name}"
     end
-    email                        { generate :email }
-    username                     { generate :username }
+    email                        { generate(:email) }
+    username                     { generate(:username) }
     profile_image                { Rack::Test::UploadedFile.new(image_path, "image/jpeg") }
-    twitter_username             { generate :twitter_username }
-    github_username              { generate :github_username }
+    twitter_username             { generate(:twitter_username) }
+    github_username              { generate(:github_username) }
     confirmed_at                 { Time.current }
     saw_onboarding               { true }
     checked_code_of_conduct      { true }
@@ -71,6 +71,10 @@ FactoryBot.define do
       after(:build) { |user| user.add_role(:admin) }
     end
 
+    trait :super_moderator do
+      after(:build) { |user| user.add_role(:super_moderator) }
+    end
+
     trait :single_resource_admin do
       transient do
         resource { nil }
@@ -108,6 +112,14 @@ FactoryBot.define do
 
     trait :suspended do
       after(:build) { |user| user.add_role(:suspended) }
+    end
+
+    trait :warned do
+      after(:build) { |user| user.add_role(:warned) }
+    end
+
+    trait :comment_suspended do
+      after(:build) { |user| user.add_role(:comment_suspended) }
     end
 
     trait :invited do

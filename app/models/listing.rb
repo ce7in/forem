@@ -2,7 +2,7 @@ class Listing < ApplicationRecord
   # We used to use both "classified listing" and "listing" throughout the app.
   # We standardized on the latter, but keeping the table name was easier.
   self.table_name = "classified_listings"
-  self.ignored_columns = %w[contact_via_connect].freeze
+  self.ignored_columns += %w[contact_via_connect].freeze
 
   include PgSearch::Model
 
@@ -55,7 +55,7 @@ class Listing < ApplicationRecord
   # @return [TrueClass] if the Listing is enabled for this Forem
   # @return [FalseClass] if the Listing is disabled for this Forem
   def self.feature_enabled?
-    FeatureFlag.accessible?(:listing_feature_enabled)
+    FeatureFlag.enabled?(:listing_feature)
   end
 
   # Wrapping the column accessor names for consistency. Aliasing did not work.

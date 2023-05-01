@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   def user_from_authorization_service(service_name, signed_in_resource = nil, cta_variant = "navbar_basic")
     auth = OmniAuth.config.mock_auth[service_name]
     Authentication::Authenticator.call(
@@ -78,7 +78,7 @@ RSpec.describe User, type: :model do
       it { is_expected.to have_many(:comments).dependent(:destroy) }
       it { is_expected.to have_many(:credits).dependent(:destroy) }
       it { is_expected.to have_many(:discussion_locks).dependent(:delete_all) }
-      it { is_expected.to have_many(:display_ad_events).dependent(:delete_all) }
+      it { is_expected.to have_many(:display_ad_events).dependent(:nullify) }
       it { is_expected.to have_many(:email_authorizations).dependent(:delete_all) }
       it { is_expected.to have_many(:email_messages).class_name("Ahoy::Message").dependent(:destroy) }
       it { is_expected.to have_many(:field_test_memberships).class_name("FieldTest::Membership").dependent(:destroy) }
@@ -209,7 +209,7 @@ RSpec.describe User, type: :model do
       context "when evaluating the custom error message for username uniqueness" do
         subject { create(:user, username: "test_user_123") }
 
-        it { is_expected.to validate_uniqueness_of(:username).with_message("test_user_123 is taken.").case_insensitive }
+        it { is_expected.to validate_uniqueness_of(:username).with_message("has already been taken").case_insensitive }
       end
       # rubocop:enable RSpec/NestedGroups
 
@@ -222,7 +222,7 @@ RSpec.describe User, type: :model do
       create(:user, username: "test_user_123")
       same_username = build(:user, username: "test_user_123")
       expect(same_username).not_to be_valid
-      expect(same_username.errors[:username].to_s).to include("test_user_123 is taken.")
+      expect(same_username.errors[:username].to_s).to include("has already been taken")
     end
 
     it "validates username against reserved words" do
@@ -313,10 +313,16 @@ RSpec.describe User, type: :model do
     end
 
     describe "#username" do
-      it "receives a temporary username if none is given" do
+      it "receives a generated username if none is given" do
         user.username = ""
         user.validate!
         expect(user.username).not_to be_blank
+      end
+
+      it "is not valid if generate_username returns nil" do
+        user.username = ""
+        allow(user).to receive(:generate_username).and_return(nil)
+        expect(user).not_to be_valid
       end
 
       it "does not allow to change to a username that is taken" do
@@ -601,7 +607,7 @@ RSpec.describe User, type: :model do
 
     it "creates proper body class with defaults" do
       # rubocop:disable Layout/LineLength
-      classes = "light-theme sans-serif-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
+      classes = "light-theme sans-serif-article-body mod-status-#{user.admin? || !user.moderator_for_tags.empty?} trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
@@ -610,7 +616,7 @@ RSpec.describe User, type: :model do
       user.setting.config_font = "sans_serif"
 
       # rubocop:disable Layout/LineLength
-      classes = "light-theme sans-serif-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
+      classes = "light-theme sans-serif-article-body mod-status-#{user.admin? || !user.moderator_for_tags.empty?} trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
@@ -619,7 +625,7 @@ RSpec.describe User, type: :model do
       user.setting.config_font = "open_dyslexic"
 
       # rubocop:disable Layout/LineLength
-      classes = "light-theme open-dyslexic-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
+      classes = "light-theme open-dyslexic-article-body mod-status-#{user.admin? || !user.moderator_for_tags.empty?} trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
       # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
@@ -627,8 +633,9 @@ RSpec.describe User, type: :model do
     it "creates proper body class with dark theme" do
       user.setting.config_theme = "dark_theme"
 
-      classes =
-        "dark-theme sans-serif-article-body trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
+      # rubocop:disable Layout/LineLength
+      classes = "dark-theme sans-serif-article-body mod-status-#{user.admin? || !user.moderator_for_tags.empty?} trusted-status-#{user.trusted?} #{user.setting.config_navbar}-header"
+      # rubocop:enable Layout/LineLength
       expect(user.decorate.config_body_class).to eq(classes)
     end
   end
@@ -659,13 +666,18 @@ RSpec.describe User, type: :model do
       expect(user.reload.following_orgs_count).to eq(1)
     end
 
-    it "returns cached ids of articles that have been saved to their readinglist" do
+    it "returns cached ids of published articles that have been saved to their readinglist" do
       article = create(:article)
       article2 = create(:article)
+      article3 = create(:article)
+
       create(:reading_reaction, user: user, reactable: article)
       create(:reading_reaction, user: user, reactable: article2)
+      create(:reading_reaction, user: user, reactable: article3)
 
-      expect(user.cached_reading_list_article_ids).to eq([article2.id, article.id])
+      Articles::Unpublish.call(article2.user, article2)
+
+      expect(user.cached_reading_list_article_ids).to eq([article3.id, article.id])
     end
   end
 
@@ -796,6 +808,33 @@ RSpec.describe User, type: :model do
       user = create(:user)
       expect(user.profile).to be_present
       expect(user.profile).to respond_to(:location)
+    end
+  end
+
+  describe "#last_activity" do
+    it "determines a user's last activity" do
+      Timecop.freeze do
+        user = create(:user, last_comment_at: 1.minute.ago)
+        expect(user.last_activity).to eq(Time.zone.now)
+      end
+    end
+  end
+
+  describe ".recently_active" do
+    let(:early) { build(:user) }
+    let(:later) { build(:user) }
+
+    before do
+      later.save!
+
+      Timecop.travel(5.days.ago) do
+        early.save!
+      end
+    end
+
+    it "returns the most recently updated" do
+      results = described_class.recently_active(1)
+      expect(results).to contain_exactly(later)
     end
   end
 end

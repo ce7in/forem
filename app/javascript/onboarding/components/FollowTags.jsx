@@ -25,7 +25,7 @@ export class FollowTags extends Component {
       });
 
     const csrfToken = getContentOfToken('csrf-token');
-    fetch('/onboarding_update', {
+    fetch('/onboarding', {
       method: 'PATCH',
       headers: {
         'X-CSRF-Token': csrfToken,
@@ -140,7 +140,7 @@ export class FollowTags extends Component {
                     style={{
                       boxShadow: selected
                         ? `inset 0 0 0 100px ${tag.bg_color_hex}`
-                        : `inset 0 0 0 2px ${tag.bg_color_hex}`,
+                        : `inset 0 0 0 0px ${tag.bg_color_hex}`,
                       color: selected ? tag.text_color_hex : '',
                     }}
                     key={tag.id}
@@ -191,7 +191,7 @@ export class FollowTags extends Component {
 
 FollowTags.propTypes = {
   prev: PropTypes.func.isRequired,
-  next: PropTypes.string.isRequired,
+  next: PropTypes.func.isRequired,
   slidesCount: PropTypes.number.isRequired,
-  currentSlideIndex: PropTypes.func.isRequired,
+  currentSlideIndex: PropTypes.number.isRequired,
 };

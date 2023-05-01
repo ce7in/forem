@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "Organization index", type: :system do
+RSpec.describe "Organization index" do
   let!(:org_user) { create(:user, :org_member) }
   let(:organization) { org_user.organizations.first }
 
@@ -24,8 +24,8 @@ RSpec.describe "Organization index", type: :system do
       end
 
       it "shows the sidebar" do
-        within("div.sidebar-additional") do
-          expect(page).to have_content("meet the team")
+        within("#sidebar-left") do
+          expect(page).to have_content("Meet the team")
           expect(page).to have_link(nil, href: org_user.path)
         end
       end

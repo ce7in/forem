@@ -32,7 +32,7 @@ module Html
       self
     end
 
-    def prefix_all_images(width = 880, synchronous_detail_detection: false)
+    def prefix_all_images(width: 880, synchronous_detail_detection: false)
       # wrap with Cloudinary or allow if from giphy or githubusercontent.com
       doc = Nokogiri::HTML.fragment(@html)
 
@@ -226,7 +226,7 @@ module Html
 
         # only focus on portion of text with "@"
         node.xpath("text()[contains(.,'@')]").each do |el|
-          el.replace(el.text.gsub(/\B@[a-z0-9_-]+/i) { |text| user_link_if_exists(text) })
+          el.replace(el.to_s.gsub(/\B@[a-z0-9_-]+/i) { |text| user_link_if_exists(text) })
         end
 
         # enqueue children that has @ in it's text

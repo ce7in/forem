@@ -13,7 +13,7 @@ module Admin
         result = ::Settings::General::Upsert.call(settings_params)
         if result.success?
           Audit::Logger.log(:internal, current_user, params.dup)
-          render json: { message: "Successfully updated settings." }, status: :ok
+          render json: { message: I18n.t("core.success_settings") }, status: :ok
         else
           render json: { error: result.errors.to_sentence }, status: :unprocessable_entity
         end
@@ -30,7 +30,7 @@ module Admin
       def settings_params
         params.require(:settings_general)&.permit(
           settings_keys.map(&:to_sym),
-          social_media_handles: ::Settings::General.social_media_handles.keys,
+          social_media_handles: ::Settings::General::SOCIAL_MEDIA_SERVICES,
           meta_keywords: ::Settings::General.meta_keywords.keys,
           credit_prices_in_cents: ::Settings::General.credit_prices_in_cents.keys,
         )

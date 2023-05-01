@@ -72,7 +72,7 @@ RSpec.describe "Authenticating with Email" do
         click_button("Continue", match: :first)
 
         expect(page).to have_current_path("/users/sign_in")
-        expect(page).to have_text("Invalid Email or password.")
+        expect(page).to have_text("Unable to login.")
       end
     end
   end
@@ -138,7 +138,7 @@ RSpec.describe "Authenticating with Email" do
   end
 
   def fill_in_user(user)
-    attach_file("user_profile_image", "spec/fixtures/files/podcast.png")
+    attach_file(File.expand_path("./spec/fixtures/files/podcast.png"))
     fill_in("user_name", with: user.name)
     fill_in("user_username", with: user.username)
     fill_in("user_email", with: user.email)

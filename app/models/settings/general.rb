@@ -1,6 +1,9 @@
 module Settings
   class General < Base
     self.table_name = "site_configs"
+    SOCIAL_MEDIA_SERVICES = %w[
+      twitter facebook github instagram twitch mastodon
+    ].freeze
 
     # Forem Team
     # [forem-fix] Remove channel name from Settings::General
@@ -23,6 +26,10 @@ module Settings
 
     # Google Analytics Tracking ID, e.g. UA-71991000-1
     setting :ga_tracking_id, type: :string, default: ApplicationConfig["GA_TRACKING_ID"]
+    setting :ga_analytics_4_id, type: :string, default: ApplicationConfig["GA_ANALYTICS_4_ID"]
+
+    # Ahoy Tracking
+    setting :ahoy_tracking, type: :boolean, default: false
 
     # Images
     setting :main_social_image,
@@ -70,7 +77,6 @@ module Settings
     # <https://mailchimp.com/developer/>
     setting :mailchimp_api_key, type: :string, default: ApplicationConfig["MAILCHIMP_API_KEY"]
     setting :mailchimp_newsletter_id, type: :string, default: ""
-    setting :mailchimp_sustaining_members_id, type: :string, default: ""
     setting :mailchimp_tag_moderators_id, type: :string, default: ""
     setting :mailchimp_community_moderators_id, type: :string, default: ""
     # Mailchimp webhook secret. Part of the callback URL in the Mailchimp settings.
@@ -89,12 +95,10 @@ module Settings
       facebook: nil,
       github: nil,
       instagram: nil,
-      twitch: nil
+      twitch: nil,
+      mastodon: nil
     }
     setting :twitter_hashtag, type: :string
-
-    # Sponsors
-    setting :sponsor_headline, default: -> { I18n.t("models.settings.general.community_sponsors") }
 
     # Tags
     setting :sidebar_tags, type: :array, default: %w[]
@@ -117,5 +121,11 @@ module Settings
     setting :feed_pinned_article_id, type: :integer, validates: {
       existing_published_article_id: true, allow_nil: true
     }
+
+    def self.social_media_services
+      SOCIAL_MEDIA_SERVICES.index_with do |name|
+        social_media_handles[name]
+      end
+    end
   end
 end

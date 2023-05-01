@@ -54,7 +54,6 @@ en:
       users_notification_setting:
         email_newsletter: Send me weekly newsletter emails
         email_digest_periodic: Send me a periodic digest of top posts from my tags
-        email_membership_newsletter: Send me sustaining membership newsletter emails
         email_tag_mod_newsletter: Send me tag moderator newsletter emails
         email_community_mod_newsletter: Send me community moderator newsletter emails
         email_comment_notifications: Send me an email when someone replies to me in a comment thread
@@ -128,7 +127,6 @@ en:
       ama: ama
       ask_me_anything: Ask Me Anything
       author: Author
-      like: Like
       nbsp_likes_html:
         one: "&nbsp;like"
         other: "&nbsp;likes"
@@ -232,3 +230,11 @@ en:
       novice: Novice
     social_link_helper:
       n_a: N/A
+    admin:
+      user_helper:
+        today: Today, %{date}
+        yesterday: Yesterday, %{date}
+        org_join: ", "
+        org_overflow:
+          one: "%{orgs} & %{count} other"
+          other: "%{orgs} & %{count} others"

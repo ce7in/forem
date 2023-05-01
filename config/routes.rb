@@ -33,12 +33,6 @@ Rails.application.routes.draw do
       draw :listing
     end
 
-    namespace :authorization do
-      scope :articles do
-        get "create_post_button", controller: "articles"
-      end
-    end
-
     namespace :stories, defaults: { format: "json" } do
       resource :feed, only: [:show] do
         resource :pinned_article, only: %w[show update destroy]
@@ -48,61 +42,26 @@ Rails.application.routes.draw do
     end
 
     namespace :api, defaults: { format: "json" } do
+      scope module: :v1, constraints: ApiConstraints.new(version: 1, default: false) do
+        # V1 only endpoints
+        put "/users/:id/suspend", to: "users#suspend", as: :user_suspend
+        put "/articles/:id/unpublish", to: "articles#unpublish", as: :article_unpublish
+        put "/users/:id/unpublish", to: "users#unpublish", as: :user_unpublish
+
+        post "/reactions", to: "reactions#create"
+        post "/reactions/toggle", to: "reactions#toggle"
+
+        resources :display_ads, only: %i[index show create update] do
+          put "unpublish", on: :member
+        end
+
+        resources :pages, only: %i[index show create update destroy]
+
+        draw :api
+      end
+
       scope module: :v0, constraints: ApiConstraints.new(version: 0, default: true) do
-        namespace :admin do
-          resources :users, only: [:create]
-        end
-
-        resources :articles, only: %i[index show create update] do
-          collection do
-            get "me(/:status)", to: "articles#me", as: :me, constraints: { status: /published|unpublished|all/ }
-            get "/:username/:slug", to: "articles#show_by_slug", as: :slug
-            get "/latest", to: "articles#index", defaults: { sort: "desc" }
-          end
-        end
-        resources :comments, only: %i[index show]
-        resources :videos, only: [:index]
-        resources :podcast_episodes, only: [:index]
-        resources :users, only: %i[show] do
-          collection do
-            get :me
-          end
-        end
-        resources :tags, only: [:index]
-        resources :follows, only: [:create] do
-          collection do
-            get :tags
-          end
-        end
-        namespace :followers do
-          get :users
-          get :organizations
-        end
-        resources :readinglist, only: [:index]
-
-        get "/analytics/totals", to: "analytics#totals"
-        get "/analytics/historical", to: "analytics#historical"
-        get "/analytics/past_day", to: "analytics#past_day"
-        get "/analytics/referrers", to: "analytics#referrers"
-
-        resources :health_checks, only: [] do
-          collection do
-            get :app
-            get :database
-            get :cache
-          end
-        end
-
-        resources :profile_images, only: %i[show], param: :username
-        resources :organizations, only: [:show], param: :username do
-          resources :users, only: [:index], to: "organizations#users"
-          resources :articles, only: [:index], to: "organizations#articles"
-        end
-        resource :instance, only: %i[show]
-
-        constraints(RailsEnvConstraint.new(allowed_envs: %w[test])) do
-          resource :feature_flags, only: %i[create show destroy], param: :flag
-        end
+        draw :api
       end
     end
 
@@ -169,8 +128,6 @@ Rails.application.routes.draw do
     resources :videos, only: %i[index create new]
     resources :video_states, only: [:create]
     resources :twilio_tokens, only: [:show]
-    resources :html_variant_trials, only: [:create]
-    resources :html_variant_successes, only: [:create]
     resources :tag_adjustments, only: %i[create destroy]
     resources :rating_votes, only: [:create]
     resources :page_views, only: %i[create update]
@@ -200,7 +157,11 @@ Rails.application.routes.draw do
       get :podcasts
     end
 
-    resource :onboarding, only: :show
+    scope module: "users" do
+      resource :onboarding, only: %i[show update]
+      patch "/onboarding_checkbox_update", to: "onboardings#onboarding_checkbox_update"
+    end
+
     resources :profiles, only: %i[update]
     resources :profile_field_groups, only: %i[index], defaults: { format: :json }
 
@@ -217,8 +178,6 @@ Rails.application.routes.draw do
     get "/notifications/:filter/:org_id", to: "notifications#index", as: :notifications_filter_org
     get "/notification_subscriptions/:notifiable_type/:notifiable_id", to: "notification_subscriptions#show"
     post "/notification_subscriptions/:notifiable_type/:notifiable_id", to: "notification_subscriptions#upsert"
-    patch "/onboarding_update", to: "users#onboarding_update"
-    patch "/onboarding_checkbox_update", to: "users#onboarding_checkbox_update"
     patch "/onboarding_notifications_checkbox_update",
           to: "users/notification_settings#onboarding_notifications_checkbox_update"
     get "email_subscriptions/unsubscribe"
@@ -227,12 +186,14 @@ Rails.application.routes.draw do
     get "/internal/:path", to: redirect("/admin/%{path}")
 
     get "/social_previews/article/:id", to: "social_previews#article", as: :article_social_preview
-    get "/social_previews/user/:id", to: "social_previews#user", as: :user_social_preview
-    get "/social_previews/organization/:id", to: "social_previews#organization", as: :organization_social_preview
-    get "/social_previews/tag/:id", to: "social_previews#tag", as: :tag_social_preview
-    get "/social_previews/comment/:id", to: "social_previews#comment", as: :comment_social_preview
 
-    get "/async_info/base_data", controller: "async_info#base_data", defaults: { format: :json }
+    get "/async_info/base_data", to: "async_info#base_data", defaults: { format: :json }
+    get "/async_info/navigation_links", to: "async_info#navigation_links"
+
+    # Display ads
+    scope "/:username/:slug" do
+      get "/display_ads/:placement_area", to: "display_ads#show", as: :article_display_ad
+    end
 
     # Settings
     post "users/join_org", to: "users#join_org"
@@ -265,7 +226,6 @@ Rails.application.routes.draw do
     get "/checkin", to: "pages#checkin"
     get "/💸", to: redirect("t/hiring")
     get "/survey", to: redirect("https://dev.to/ben/final-thoughts-on-the-state-of-the-web-survey-44nn")
-    get "/sponsors", to: "pages#sponsors"
     get "/search", to: "stories/articles_search#index"
     post "articles/preview", to: "articles#preview"
     post "comments/preview", to: "comments#preview"
@@ -316,7 +276,7 @@ Rails.application.routes.draw do
                                      constraints: {
                                        which: /organization/
                                      }
-    get "/dashboard/:username", to: "dashboards#show"
+    get "/dashboard/:username", to: "dashboards#show", as: :dashboard_show_user
 
     # for testing rails mailers
     unless Rails.env.production?
@@ -358,8 +318,6 @@ Rails.application.routes.draw do
     get "/t/:tag/edit", to: "tags#edit", as: :edit_tag
     get "/t/:tag/admin", to: "tags#admin"
     patch "/tag/:id", to: "tags#update"
-
-    get "/badge/:slug", to: "badges#show", as: :badge
 
     get "/top/:timeframe", to: "stories#index"
 

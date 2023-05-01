@@ -17,7 +17,9 @@ module Homepage
     ].freeze
     DEFAULT_PER_PAGE = 60
     MAX_PER_PAGE = 100
+
     SORT_PARAMS = %i[hotness_score public_reactions_count published_at].freeze
+    DEFAULT_SORT_DIRECTION = :desc
 
     def self.call(...)
       new(...).call
@@ -36,6 +38,7 @@ module Homepage
       per_page: DEFAULT_PER_PAGE
     )
       @relation = Article.published.select(*ATTRIBUTES)
+        .includes(:distinct_reaction_categories)
 
       @approved = approved
       @published_at = published_at
@@ -44,7 +47,7 @@ module Homepage
       @tags = tags.presence || []
 
       @sort_by = sort_by
-      @sort_direction = sort_direction
+      @sort_direction = sort_direction || DEFAULT_SORT_DIRECTION
 
       @page = page.to_i + 1
       @per_page = [(per_page || DEFAULT_PER_PAGE).to_i, MAX_PER_PAGE].min
@@ -65,6 +68,7 @@ module Homepage
       @relation = @relation.where(user_id: user_id) if user_id.present?
       @relation = @relation.where(organization_id: organization_id) if organization_id.present?
       @relation = @relation.cached_tagged_with_any(tags) if tags.any?
+      @relation = @relation.includes(:distinct_reaction_categories)
 
       relation
     end

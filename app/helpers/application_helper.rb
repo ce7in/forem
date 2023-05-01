@@ -36,9 +36,11 @@ module ApplicationHelper
   # @return [TrueClass] true when we should render the given link.
   # @return [FalseClass] false when we should **not** render the given link.
   def display_navigation_link?(link:)
-    # This is a quick short-circuit; we already have the link.  So don't bother asking the "Is this
-    # feature enabled" question if the given link requires a sign in and the user is not signed in.
-    return false if link.display_only_when_signed_in? && !user_signed_in?
+    # This is a quick short-circuit; we already have the link. So don't bother asking the "Is this
+    # feature enabled" question if the given link requires a logged in/out state
+    # that doesn't match the user's current state.
+    return false if link.display_to_logged_in? && !user_signed_in?
+    return false if link.display_to_logged_out? && user_signed_in?
     return true if navigation_link_is_for_an_enabled_feature?(link: link)
 
     false
@@ -91,8 +93,6 @@ module ApplicationHelper
   def title(page_title)
     derived_title = if page_title.include?(community_name)
                       page_title
-                    elsif user_signed_in?
-                      "#{page_title} - #{community_name} #{community_emoji}"
                     else
                       "#{page_title} - #{community_name}"
                     end
@@ -232,10 +232,6 @@ module ApplicationHelper
     @community_name ||= Settings::Community.community_name
   end
 
-  def community_emoji
-    @community_emoji ||= Settings::Community.community_emoji
-  end
-
   def release_adjusted_cache_key(path)
     release_footprint = ForemInstance.deployed_at
     return path if release_footprint.blank?
@@ -371,5 +367,26 @@ module ApplicationHelper
 
     creator = User.with_role(:creator).first
     !creator.checked_code_of_conduct && !creator.checked_terms_and_conditions
+  end
+
+  # This function is responsible for adding a policy class (and possibly the hidden class).  It's
+  # applying some shortcuts to reduce the likelihood of any Cumulative Layout Shift.
+  #
+  # @param name [String,Symbol] the HTML element name (e.g. "li", "div", "a")
+  # @param record [Object] the record for which we're testing a policy
+  # @param query [Symbol, String] the query we're running on the policy
+  # @param kwargs [Hash] The arguments pass, with modifications to the given :class (see
+  #        implementation details).
+  #
+  # @yield the body of the HTML element
+  #
+  # @see ApplicationPolicy.dom_class_for
+  # @see https://api.rubyonrails.org/classes/ActionView/Helpers/TagHelper.html#method-i-content_tag
+  # @see ./app/javascript/packs/applyApplicationPolicyToggles.js
+  def application_policy_content_tag(name, record:, query:, **kwargs, &block)
+    dom_class = kwargs.delete(:class) || kwargs.delete("class") || ""
+    dom_class += " #{ApplicationPolicy.dom_classes_for(record: record, query: query)}"
+
+    content_tag(name, class: dom_class, **kwargs, &block)
   end
 end

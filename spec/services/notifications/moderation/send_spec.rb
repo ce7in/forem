@@ -6,11 +6,11 @@ RSpec.describe Notifications::Moderation::Send, type: :service do
   let(:user) { create(:user) }
   let(:article) { create(:article, user_id: user.id) }
   let(:comment) { create(:comment, user: user, commentable: article) }
-  let(:available_moderators) { Notifications::Moderation.available_moderators }
-  let(:moderator) { available_moderators.first }
+  let(:selected_moderators) { Users::SelectModeratorsQuery.call }
+  let(:moderator) { selected_moderators.first }
 
   before do
-    u = create(:user, :trusted, last_moderation_notification: last_moderation_time)
+    u = create(:user, :trusted, last_reacted_at: 2.days.ago, last_moderation_notification: last_moderation_time)
     u.notification_setting.update(mod_roundrobin_notifications: true)
     allow(User).to receive(:staff_account).and_return(staff_account)
     # Creating a comment calls moderation job which itself call moderation service
@@ -53,6 +53,6 @@ RSpec.describe Notifications::Moderation::Send, type: :service do
 
     expect do
       described_class.call(moderator, comment)
-    end.to change(Notification, :count).by(0)
+    end.not_to change(Notification, :count)
   end
 end

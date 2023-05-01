@@ -2,6 +2,7 @@ class Article < ApplicationRecord
   include CloudinaryHelper
   include ActionView::Helpers
   include Reactable
+  include Taggable
   include UserSubscriptionSourceable
   include PgSearch::Model
 
@@ -25,7 +26,10 @@ class Article < ApplicationRecord
   # @see Articles::CachedEntity caching strategy for entity attributes
   ATTRIBUTES_CACHED_FOR_RELATED_ENTITY = %i[name profile_image profile_image_url slug username].freeze
 
-  attr_accessor :publish_under_org
+  # admin_update was added as a hack to bypass published_at validation when admin is updating
+  # TODO: [@lightalloy] remove published_at validation from the model and
+  # move it to the services where the create/update takes place to avoid using hacks
+  attr_accessor :publish_under_org, :admin_update
   attr_writer :series
 
   delegate :name, to: :user, prefix: true
@@ -43,21 +47,33 @@ class Article < ApplicationRecord
 
   # The date that we began limiting the number of user mentions in an article.
   MAX_USER_MENTION_LIVE_AT = Time.utc(2021, 4, 7).freeze
-  PROHIBITED_UNICODE_CHARACTERS_REGEX = /[\u202a-\u202e]/ # BIDI embedding controls
+  # all BIDI control marks (a part of them are expected to be removed during #normalize_title, but still)
+  BIDI_CONTROL_CHARACTERS = /[\u061C\u200E\u200F\u202a-\u202e\u2066-\u2069]/
 
-  # Filter out anything that isn't a word, space, punctuation mark, or
-  # recognized emoji.
+  MAX_TAG_LIST_SIZE = 4
+
+  # Filter out anything that isn't a word, space, punctuation mark,
+  # recognized emoji, and other auxiliary marks.
   # See: https://github.com/forem/forem/pull/16787#issuecomment-1062044359
+  #
+  # NOTE: try not to use hyphen (- U+002D) in comments inside regex,
+  # otherwise it may break parser randomly.
+  # Use underscore or Unicode hyphen (‐ U+2010) instead.
   # rubocop:disable Lint/DuplicateRegexpCharacterClassElement
   TITLE_CHARACTERS_ALLOWED = /[^
     [:word:]
     [:space:]
     [:punct:]
-    \u00a3        # GBP symbol
+    \p{Sc}        # All currency symbols
     \u00a9        # Copyright symbol
     \u00ae        # Registered trademark symbol
+    \u061c        # BIDI: Arabic letter mark
+    \u180e        # Mongolian vowel separator
+    \u200c        # Zero‐width non‐joiner, for complex scripts
     \u200d        # Zero-width joiner, for multipart emojis such as family
-    \u203c        # !! emoji
+    \u200e-\u200f # BIDI: LTR and RTL mark (standalone)
+    \u202c-\u202e # BIDI: POP, LTR, and RTL override
+    \u2066-\u2069 # BIDI: LTR, RTL, FSI, and POP isolate
     \u20e3        # Combining enclosing keycap
     \u2122        # Trademark symbol
     \u2139        # Information symbol
@@ -67,15 +83,26 @@ class Article < ApplicationRecord
     \u231b        # Hourglass emoji
     \u2328        # Keyboard emoji
     \u23cf        # Eject symbol
-    \u23e9-\u23f3 # Various VCR-actions emoji and clocks
+    \u23e9-\u23f3 # Various VCR‐actions emoji and clocks
     \u23f8-\u23fa # More VCR emoji
     \u24c2        # Blue circle with a white M in it
     \u25aa        # Black box
     \u25ab        # White box
-    \u25b6        # VCR-style play emoji
-    \u25c0        # VCR-style play backwards emoji
+    \u25b6        # VCR‐style play emoji
+    \u25c0        # VCR‐style play backwards emoji
     \u25fb-\u25fe # More black and white squares
     \u2600-\u273f # Weather, zodiac, coffee, hazmat, cards, music, other misc emoji
+    \u2744        # Snowflake emoji
+    \u2747        # Sparkle emoji
+    \u274c        # Cross mark
+    \u274e        # Cross mark box
+    \u2753-\u2755 # Big red and white ? emoji, big white ! emoji
+    \u2757        # Big red ! emoji
+    \u2763-\u2764 # Heart ! and heart emoji
+    \u2795-\u2797 # Math operator emoji
+    \u27a1        # Right arrow
+    \u27b0        # One loop
+    \u27bf        # Two loops
     \u2934        # Curved arrow pointing up to the right
     \u2935        # Curved arrow pointing down to the right
     \u2b00-\u2bff # More arrows, geometric shapes
@@ -95,8 +122,9 @@ class Article < ApplicationRecord
 
   has_many :mentions, as: :mentionable, inverse_of: :mentionable, dependent: :delete_all
   has_many :comments, as: :commentable, inverse_of: :commentable, dependent: :nullify
-  has_many :html_variant_successes, dependent: :nullify
-  has_many :html_variant_trials, dependent: :nullify
+  has_many :context_notifications, as: :context, inverse_of: :context, dependent: :delete_all
+  has_many :context_notifications_published, -> { where(context_notifications: { action: "Published" }) },
+           as: :context, inverse_of: :context, class_name: "ContextNotification"
   has_many :notification_subscriptions, as: :notifiable, inverse_of: :notifiable, dependent: :delete_all
   has_many :notifications, as: :notifiable, inverse_of: :notifiable, dependent: :delete_all
   has_many :page_views, dependent: :delete_all
@@ -149,9 +177,10 @@ class Article < ApplicationRecord
   validates :video_source_url, url: { allow_blank: true, schemes: ["https"] }
   validates :video_state, inclusion: { in: %w[PROGRESSING COMPLETED] }, allow_nil: true
   validates :video_thumbnail_url, url: { allow_blank: true, schemes: %w[https http] }
+  validate :future_or_current_published_at, on: :create
+  validate :correct_published_at?, on: :update, unless: :admin_update
 
   validate :canonical_url_must_not_have_spaces
-  validate :past_or_present_date
   validate :validate_collection_permission
   validate :validate_tag
   validate :validate_video
@@ -160,9 +189,9 @@ class Article < ApplicationRecord
   validate :validate_co_authors_must_not_be_the_same, unless: -> { co_author_ids.blank? }
   validate :validate_co_authors_exist, unless: -> { co_author_ids.blank? }
 
-  before_validation :evaluate_markdown, :create_slug
-  before_validation :remove_prohibited_unicode_characters
+  before_validation :evaluate_markdown, :create_slug, :set_published_date
   before_validation :normalize_title
+  before_validation :remove_prohibited_unicode_characters
   before_save :set_cached_entities
   before_save :set_all_dates
 
@@ -170,12 +199,11 @@ class Article < ApplicationRecord
   before_save :fetch_video_duration
   before_save :set_caches
   before_create :create_password
-  after_create :notify_slack_channel_about_publication
-  after_update :notify_slack_channel_about_publication, if: -> { published && saved_change_to_published? }
   before_destroy :before_destroy_actions, prepend: true
 
   after_save :create_conditional_autovomits
   after_save :bust_cache
+  after_save :collection_cleanup
 
   after_update_commit :update_notifications, if: proc { |article|
                                                    article.notifications.any? && !article.saved_changes.empty?
@@ -184,7 +212,8 @@ class Article < ApplicationRecord
     article.saved_change_to_user_id?
   }
 
-  after_commit :async_score_calc, :touch_collection, :enrich_image_attributes, on: %i[create update]
+  after_commit :async_score_calc, :touch_collection, :enrich_image_attributes, :record_field_test_event,
+               on: %i[create update]
 
   # The trigger `update_reading_list_document` is used to keep the `articles.reading_list_document` column updated.
   #
@@ -279,47 +308,6 @@ class Article < ApplicationRecord
       .tagged_with(tag_name)
   }
 
-  scope :cached_tagged_with, lambda { |tag|
-    case tag
-    when String, Symbol
-      # In Postgres regexes, the [[:<:]] and [[:>:]] are equivalent to "start of
-      # word" and "end of word", respectively. They're similar to `\b` in Perl-
-      # compatible regexes (PCRE), but that matches at either end of a word.
-      # They're more comparable to how vim's `\<` and `\>` work.
-      where("cached_tag_list ~ ?", "[[:<:]]#{tag}[[:>:]]")
-    when Array
-      tag.reduce(self) { |acc, elem| acc.cached_tagged_with(elem) }
-    when Tag
-      cached_tagged_with(tag.name)
-    else
-      raise TypeError, "Cannot search tags for: #{tag.inspect}"
-    end
-  }
-
-  scope :cached_tagged_with_any, lambda { |tags|
-    case tags
-    when String, Symbol
-      cached_tagged_with(tags)
-    when Array
-      tags
-        .map { |tag| cached_tagged_with(tag) }
-        .reduce { |acc, elem| acc.or(elem) }
-    when Tag
-      cached_tagged_with(tags.name)
-    else
-      raise TypeError, "Cannot search tags for: #{tags.inspect}"
-    end
-  }
-
-  # We usually try to avoid using Arel directly like this. However, none of the more
-  # straight-forward ways of negating the above scope worked:
-  # 1. A subquery doesn't work because we're not dealing with a simple NOT IN scenario.
-  # 2. where.not(cached_tagged_with_any(tags).where_values_hash) doesn't work because where_values_hash
-  #    only works for simple conditions and returns an empty hash in this case.
-  scope :not_cached_tagged_with_any, lambda { |tags|
-    where(cached_tagged_with_any(tags).arel.constraints.reduce(:or).not)
-  }
-
   scope :active_help, lambda {
     stories = published.cached_tagged_with("help").order(created_at: :desc)
 
@@ -343,8 +331,8 @@ class Article < ApplicationRecord
            :main_image, :main_image_background_hex_color, :updated_at,
            :video, :user_id, :organization_id, :video_source_url, :video_code,
            :video_thumbnail_url, :video_closed_caption_track_url, :social_image,
-           :published_from_feed, :crossposted_at, :published_at, :featured_number,
-           :created_at, :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids)
+           :published_from_feed, :crossposted_at, :published_at, :created_at,
+           :body_markdown, :email_digest_eligible, :processed_html, :co_author_ids, :score)
   }
 
   scope :sorting, lambda { |value|
@@ -353,18 +341,21 @@ class Article < ApplicationRecord
 
     dir = "desc" unless %w[asc desc].include?(dir)
 
-    column =
-      case kind
-      when "creation"  then :created_at
-      when "views"     then :page_views_count
-      when "reactions" then :public_reactions_count
-      when "comments"  then :comments_count
-      when "published" then :published_at
-      else
-        :created_at
-      end
-
-    order(column => dir.to_sym)
+    case kind
+    when "creation"
+      order(created_at: dir)
+    when "views"
+      order(page_views_count: dir)
+    when "reactions"
+      order(public_reactions_count: dir)
+    when "comments"
+      order(comments_count: dir)
+    when "published"
+      # NOTE: For recently published, we further filter to only published posts
+      order(published_at: dir).published
+    else
+      order(created_at: dir)
+    end
   }
 
   # @note This includes the `featured` scope, which may or may not be
@@ -430,6 +421,10 @@ class Article < ApplicationRecord
     end
   end
 
+  def scheduled?
+    published_at? && published_at.future?
+  end
+
   def search_id
     "article_#{id}"
   end
@@ -466,10 +461,18 @@ class Article < ApplicationRecord
   end
 
   def current_state_path
-    published ? "/#{username}/#{slug}" : "/#{username}/#{slug}?preview=#{password}"
+    published && !scheduled? ? "/#{username}/#{slug}" : "/#{username}/#{slug}?preview=#{password}"
   end
 
   def has_frontmatter?
+    if FeatureFlag.enabled?(:consistent_rendering, FeatureFlag::Actor[user])
+      processed_content.has_front_matter?
+    else
+      original_has_frontmatter?
+    end
+  end
+
+  def original_has_frontmatter?
     fixed_body_markdown = MarkdownProcessor::Fixer::FixAll.call(body_markdown)
     begin
       parsed = FrontMatterParser::Parser.new(:md).call(fixed_body_markdown)
@@ -557,8 +560,7 @@ class Article < ApplicationRecord
     update_columns(score: score,
                    privileged_users_reaction_points_sum: reactions.privileged_category.sum(:points),
                    comment_score: comments.sum(:score),
-                   hotness_score: BlackBox.article_hotness_score(self),
-                   spaminess_rating: BlackBox.calculate_spaminess(self))
+                   hotness_score: BlackBox.article_hotness_score(self))
   end
 
   def co_author_ids_list=(list_of_co_author_ids)
@@ -592,11 +594,26 @@ class Article < ApplicationRecord
       (score < Settings::UserExperience.index_minimum_score &&
        user.comments_count < 1 &&
        !featured) ||
-      featured_number.to_i < 1_500_000_000 ||
+      published_at.to_i < 1_500_000_000 ||
       score < -1
   end
 
+  def privileged_reaction_counts
+    @privileged_reaction_counts ||= reactions.privileged_category.group(:category).count
+  end
+
   private
+
+  def collection_cleanup
+    # Should only check to cleanup if Article was removed from collection
+    return unless saved_change_to_collection_id? && collection_id.nil?
+
+    collection = Collection.find(collection_id_before_last_save)
+    return if collection.articles.count.positive?
+
+    # Collection is empty
+    collection.destroy
+  end
 
   def search_score
     comments_score = (comments_count * 3).to_i
@@ -635,7 +652,44 @@ class Article < ApplicationRecord
       .strip
   end
 
+  def processed_content
+    return @processed_content if @processed_content && !body_markdown_changed?
+    return unless user
+
+    @processed_content = ContentRenderer.new(body_markdown, source: self, user: user)
+  end
+
   def evaluate_markdown
+    if FeatureFlag.enabled?(:consistent_rendering, FeatureFlag::Actor[user])
+      extracted_evaluate_markdown
+    else
+      original_evaluate_markdown
+    end
+  end
+
+  def extracted_evaluate_markdown
+    content_renderer = processed_content
+    return unless content_renderer
+
+    result = content_renderer.process_article
+
+    self.processed_html = result.processed_html
+    self.reading_time = result.reading_time
+
+    front_matter = result.front_matter
+
+    if front_matter.any?
+      evaluate_front_matter(front_matter)
+    elsif tag_list.any?
+      set_tag_list(tag_list)
+    end
+
+    self.description = processed_description if description.blank?
+  rescue ContentRenderer::ContentParsingError => e
+    errors.add(:base, ErrorMessages::Clean.call(e.message))
+  end
+
+  def original_evaluate_markdown
     fixed_body_markdown = MarkdownProcessor::Fixer::FixAll.call(body_markdown || "")
     parsed = FrontMatterParser::Parser.new(:md).call(fixed_body_markdown)
     parsed_markdown = MarkdownProcessor::Parser.new(parsed.content, source: self, user: user)
@@ -701,28 +755,31 @@ class Article < ApplicationRecord
     Articles::BustMultipleCachesWorker.perform_bulk(job_params)
   end
 
-  def evaluate_front_matter(front_matter)
-    self.title = front_matter["title"] if front_matter["title"].present?
-    set_tag_list(front_matter["tags"]) if front_matter["tags"].present?
-    self.published = front_matter["published"] if %w[true false].include?(front_matter["published"].to_s)
-    self.published_at = parse_date(front_matter["date"]) if published
-    set_main_image(front_matter)
-    self.canonical_url = front_matter["canonical_url"] if front_matter["canonical_url"].present?
+  def evaluate_front_matter(hash)
+    self.title = hash["title"] if hash["title"].present?
+    set_tag_list(hash["tags"]) if hash["tags"].present?
+    self.published = hash["published"] if %w[true false].include?(hash["published"].to_s)
 
-    update_description = front_matter["description"].present? || front_matter["title"].present?
-    self.description = front_matter["description"] if update_description
+    self.published_at = hash["published_at"] if hash["published_at"]
+    self.published_at ||= parse_date(hash["date"]) if published
 
-    self.collection_id = nil if front_matter["title"].present?
-    self.collection_id = Collection.find_series(front_matter["series"], user).id if front_matter["series"].present?
+    set_main_image(hash)
+    self.canonical_url = hash["canonical_url"] if hash["canonical_url"].present?
+
+    update_description = hash["description"].present? || hash["title"].present?
+    self.description = hash["description"] if update_description
+
+    self.collection_id = nil if hash["title"].present?
+    self.collection_id = Collection.find_series(hash["series"], user).id if hash["series"].present?
   end
 
-  def set_main_image(front_matter)
+  def set_main_image(hash)
     # At one point, we have set the main_image based on the front matter. Forever will that now dictate the behavior.
     if main_image_from_frontmatter?
-      self.main_image = front_matter["cover_image"]
-    elsif front_matter.key?("cover_image")
+      self.main_image = hash["cover_image"]
+    elsif hash.key?("cover_image")
       # They've chosen the set cover image in the front matter, so we'll proceed with that assumption.
-      self.main_image = front_matter["cover_image"]
+      self.main_image = hash["cover_image"]
       self.main_image_from_frontmatter = true
     end
   end
@@ -738,14 +795,9 @@ class Article < ApplicationRecord
     add_tag_adjustments_to_tag_list
 
     # check there are not too many tags
-    return errors.add(:tag_list, I18n.t("models.article.too_many_tags")) if tag_list.size > 4
+    return errors.add(:tag_list, I18n.t("models.article.too_many_tags")) if tag_list.size > MAX_TAG_LIST_SIZE
 
-    # check tags names aren't too long and don't contain non alphabet characters
-    tag_list.each do |tag|
-      new_tag = Tag.new(name: tag)
-      new_tag.validate_name
-      new_tag.errors.messages[:name].each { |message| errors.add(:tag, "\"#{tag}\" #{message}") }
-    end
+    validate_tag_name(tag_list)
   end
 
   def remove_tag_adjustments_from_tag_list
@@ -797,10 +849,30 @@ class Article < ApplicationRecord
     errors.add(:co_author_ids, I18n.t("models.article.invalid_coauthor"))
   end
 
-  def past_or_present_date
-    return unless published_at && published_at > Time.current
+  def future_or_current_published_at
+    # allow published_at in the future or within 15 minutes in the past
+    return if !published || published_at > 15.minutes.ago
 
-    errors.add(:date_time, I18n.t("models.article.invalid_date"))
+    errors.add(:published_at, I18n.t("models.article.future_or_current_published_at"))
+  end
+
+  def correct_published_at?
+    return unless changes["published_at"]
+
+    # for drafts (that were never published before) or scheduled articles
+    # => allow future or current dates, or no published_at
+    if !published_at_was || published_at_was > Time.current
+      # for articles published_from_feed (exported from rss) we allow past published_at
+      if (published_at && published_at < 15.minutes.ago) && !published_from_feed
+        errors.add(:published_at, I18n.t("models.article.future_or_current_published_at"))
+      end
+    else
+      # for articles that have been published already (published or unpublished drafts) => immutable published_at
+      # allow changes within one minute in case of editing via frontmatter w/o specifying seconds
+      has_nils = changes["published_at"].include?(nil) # changes from nil or to nil
+      close_enough = !has_nils && (published_at_was - published_at).between?(-60, 60)
+      errors.add(:published_at, I18n.t("models.article.immutable_published_at")) if has_nils || !close_enough
+    end
   end
 
   def canonical_url_must_not_have_spaces
@@ -845,8 +917,6 @@ class Article < ApplicationRecord
   end
 
   def set_all_dates
-    set_published_date
-    set_featured_number
     set_crossposted_at
     set_last_comment_at
     set_nth_published_at
@@ -854,10 +924,6 @@ class Article < ApplicationRecord
 
   def set_published_date
     self.published_at = Time.current if published && published_at.blank?
-  end
-
-  def set_featured_number
-    self.featured_number = Time.current.to_i if featured_number.blank? && published
   end
 
   def set_crossposted_at
@@ -903,7 +969,6 @@ class Article < ApplicationRecord
 
   def calculate_base_scores
     self.hotness_score = 1000 if hotness_score.blank?
-    self.spaminess_rating = 0 if new_record?
   end
 
   def create_conditional_autovomits
@@ -918,10 +983,6 @@ class Article < ApplicationRecord
     collection.touch if collection && previous_changes.present?
   end
 
-  def notify_slack_channel_about_publication
-    Slack::Messengers::ArticlePublished.call(article: self)
-  end
-
   def enrich_image_attributes
     return unless saved_change_to_attribute?(:processed_html)
 
@@ -929,8 +990,17 @@ class Article < ApplicationRecord
   end
 
   def remove_prohibited_unicode_characters
-    return unless title&.match?(PROHIBITED_UNICODE_CHARACTERS_REGEX)
+    return unless title&.match?(BIDI_CONTROL_CHARACTERS)
 
-    self.title = title.gsub(PROHIBITED_UNICODE_CHARACTERS_REGEX, "")
+    bidi_stripped = title.gsub(BIDI_CONTROL_CHARACTERS, "")
+    self.title = bidi_stripped if bidi_stripped.blank? # title only contains BIDI characters = blank title
+  end
+
+  def record_field_test_event
+    return unless published?
+    return if FieldTest.config["experiments"].nil?
+
+    Users::RecordFieldTestEventWorker
+      .perform_async(user_id, AbExperiment::GoalConversionHandler::USER_PUBLISHES_POST_GOAL)
   end
 end

@@ -29,16 +29,21 @@ ProfileField
   .find_or_create_by(label: "Education")
 Profile.refresh_attributes!
 
+# extract generated attribute names
+work_attr = ProfileField.find_by(label: "Work").attribute_name
+education_attr = ProfileField.find_by(label: "Education").attribute_name
 ##############################################################################
 
+# admin-user needs to be the first user, to maintain specs validity
 seeder.create_if_doesnt_exist(User, "email", "admin@forem.local") do
   user = User.create!(
     name: "Admin McAdmin",
     email: "admin@forem.local",
     username: "Admin_McAdmin",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
-    registered_at: Time.current,
+    registered_at: "2020-01-01T13:09:47+0000",
+    created_at: "2020-01-01T13:09:47+0000",
     password: "password",
     password_confirmation: "password",
     saw_onboarding: true,
@@ -52,11 +57,11 @@ seeder.create_if_doesnt_exist(User, "email", "admin@forem.local") do
   )
 
   user.profile.update(
-    summary: "Admin user summary",
-    work: "Software developer at Company",
-    location: "Edinburgh",
-    education: "University of Life",
-    website_url: Faker::Internet.url,
+    :summary => "Admin user summary",
+    work_attr => "Software developer at Company",
+    :location => "Edinburgh",
+    education_attr => "University of Life",
+    :website_url => Faker::Internet.url,
   )
 
   user.add_role(:super_admin)
@@ -68,12 +73,13 @@ admin_user = User.find_by(email: "admin@forem.local")
 
 ##############################################################################
 
+# trusted-user-1 needs to be the second user, to maintain specs validity
 seeder.create_if_doesnt_exist(User, "email", "trusted-user-1@forem.local") do
   user = User.create!(
     name: "Trusted User 1 \\:/",
     email: "trusted-user-1@forem.local",
     username: "trusted_user_1",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -96,12 +102,13 @@ trusted_user = User.find_by(email: "trusted-user-1@forem.local")
 
 ##############################################################################
 
+# punctuated-name-user needs to remain the 3rd user created, for tests' sake
 seeder.create_if_doesnt_exist(User, "email", "punctuated-name-user@forem.local") do
   user = User.create!(
     name: "User \"The test breaker\" A'postrophe  \\:/",
     email: "punctuated-name-user@forem.local",
     username: "punctuated_name_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -133,11 +140,77 @@ end
 
 ##############################################################################
 
+seeder.create_if_doesnt_exist(User, "email", "user-with-many-orgs@forem.local") do
+  User.create!(
+    name: "Many orgs user",
+    email: "user-with-many-orgs@forem.local",
+    username: "many_orgs_user",
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    confirmed_at: Time.current,
+    registered_at: Time.current,
+    password: "password",
+    password_confirmation: "password",
+    saw_onboarding: true,
+    checked_code_of_conduct: true,
+    checked_terms_and_conditions: true,
+  )
+end
+
+many_orgs_user = User.find_by(email: "user-with-many-orgs@forem.local")
+
+##############################################################################
+
+seeder.create_if_doesnt_exist(User, "email", "gdpr-delete-user@forem.local") do
+  gdpr_user = User.create!(
+    name: "GDPR delete user",
+    email: "gdpr-delete-user@forem.local",
+    username: "gdpr_delete_user",
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    confirmed_at: Time.current,
+    registered_at: Time.current,
+    password: "password",
+    password_confirmation: "password",
+    saw_onboarding: true,
+    checked_code_of_conduct: true,
+    checked_terms_and_conditions: true,
+  )
+  Users::DeleteWorker.new.perform(gdpr_user.id, true)
+end
+
+##############################################################################
+
+seeder.create_if_doesnt_exist(User, "email", "moderator-user@forem.local") do
+  user = User.create!(
+    name: "Moderator User",
+    email: "moderator-user@forem.local",
+    username: "moderator_user",
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    confirmed_at: Time.current,
+    registered_at: Time.current,
+    password: "password",
+    password_confirmation: "password",
+    saw_onboarding: true,
+    checked_code_of_conduct: true,
+    checked_terms_and_conditions: true,
+  )
+  user.notification_setting.update(
+    email_comment_notifications: false,
+    email_follower_notifications: false,
+  )
+
+  user.profile.update(website_url: Faker::Internet.url)
+
+  user.add_role(:super_moderator)
+  user.add_role(:trusted)
+end
+
+##############################################################################
+
 seeder.create_if_doesnt_exist(Organization, "slug", "bachmanity") do
   organization = Organization.create!(
     name: "Bachmanity",
     summary: Faker::Company.bs,
-    profile_image: logo = File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: logo = Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     nav_image: logo,
     url: Faker::Internet.url,
     slug: "bachmanity",
@@ -148,13 +221,19 @@ seeder.create_if_doesnt_exist(Organization, "slug", "bachmanity") do
     organization_id: organization.id,
     type_of_user: "admin",
   )
+
+  OrganizationMembership.create!(
+    user_id: many_orgs_user.id,
+    organization_id: organization.id,
+    type_of_user: "member",
+  )
 end
 
 seeder.create_if_doesnt_exist(Organization, "slug", "awesomeorg") do
   organization = Organization.create!(
     name: "Awesome Org",
     summary: Faker::Company.bs,
-    profile_image: logo = File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: logo = Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     nav_image: logo,
     url: Faker::Internet.url,
     slug: "awesomeorg",
@@ -162,6 +241,46 @@ seeder.create_if_doesnt_exist(Organization, "slug", "awesomeorg") do
 
   OrganizationMembership.create!(
     user_id: trusted_user.id,
+    organization_id: organization.id,
+    type_of_user: "member",
+  )
+
+  OrganizationMembership.create!(
+    user_id: many_orgs_user.id,
+    organization_id: organization.id,
+    type_of_user: "member",
+  )
+end
+
+seeder.create_if_doesnt_exist(Organization, "slug", "org3") do
+  organization = Organization.create!(
+    name: "Org 3",
+    summary: Faker::Company.bs,
+    profile_image: logo = Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    nav_image: logo,
+    url: Faker::Internet.url,
+    slug: "org3",
+  )
+
+  OrganizationMembership.create!(
+    user_id: many_orgs_user.id,
+    organization_id: organization.id,
+    type_of_user: "member",
+  )
+end
+
+seeder.create_if_doesnt_exist(Organization, "slug", "org4") do
+  organization = Organization.create!(
+    name: "Org 4",
+    summary: Faker::Company.bs,
+    profile_image: logo = Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    nav_image: logo,
+    url: Faker::Internet.url,
+    slug: "org4",
+  )
+
+  OrganizationMembership.create!(
+    user_id: many_orgs_user.id,
     organization_id: organization.id,
     type_of_user: "member",
   )
@@ -174,7 +293,7 @@ seeder.create_if_doesnt_exist(User, "email", "change-password-user@forem.com") d
     name: "Change Password User",
     email: "change-password-user@forem.com",
     username: "changepassworduser",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -201,7 +320,7 @@ seeder.create_if_doesnt_exist(User, "email", "article-editor-v1-user@forem.local
     name: "Article Editor v1 User",
     email: "article-editor-v1-user@forem.local",
     username: "article_editor_v1_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -229,7 +348,7 @@ seeder.create_if_doesnt_exist(User, "email", "article-editor-v2-user@forem.local
     name: "Article Editor v2 User",
     email: "article-editor-v2-user@forem.local",
     username: "article_editor_v2_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -256,7 +375,7 @@ seeder.create_if_doesnt_exist(User, "email", "apple-auth-admin-user@privaterelay
     name: "Apple Auth Admin User",
     email: "apple-auth-admin-user@privaterelay.appleid.com",
     username: "apple_auth_admin_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -276,7 +395,7 @@ seeder.create_if_doesnt_exist(User, "email", "notifications-user@forem.local") d
     name: "Notifications User \\:/",
     email: "notifications-user@forem.local",
     username: "notifications_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -349,7 +468,7 @@ seeder.create_if_doesnt_exist(User, "email", "liquid-tags-user@forem.local") do
     name: "Liquid tags User",
     email: "liquid-tags-user@forem.local",
     username: "liquid_tags_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -376,7 +495,7 @@ seeder.create_if_doesnt_exist(User, "email", "credits-user@forem.local") do
     name: "Credits User",
     email: "credits-user@forem.local",
     username: "credits_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -405,13 +524,13 @@ seeder.create_if_none(NavigationLink) do
   protocol = ApplicationConfig["APP_PROTOCOL"].freeze
   domain = Rails.application&.initialized? ? Settings::General.app_domain : ApplicationConfig["APP_DOMAIN"]
   base_url = "#{protocol}#{domain}".freeze
-  reading_icon = File.read(Rails.root.join("app/assets/images/twemoji/drawer.svg")).freeze
+  reading_icon = Rails.root.join("app/assets/images/twemoji/drawer.svg").read.freeze
 
   NavigationLink.create!(
     name: "Reading List",
     url: "#{base_url}/readinglist",
     icon: reading_icon,
-    display_only_when_signed_in: true,
+    display_to: :logged_in,
     position: 0,
     section: :default,
   )
@@ -420,9 +539,9 @@ end
 ##############################################################################
 
 seeder.create_if_doesnt_exist(NavigationLink, "url", "/contact") do
-  icon = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">'\
-         '<path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342'\
-         '7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"/>'\
+  icon = '<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' \
+         '<path d="M12 1l9.5 5.5v11L12 23l-9.5-5.5v-11L12 1zm0 2.311L4.5 7.653v8.694l7.5 4.342' \
+         '7.5-4.342V7.653L12 3.311zM12 16a4 4 0 110-8 4 4 0 010 8zm0-2a2 2 0 100-4 2 2 0 000 4z"/>' \
          '</svg>'
   6.times do |i|
     NavigationLink.create!(
@@ -464,6 +583,26 @@ seeder.create_if_doesnt_exist(Article, "slug", "test-article-slug") do
   }
 
   Comment.create!(comment_attributes)
+end
+
+##############################################################################
+
+seeder.create_if_doesnt_exist(Article, "slug", "unfeatured-article-slug") do
+  markdown = <<~MARKDOWN
+    ---
+    title:  Unfeatured article
+    published: true
+    ---
+    #{Faker::Hipster.paragraph(sentence_count: 2)}
+    #{Faker::Markdown.random}
+    #{Faker::Hipster.paragraph(sentence_count: 2)}
+  MARKDOWN
+  Article.create!(
+    body_markdown: markdown,
+    featured: false,
+    user_id: admin_user.id,
+    slug: "unfeatured-article-slug",
+  )
 end
 
 ##############################################################################
@@ -535,12 +674,32 @@ end
 
 ##############################################################################
 
+seeder.create_if_doesnt_exist(User, "email", "tech-admin-user@forem.local") do
+  tech_admin_user = User.create!(
+    name: "Tech admin User",
+    email: "tech-admin-user@forem.local",
+    username: "tech_admin_user",
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    confirmed_at: Time.current,
+    registered_at: Time.current,
+    password: "password",
+    password_confirmation: "password",
+    saw_onboarding: true,
+    checked_code_of_conduct: true,
+    checked_terms_and_conditions: true,
+  )
+
+  tech_admin_user.add_role(:tech_admin)
+end
+
+##############################################################################
+
 seeder.create_if_doesnt_exist(User, "email", "series-user@forem.local") do
   series_user = User.create!(
     name: "Series User",
     email: "series-user@forem.local",
     username: "series_user",
-    profile_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     confirmed_at: Time.current,
     registered_at: Time.current,
     password: "password",
@@ -550,15 +709,57 @@ seeder.create_if_doesnt_exist(User, "email", "series-user@forem.local") do
     checked_terms_and_conditions: true,
   )
   series_user.profile.update(
-    summary: "Series user summary",
-    work: "Software developer at Company",
-    location: "Edinburgh",
-    education: "University of Life",
-    website_url: Faker::Internet.url,
+    :summary => "Series user summary",
+    work_attr => "Software developer at Company",
+    :location => "Edinburgh",
+    education_attr => "University of Life",
+    :website_url => Faker::Internet.url,
   )
   series_user.notification_setting.update(
     email_comment_notifications: false,
     email_follower_notifications: false,
+  )
+end
+
+##############################################################################
+
+seeder.create_if_doesnt_exist(User, "email", "suspended-user@forem.local") do
+  suspended_user = User.create!(
+    name: "Suspended User",
+    email: "suspended-user@forem.local",
+    username: "suspended_user",
+    profile_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    confirmed_at: Time.current,
+    registered_at: Time.current,
+    password: "password",
+    password_confirmation: "password",
+    saw_onboarding: true,
+    checked_code_of_conduct: true,
+    checked_terms_and_conditions: true,
+  )
+
+  suspended_user.add_role(:suspended)
+end
+
+##############################################################################
+
+seeder.create_if_doesnt_exist(Article, "title", "Suspended user article") do
+  markdown = <<~MARKDOWN
+    ---
+    title:  Suspended user article
+    published: true
+    cover_image: #{Faker::Company.logo}
+    ---
+    #{Faker::Hipster.paragraph(sentence_count: 2)}
+    #{Faker::Markdown.random}
+    #{Faker::Hipster.paragraph(sentence_count: 2)}
+  MARKDOWN
+  Article.create(
+    body_markdown: markdown,
+    featured: false,
+    show_comments: true,
+    slug: "suspended-user-article-slug",
+    user_id: User.find_by(email: "suspended-user@forem.local").id,
   )
 end
 
@@ -580,6 +781,7 @@ seeder.create_if_doesnt_exist(Article, "title", "Series test article") do
     body_markdown: markdown,
     featured: true,
     show_comments: true,
+    slug: "series-test-article-slug",
     user_id: User.find_by(email: "series-user@forem.local").id,
   )
 end
@@ -661,16 +863,20 @@ end
 ##############################################################################
 
 seeder.create_if_none(Badge) do
-  Badge.create!(
-    title: "#{Faker::Lorem.word} #{rand(100)}",
-    description: Faker::Lorem.sentence,
-    badge_image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
-  )
+  7.times do |t|
+    Badge.create!(
+      title: "#{Faker::Lorem.word} #{rand(100)} #{t}",
+      description: "#{Faker::Lorem.sentence} #{rand(100)}",
+      badge_image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
+    )
+  end
 
-  admin_user.badge_achievements.create!(
-    badge: Badge.first,
-    rewarding_context_message_markdown: Faker::Markdown.random,
-  )
+  Badge.all.each do |badge|
+    admin_user.badge_achievements.create!(
+      badge: badge,
+      rewarding_context_message_markdown: Faker::Markdown.random,
+    )
+  end
 end
 
 ##############################################################################
@@ -702,7 +908,7 @@ seeder.create_if_doesnt_exist(Podcast, "title", "Developer on Fire") do
     main_color_hex: "343d46",
     overcast_url: "https://overcast.fm/itunes1006105326/developer-on-fire",
     android_url: "http://subscribeonandroid.com/developeronfire.com/rss.xml",
-    image: File.open(Rails.root.join("app/assets/images/#{rand(1..40)}.png")),
+    image: Rails.root.join("app/assets/images/#{rand(1..40)}.png").open,
     published: true
   }
   podcast = Podcast.create!(podcast_attributes)
@@ -764,6 +970,7 @@ seeder.create_if_none(DisplayAd) do
     organization_id: org_id,
     body_markdown: "<h1>This is an add</h1>",
     placement_area: "sidebar_left",
+    name: "Tests Display Ad",
     published: true,
     approved: true,
   )

@@ -17,7 +17,7 @@ Rails.application.configure do
   # Enable server timing
   config.server_timing = true
 
-  config.cache_store = :redis_cache_store, { url: ENV["REDIS_URL"], expires_in: 1.hour.to_i }
+  config.cache_store = :redis_cache_store, { url: ENV.fetch("REDIS_URL", nil), expires_in: 1.hour.to_i }
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
@@ -75,7 +75,8 @@ Rails.application.configure do
   config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
-  config.action_view.annotate_rendered_view_with_filenames = true
+  # @note [@msarit] Changed to false as annotations broke embeds
+  config.action_view.annotate_rendered_view_with_filenames = false
 
   # Adds additional error checking when serving assets at runtime.
   # Checks for improperly declared sprockets dependencies.
@@ -83,20 +84,23 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   config.hosts << ENV["APP_DOMAIN"] unless ENV["APP_DOMAIN"].nil?
-  if (gitpod_workspace_url = ENV["GITPOD_WORKSPACE_URL"])
+  if (gitpod_workspace_url = ENV.fetch("GITPOD_WORKSPACE_URL", nil))
     config.hosts << /.*#{URI.parse(gitpod_workspace_url).host}/
   end
-  config.app_domain = ENV["APP_DOMAIN"] || "localhost:3000"
+  if (uffizzi_url = ENV.fetch("UFFIZZI_URL", nil))
+    config.hosts << /.*#{URI.parse(uffizzi_url).host}/
+  end
+  config.app_domain = ENV.fetch("APP_DOMAIN", "localhost:3000")
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = { host: config.app_domain }
   config.action_mailer.smtp_settings = {
-    address: ENV["SMTP_ADDRESS"],
-    port: ENV["SMTP_PORT"],
+    address: ENV.fetch("SMTP_ADDRESS", nil),
+    port: ENV.fetch("SMTP_PORT", nil),
     authentication: ENV["SMTP_AUTHENTICATION"].presence || :plain,
-    user_name: ENV["SMTP_USER_NAME"],
-    password: ENV["SMTP_PASSWORD"],
+    user_name: ENV.fetch("SMTP_USER_NAME", nil),
+    password: ENV.fetch("SMTP_PASSWORD", nil),
     domain: ENV["SMTP_DOMAIN"].presence || config.app_domain
   }
 
@@ -134,9 +138,17 @@ Rails.application.configure do
     # Suppress incorrect warnings from Bullet due to included columns: https://github.com/flyerhzm/bullet/issues/147
     Bullet.add_safelist(type: :unused_eager_loading, class_name: "Article", association: :top_comments)
     Bullet.add_safelist(type: :unused_eager_loading, class_name: "Article", association: :collection)
+    Bullet.add_safelist(type: :unused_eager_loading, class_name: "Article", association: :distinct_reaction_categories)
     Bullet.add_safelist(type: :unused_eager_loading, class_name: "Comment", association: :user)
+    # There were some warnings about eager loading the organization for a display ad, however since the code goes down
+    # different paths (in_house where we don’t need the organization info vs external/community where we need the
+    # organization info), bullet was getting confused on whether we need the eager loading or not.
+    Bullet.add_safelist(type: :unused_eager_loading, class_name: "DisplayAd", association: :organization)
+
     # TODO: Temporarily ignoring this while working out user - profile relationship
     Bullet.add_safelist(type: :n_plus_one_query, class_name: "User", association: :profile)
+
+    Bullet.add_safelist(type: :unused_eager_loading, class_name: "FeedbackMessage", association: :reporter)
 
     # Check if there are any data update scripts to run during startup
     if %w[Console Server DBConsole].any? { |const| Rails.const_defined?(const) } && DataUpdateScript.scripts_to_run?

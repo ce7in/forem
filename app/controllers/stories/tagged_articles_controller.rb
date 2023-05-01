@@ -15,7 +15,7 @@ module Stories
       end
 
       @page = (params[:page] || 1).to_i
-      @article_index = true
+
       @moderators = User.with_role(:tag_moderator, @tag).select(:username, :profile_image, :id)
 
       set_number_of_articles(tag: @tag)
@@ -36,7 +36,8 @@ module Stories
                                 elsif Settings::UserExperience.feed_strategy == "basic"
                                   tagged_count(tag: tag)
                                 else
-                                  Rails.cache.fetch("article-cached-tagged-count-#{tag.name}", expires_in: 2.hours) do
+                                  Rails.cache.fetch("#{tag.cache_key}/article-cached-tagged-count",
+                                                    expires_in: 2.hours) do
                                     tagged_count(tag: tag)
                                   end
                                 end

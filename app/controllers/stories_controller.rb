@@ -25,7 +25,6 @@ class StoriesController < ApplicationController
 
   def index
     @page = (params[:page] || 1).to_i
-    @article_index = true
 
     return handle_user_or_organization_or_podcast_or_page_index if params[:username]
 
@@ -39,10 +38,11 @@ class StoriesController < ApplicationController
       handle_article_show
     elsif (@article = Article.find_by(slug: params[:slug])&.decorate)
       handle_possible_redirect
-    else
-      @podcast = Podcast.available.find_by!(slug: params[:username])
+    elsif (@podcast = Podcast.available.find_by(slug: params[:username]))
       @episode = @podcast.podcast_episodes.available.find_by!(slug: params[:slug])
       handle_podcast_show
+    else
+      not_found
     end
   end
 
@@ -128,7 +128,7 @@ class StoriesController < ApplicationController
     assign_hero_html
     assign_podcasts
     get_latest_campaign_articles if Campaign.current.show_in_sidebar?
-    @article_index = true
+
     set_surrogate_key_header "main_app_home_page"
     set_cache_control_headers(600,
                               stale_while_revalidate: 30,
@@ -231,7 +231,7 @@ class StoriesController < ApplicationController
     if params[:timeframe].in?(Timeframe::FILTER_TIMEFRAMES)
       @stories = Articles::Feeds::Timeframe.call(params[:timeframe])
     elsif params[:timeframe] == Timeframe::LATEST_TIMEFRAME
-      @stories = Articles::Feeds::Latest.call
+      @stories = Articles::Feeds::Latest.call(minimum_score: Settings::UserExperience.home_feed_minimum_score)
     else
       @default_home_feed = true
       feed = Articles::Feeds::LargeForemExperimental.new(page: @page, tag: params[:tag])
@@ -269,13 +269,14 @@ class StoriesController < ApplicationController
     end
 
     @comments_to_show_count = @article.cached_tag_list_array.include?("discuss") ? 50 : 30
+    @comments_to_show_count = 15 unless user_signed_in?
     set_article_json_ld
     assign_co_authors
     @comment = Comment.new(body_markdown: @article&.comment_template)
   end
 
   def permission_denied?
-    !@article.published && params[:preview] != @article.password
+    (!@article.published || @article.scheduled?) && params[:preview] != @article.password
   end
 
   def assign_co_authors
@@ -286,12 +287,13 @@ class StoriesController < ApplicationController
 
   def assign_user_comments
     comment_count = helpers.comment_count(params[:view])
-    @comments = if @user.comments_count.positive?
-                  @user.comments.where(deleted: false)
-                    .order(created_at: :desc).includes(:commentable).limit(comment_count)
-                else
-                  []
-                end
+    @comments = []
+    return unless user_signed_in? && @user.comments_count.positive?
+
+    @comments = @user.comments.where(deleted: false)
+      .order(created_at: :desc)
+      .includes(commentable: [:podcast])
+      .limit(comment_count)
   end
 
   def assign_user_stories
@@ -299,6 +301,7 @@ class StoriesController < ApplicationController
       .limited_column_select
       .order(published_at: :desc).decorate
     @stories = ArticleDecorator.decorate_collection(@user.articles.published
+      .includes(:distinct_reaction_categories)
       .limited_column_select
       .where.not(id: @pinned_stories.map(&:id))
       .order(published_at: :desc).page(@page).per(user_signed_in? ? 2 : SIGNED_OUT_RECORD_COUNT))
@@ -319,9 +322,9 @@ class StoriesController < ApplicationController
   end
 
   def redirect_to_lowercase_username
-    return unless params[:username] && params[:username]&.match?(/[[:upper:]]/)
+    return unless params[:username]&.match?(/[[:upper:]]/)
 
-    redirect_permanently_to("/#{params[:username].downcase}")
+    redirect_permanently_to(action: :index, username: params[:username].downcase)
   end
 
   def set_user_json_ld

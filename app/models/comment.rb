@@ -65,7 +65,6 @@ class Comment < ApplicationRecord
 
   after_create_commit :record_field_test_event
   after_create_commit :send_email_notification, if: :should_send_email_notification?
-  after_create_commit :create_first_reaction
   after_create_commit :send_to_moderator
 
   after_commit :calculate_score, on: %i[create update]
@@ -103,6 +102,21 @@ class Comment < ApplicationRecord
 
   def self.title_hidden
     I18n.t("models.comment.hidden")
+  end
+
+  def self.build_comment(params, &blk)
+    includes(user: :profile).new(params, &blk)
+  end
+
+  def self.build_sort_query(order)
+    case order
+    when "latest"
+      "created_at DESC"
+    when "oldest"
+      "created_at ASC"
+    else
+      "score DESC"
+    end
   end
 
   def search_id
@@ -174,17 +188,6 @@ class Comment < ApplicationRecord
     ancestry && Comment.exists?(id: ancestry)
   end
 
-  def self.build_sort_query(order)
-    case order
-    when "latest"
-      "created_at DESC"
-    when "oldest"
-      "created_at ASC"
-    else
-      "score DESC"
-    end
-  end
-
   private_class_method :build_sort_query
 
   private
@@ -212,6 +215,25 @@ class Comment < ApplicationRecord
   end
 
   def evaluate_markdown
+    if FeatureFlag.enabled?(:consistent_rendering, FeatureFlag::Actor[user])
+      extracted_evaluate_markdown
+    else
+      original_evaluate_markdown
+    end
+  end
+
+  def extracted_evaluate_markdown
+    return unless user
+
+    renderer = ContentRenderer.new(body_markdown, source: self, user: user)
+    self.processed_html = renderer.process(link_attributes: { rel: "nofollow" }).processed_html
+    wrap_timestamps_if_video_present! if commentable
+    shorten_urls!
+  rescue ContentRenderer::ContentParsingError => e
+    errors.add(:base, ErrorMessages::Clean.call(e.message))
+  end
+
+  def original_evaluate_markdown
     fixed_body_markdown = MarkdownProcessor::Fixer::FixForComment.call(body_markdown)
     parsed_markdown = MarkdownProcessor::Parser.new(fixed_body_markdown, source: self, user: user)
     self.processed_html = parsed_markdown.finalize(link_attributes: { rel: "nofollow" })
@@ -269,10 +291,6 @@ class Comment < ApplicationRecord
     else
       touch
     end
-  end
-
-  def create_first_reaction
-    Comments::CreateFirstReactionWorker.perform_async(id, user_id)
   end
 
   def after_destroy_actions
@@ -342,7 +360,7 @@ class Comment < ApplicationRecord
   def published_article
     return unless commentable_type == "Article" && !commentable.published
 
-    errors.add(:commentable_id, I18n.t("models.comment.is_not_valid"))
+    errors.add(:commentable_id, I18n.t("models.comment.published_article"))
   end
 
   def user_mentions_in_markdown
@@ -361,7 +379,7 @@ class Comment < ApplicationRecord
     return if FieldTest.config["experiments"].nil?
 
     Users::RecordFieldTestEventWorker
-      .perform_async(user_id, "user_creates_comment")
+      .perform_async(user_id, AbExperiment::GoalConversionHandler::USER_CREATES_COMMENT_GOAL)
   end
 
   def notify_slack_channel_about_warned_users

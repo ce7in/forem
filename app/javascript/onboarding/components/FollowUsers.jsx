@@ -31,7 +31,7 @@ export class FollowUsers extends Component {
       });
 
     const csrfToken = getContentOfToken('csrf-token');
-    fetch('/onboarding_update', {
+    fetch('/onboarding', {
       method: 'PATCH',
       headers: {
         'X-CSRF-Token': csrfToken,
@@ -202,9 +202,7 @@ export class FollowUsers extends Component {
                     </div>
                     <label
                       className={`relative user-following-status crayons-btn ${
-                        selected
-                          ? 'color-base-inverted'
-                          : 'crayons-btn--outlined'
+                        selected ? 'color-primary' : 'crayons-btn--outlined'
                       }`}
                     >
                       <input

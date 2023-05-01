@@ -278,36 +278,97 @@
     }
   }
 }
-// Sidebar sponsors
-.sidebar-sponsor {
-  color: var(--card-color-tertiary);
-  img {
-    width: 100%;
-    max-width: 140px;
-    margin-bottom: var(--su-2);
+
+.org-sidebar-widget {
+  position: relative;
+  overflow: hidden;
+  display: block;
+
+  .org-sidebar-widget-body {
+    padding: 16px;
+    overflow-wrap: break-word;
+    &.body-scrollable {
+      height: calc(100vh - 300px);
+      max-height: 390px;
+      overflow-y: scroll;
+    }
+    .org-sidebar-widget-user-pic {
+      display: inline-block;
+      img {
+        height: 48px;
+        width: 48px;
+        margin: 3px;
+        border-radius: 100%;
+      }
+    }
+  }
+  a {
+    &:hover {
+      opacity: 0.9;
+    }
   }
 }
 
-// Todo: Not really sure what that is.. some sort of sponsorship widget...
-.sidebar-sponsorship-level {
-  text-align: center;
-  font-weight: bold;
-  width: calc(100% - 6px);
-  padding: 26px 0px;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  font-family: $helvetica-condensed;
-  font-stretch: condensed;
-  background: var(--card-secondary-bg);
-}
+.crayons-sponsorship {
+  padding: var(--su-3);
+  padding-bottom: var(--su-4);
 
-.crayons-sponsorship-widget {
-  img {
+  &__header {
     width: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &__title {
+    color: var(--label-secondary);
+    font-size: var(--fs-s);
+    line-height: var(--lh-base);
+    margin-left: var(--su-1);
+  }
+
+  &__dropdown {
+    margin-left: auto;
+  }
+
+  img {
     height: auto;
     border-radius: var(--radius);
     display: inline-block;
     vertical-align: middle;
-    margin: 10px auto;
+  }
+
+  &__indicator {
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+  }
+}
+
+.crayons-article-sticky,
+.sidebar-wrapper {
+  .crayons-card {
+    .text-styles {
+      font-size: var(--fs-base);
+    }
+  }
+}
+
+.crayons-layout__comments-display-ad {
+  .crayons-sponsorship {
+    .c-indicator.crayons-sponsorship__indicator {
+      line-height: 15px;
+    }
+
+    padding-left: var(--content-padding-x);
+    padding-bottom: var(--su-6);
+    .text-styles {
+      padding-right: var(--su-8);
+    }
+  }
+}
+
+.sponsorship-dropdown {
+  hr {
+    border: 0.5px solid var(--divider);
+    margin: 8px;
   }
 }

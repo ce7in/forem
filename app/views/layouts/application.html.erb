@@ -20,9 +20,9 @@
       <%= render "layouts/styles", qualifier: "main" %>
       <%= javascript_include_tag "base", defer: true %>
       <% if user_signed_in? %>
-        <%= javascript_packs_with_chunks_tag "base", "Search", "runtimeBanner", "onboardingRedirectCheck", "contentDisplayPolicy", defer: true %>
+        <%= javascript_packs_with_chunks_tag "base", "baseInitializers", "Search", "runtimeBanner", "onboardingRedirectCheck", "contentDisplayPolicy", "baseTracking", defer: true %>
       <% else %>
-        <%= javascript_packs_with_chunks_tag "base", "Search", "runtimeBanner", defer: true %>
+        <%= javascript_packs_with_chunks_tag "base", "baseInitializers", "Search", "runtimeBanner", "baseTracking", defer: true %>
       <% end %>
       <%= yield(:page_meta) %>
       <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -54,7 +54,9 @@
         data-honeybadger-key="<%= j(ApplicationConfig["HONEYBADGER_JS_API_KEY"]) %>"
         data-deployed-at="<%= j(ForemInstance.deployed_at) %>"
         data-latest-commit-id="<%= j(ForemInstance.latest_commit_id) %>"
-        data-ga-tracking="<%= j(Settings::General.ga_tracking_id) %>">
+        data-ga-tracking="<%= j(Settings::General.ga_tracking_id) %>"
+        data-ga4-tracking-id="<%= j(Settings::General.ga_analytics_4_id) %>"
+        >
         <%# Repeat of stylesheets in <head> to fix rendering glitch: https://github.com/forem/forem/issues/12377 %>
         <%= render "layouts/styles", qualifier: "secondary" %>
         <div id="body-styles">
@@ -74,7 +76,6 @@
         </div>
         <%= render "layouts/top_bar" %>
         <div id="active-broadcast" class="broadcast-wrapper"></div>
-        <div id="message-notice"></div>
     <% end %>
   <% end %>
 <% if Settings::General.payment_pointer.present? %>

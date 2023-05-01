@@ -1,4 +1,3 @@
-/* global Runtime */
 import 'focus-visible';
 import {
   initializeMobileMenu,
@@ -6,12 +5,24 @@ import {
   initializeMemberMenu,
 } from '../topNavigation/utilities';
 import { waitOnBaseData } from '../utilities/waitOnBaseData';
+import { initializePodcastPlayback } from '../utilities/podcastPlayback';
+import { initializeVideoPlayback } from '../utilities/videoPlayback';
+import { initializeDashboardSort } from './initializers/initializeDashboardSort';
+import { trackCreateAccountClicks } from '@utilities/ahoy/trackEvents';
+import { showWindowModal, closeWindowModal } from '@utilities/showModal';
+import * as Runtime from '@utilities/runtime';
 
-// Unique ID applied to modals created using window.Forem.showModal
-const WINDOW_MODAL_ID = 'window-modal';
+Document.prototype.ready = new Promise((resolve) => {
+  if (document.readyState !== 'loading') {
+    return resolve();
+  }
+  document.addEventListener('DOMContentLoaded', () => resolve());
+  return null;
+});
 
 // Namespace for functions which need to be accessed in plain JS initializers
 window.Forem = {
+  audioInitialized: false,
   preactImport: undefined,
   getPreactImport() {
     if (!this.preactImport) {
@@ -19,89 +30,53 @@ window.Forem = {
     }
     return this.preactImport;
   },
-  mentionAutoCompleteImports: undefined,
-  getMentionAutoCompleteImports() {
-    if (!this.mentionAutoCompleteImports) {
-      this.mentionAutoCompleteImports = [
-        import('@crayons/MentionAutocompleteTextArea'),
-        import('@utilities/search'),
-        this.getPreactImport(),
-      ];
+  enhancedCommentTextAreaImport: undefined,
+  getEnhancedCommentTextAreaImports() {
+    if (!this.enhancedCommentTextAreaImport) {
+      this.enhancedCommentTextAreaImport = import(
+        './CommentTextArea/CommentTextArea'
+      );
     }
-
-    // We're still returning Promises, but if the they have already been imported
-    // they will now be fulfilled instead of pending, i.e. a network request is no longer made.
-    return Promise.all(this.mentionAutoCompleteImports);
+    return Promise.all([
+      this.enhancedCommentTextAreaImport,
+      this.getPreactImport(),
+    ]);
   },
-  initializeMentionAutocompleteTextArea: async (originalTextArea) => {
+  initializeEnhancedCommentTextArea: async (originalTextArea) => {
     const parentContainer = originalTextArea.parentElement;
 
-    const alreadyInitialized = parentContainer.id === 'combobox-container';
+    const alreadyInitialized =
+      parentContainer.classList.contains('c-autocomplete');
+
     if (alreadyInitialized) {
       return;
     }
 
-    const [{ MentionAutocompleteTextArea }, { fetchSearch }, { render, h }] =
-      await window.Forem.getMentionAutoCompleteImports();
+    const [{ CommentTextArea }, { render, h }] =
+      await window.Forem.getEnhancedCommentTextAreaImports();
 
     render(
-      <MentionAutocompleteTextArea
-        replaceElement={originalTextArea}
-        fetchSuggestions={(username) => fetchSearch('usernames', { username })}
-      />,
+      <CommentTextArea vanillaTextArea={originalTextArea} />,
       parentContainer,
       originalTextArea,
     );
   },
-  modalImports: undefined,
-  getModalImports() {
-    if (!this.modalImports) {
-      this.modalImports = [import('@crayons/Modal'), this.getPreactImport()];
-    }
-    return Promise.all(this.modalImports);
-  },
-  showModal: async ({ title, contentSelector, size = 'small', onOpen }) => {
-    const [{ Modal }, { render, h }] = await window.Forem.getModalImports();
-
-    // Guard against two modals being opened at once
-    let currentModalContainer = document.getElementById(WINDOW_MODAL_ID);
-    if (currentModalContainer) {
-      render(null, currentModalContainer);
-    } else {
-      currentModalContainer = document.createElement('div');
-      currentModalContainer.setAttribute('id', WINDOW_MODAL_ID);
-      document.body.appendChild(currentModalContainer);
-    }
-
-    render(
-      <Modal
-        title={title}
-        onClose={() => {
-          render(null, currentModalContainer);
-        }}
-        size={size}
-        focusTrapSelector={`#${WINDOW_MODAL_ID}`}
-      >
-        <div
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: document.querySelector(contentSelector).innerHTML,
-          }}
-        />
-      </Modal>,
-      currentModalContainer,
-    );
-
-    onOpen?.();
-  },
-  closeModal: async () => {
-    const currentModalContainer = document.getElementById(WINDOW_MODAL_ID);
-    if (currentModalContainer) {
-      const { render } = await window.Forem.getPreactImport();
-      render(null, currentModalContainer);
-    }
-  },
+  showModal: showWindowModal,
+  closeModal: () => closeWindowModal(),
+  Runtime,
 };
+
+initializeDashboardSort();
+initializePodcastPlayback();
+initializeVideoPlayback();
+InstantClick.on('change', () => {
+  initializeDashboardSort();
+  initializePodcastPlayback();
+  initializeVideoPlayback();
+});
+
+// Initialize data-runtime context to the body data-attribute
+document.body.dataset.runtime = window.Forem.Runtime.currentContext();
 
 function getPageEntries() {
   return Object.entries({
@@ -111,17 +86,17 @@ function getPageEntries() {
   });
 }
 
+/**
+ * Initializes the left hand side hamburger menu
+ */
 function initializeNav() {
   const { currentPage } = document.getElementById('page-content').dataset;
   const menuTriggers = [
-    ...document.querySelectorAll(
-      '.js-hamburger-trigger, .hamburger a:not(.js-nav-more-trigger)',
-    ),
+    ...document.querySelectorAll('.js-hamburger-trigger, .hamburger a'),
   ];
-  const moreMenus = [...document.getElementsByClassName('js-nav-more-trigger')];
 
   setCurrentPageIconLink(currentPage, getPageEntries());
-  initializeMobileMenu(menuTriggers, moreMenus);
+  initializeMobileMenu(menuTriggers);
 }
 
 const memberMenu = document.getElementById('crayons-header__menu');
@@ -129,6 +104,25 @@ const menuNavButton = document.getElementById('member-menu-button');
 
 if (memberMenu) {
   initializeMemberMenu(memberMenu, menuNavButton);
+}
+
+/**
+ * Fetches the html for the navigation_links from an endpoint and dynamically insterts it in the DOM.
+ */
+async function getNavigation() {
+  const placeholderElement = document.getElementsByClassName(
+    'js-navigation-links-container',
+  )[0];
+
+  if (placeholderElement.innerHTML.trim() === '') {
+    const response = await window.fetch(`/async_info/navigation_links`);
+    const htmlContent = await response.text();
+
+    const generatedElement = document.createElement('div');
+    generatedElement.innerHTML = htmlContent;
+
+    placeholderElement.appendChild(generatedElement);
+  }
 }
 
 // Initialize when asset pipeline (sprockets) initializers have executed
@@ -152,6 +146,7 @@ waitOnBaseData()
     Honeybadger.notify(error);
   });
 
+// we need to call initializeNav here for the initial page load
 initializeNav();
 
 async function loadCreatorSettings() {
@@ -173,3 +168,14 @@ async function loadCreatorSettings() {
 if (document.location.pathname === '/admin/creator_settings/new') {
   loadCreatorSettings();
 }
+
+document.ready.then(() => {
+  const hamburgerTrigger = document.getElementsByClassName(
+    'js-hamburger-trigger',
+  )[0];
+  hamburgerTrigger.addEventListener('click', getNavigation);
+});
+
+trackCreateAccountClicks('authentication-hamburger-actions');
+trackCreateAccountClicks('authentication-top-nav-actions');
+trackCreateAccountClicks('comments-locked-cta');

@@ -12,24 +12,24 @@ module Authentication
   # 2. update an existing user and align it to its authentication identity
   # 3. return the current user if a user is given (already logged in scenario)
   class Authenticator
+    # @api public
+    #
+    # @see #initialize method for parameters
+    #
+    # @return [User] when the given provider is valid
+    #
+    # @raise [Authentication::Errors::PreviouslySuspended] when the user was already suspended
+    # @raise [Authentication::Errors::SpammyEmailDomain] when the associated email is spammy
+    def self.call(...)
+      new(...).call
+    end
+
     # auth_payload is the payload schema, see https://github.com/omniauth/omniauth/wiki/Auth-Hash-Schema
     def initialize(auth_payload, current_user: nil, cta_variant: nil)
       @provider = load_authentication_provider(auth_payload)
 
       @current_user = current_user
       @cta_variant = cta_variant
-    end
-
-    # @api public
-    #
-    # @see #initialize method for parameters
-    #
-    # @return user [User] when the given provider is valid
-    #
-    # @raises [Authentication::Errors::PreviouslySuspended] when the user was already suspended
-    # @raises [Authentication::Errors::SpammyEmailDomain] when the associated email is spammy
-    def self.call(...)
-      new(...).call
     end
 
     # @api private
@@ -58,8 +58,6 @@ module Authentication
 
         log_to_datadog = new_identity && successful_save
         id_provider = identity.provider
-
-        user.skip_confirmation!
 
         flag_spam_user(user) if account_less_than_a_week_old?(user, identity)
 
@@ -130,6 +128,7 @@ module Authentication
         user.assign_attributes(default_user_fields)
 
         user.set_remember_fields
+        user.skip_confirmation!
 
         # The user must be saved in the database before
         # we assign the user to a new identity.

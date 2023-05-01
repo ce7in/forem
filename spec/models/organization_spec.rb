@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Organization, type: :model do
+RSpec.describe Organization do
   let(:organization) { create(:organization) }
 
   describe "validations" do
@@ -15,7 +15,6 @@ RSpec.describe Organization, type: :model do
       it { is_expected.to have_many(:notifications).dependent(:delete_all) }
       it { is_expected.to have_many(:organization_memberships).dependent(:delete_all) }
       it { is_expected.to have_many(:profile_pins).dependent(:destroy) }
-      it { is_expected.to have_many(:sponsorships).dependent(:destroy) }
       it { is_expected.to have_many(:unspent_credits).class_name("Credit") }
       it { is_expected.to have_many(:users).through(:organization_memberships) }
 
@@ -28,7 +27,7 @@ RSpec.describe Organization, type: :model do
       it { is_expected.to validate_length_of(:name).is_at_most(50) }
       it { is_expected.to validate_length_of(:proof).is_at_most(1500) }
       it { is_expected.to validate_length_of(:secret).is_equal_to(100) }
-      it { is_expected.to validate_length_of(:slug).is_at_least(2).is_at_most(18) }
+      it { is_expected.to validate_length_of(:slug).is_at_least(2).is_at_most(30) }
       it { is_expected.to validate_length_of(:story).is_at_most(640) }
       it { is_expected.to validate_length_of(:tag_line).is_at_most(60) }
       it { is_expected.to validate_length_of(:tech_stack).is_at_most(640) }
@@ -256,7 +255,7 @@ RSpec.describe Organization, type: :model do
 
         # Create an organization and article, verify the article has cached the initial profile
         # image of the organization.
-        original_org = create(:organization, profile_image: File.open(Rails.root.join("app/assets/images/1.png")))
+        original_org = create(:organization, profile_image: Rails.root.join("app/assets/images/1.png").open)
         article = create(:article, organization: original_org)
         expect(article.cached_organization.profile_image_url).to eq(original_org.profile_image_url)
 
@@ -273,6 +272,8 @@ RSpec.describe Organization, type: :model do
           organization.profile_image = File.open(Rails.root.join("app/assets/images/2.png"))
           organization.save!
         end.to change { organization.reload.profile_image_url }
+
+        sidekiq_perform_enqueued_jobs
 
         # I want to collect reloaded versions of the organization's articles so I can see their
         # cached organization profile image
@@ -304,6 +305,8 @@ RSpec.describe Organization, type: :model do
           old_reading_list_document = article.reading_list_document
 
           organization.update(name: "ACME Org")
+
+          sidekiq_perform_enqueued_jobs
 
           expect(article.reload.reading_list_document).not_to eq(old_reading_list_document)
         end

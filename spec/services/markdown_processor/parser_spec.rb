@@ -38,13 +38,6 @@ RSpec.describe MarkdownProcessor::Parser, type: :service do
     expect(number_of_triple_backticks).to eq(2)
   end
 
-  # TODO: @zhao-andy this should fail if this issue is solved: https://github.com/forem/forem/issues/13823
-  it "escapes triple backticks within a codeblock when using tildes" do
-    code_block = "~~~\nhello\n```\nwhatever\n```\n~~~"
-    number_of_triple_backticks = generate_and_parse_markdown(code_block).scan("```").count
-    expect(number_of_triple_backticks).to eq(0)
-  end
-
   it "does not remove the non-'raw tag related' four dashes" do
     code_block = "```\n----\n```"
     expect(generate_and_parse_markdown(code_block)).to include("----")
@@ -272,6 +265,30 @@ RSpec.describe MarkdownProcessor::Parser, type: :service do
   end
 
   context "when provided with an @username" do
+    context "when html has injected styles" do
+      before do
+        create(:user, username: "User1")
+      end
+
+      let(:suspicious) do
+        <<~HTML.strip
+          <style>x{animation:s}@User1 s{}
+          <style>{transition:color 1s}:hover{color:red}
+        HTML
+      end
+
+      it "strips the styles as expected" do
+        linked_user = %(<a class="mentioned-user" href="http://localhost:3000/user1">@user1</a>)
+        expected_result = <<~HTML.strip
+          <p>x{animation:s}#{linked_user} s{}&lt;br&gt;
+          &lt;style&gt;{transition:color 1s}:hover{color:red}&lt;/p&gt;
+          </p>
+        HTML
+        parsed = generate_and_parse_markdown(suspicious)
+        expect(parsed.strip).to eq(expected_result)
+      end
+    end
+
     it "links to a user if user exist" do
       username = create(:user).username
       with_user = "@#{username}"
@@ -463,7 +480,7 @@ RSpec.describe MarkdownProcessor::Parser, type: :service do
         "{% liquid example %}",
         source: :my_source,
         user: :my_user,
-        policy: :my_policy,
+        liquid_tag_options: { policy: :my_policy },
       ).finalize
       expect(Liquid::Template).to have_received(:parse)
         .with(

@@ -50,6 +50,8 @@ class SearchController < ApplicationController
     },
   ].freeze
 
+  VALID_SORT_DIRECTIONS = %i[asc desc].freeze
+
   def tags
     result = Search::Tag.search_documents(term: params[:name])
     render json: { result: result }
@@ -67,7 +69,8 @@ class SearchController < ApplicationController
   end
 
   def usernames
-    result = Search::Username.search_documents(params[:username])
+    context = commentable_context(params[:context_type])&.find(params[:context_id])
+    result = Search::Username.search_documents(params[:username], context: context)
 
     render json: { result: result }
   end
@@ -160,6 +163,10 @@ class SearchController < ApplicationController
 
   private
 
+  def commentable_context(context_type)
+    context_type.constantize if Comment::COMMENTABLE_TYPES.include?(context_type)
+  end
+
   def search_postgres_article
     Search::Article.search_documents(
       term: feed_params[:search_fields],
@@ -196,6 +203,14 @@ class SearchController < ApplicationController
   # nil differently. This is a helper method to remove any params that are
   # blank before passing it to Elasticsearch.
   def sanitize_params
-    params.delete_if { |_k, v| v.blank? }
+    params.compact_blank!
+    remove_invalid_sort_directions
+  end
+
+  def remove_invalid_sort_directions
+    return unless params.key?(:sort_direction)
+
+    direction = params[:sort_direction].downcase.to_sym
+    params.delete(:sort_direction) unless direction.in?(VALID_SORT_DIRECTIONS)
   end
 end

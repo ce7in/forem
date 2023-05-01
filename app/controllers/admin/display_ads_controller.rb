@@ -10,9 +10,7 @@ module Admin
 
       return if params[:search].blank?
 
-      @display_ads = @display_ads
-        .where("processed_html ILIKE :search OR placement_area ILIKE :search OR organizations.name ILIKE :search",
-               search: "%#{params[:search]}%")
+      @display_ads = @display_ads.search_ads(params[:search])
     end
 
     def new
@@ -25,9 +23,10 @@ module Admin
 
     def create
       @display_ad = DisplayAd.new(display_ad_params)
+      @display_ad.creator = current_user
 
       if @display_ad.save
-        flash[:success] = "Display Ad has been created!"
+        flash[:success] = I18n.t("admin.display_ads_controller.created")
         redirect_to edit_admin_display_ad_path(@display_ad.id)
       else
         flash[:danger] = @display_ad.errors_as_sentence
@@ -39,7 +38,7 @@ module Admin
       @display_ad = DisplayAd.find(params[:id])
 
       if @display_ad.update(display_ad_params)
-        flash[:success] = "Display Ad has been updated!"
+        flash[:success] = I18n.t("admin.display_ads_controller.updated")
         redirect_to edit_admin_display_ad_path(params[:id])
       else
         flash[:danger] = @display_ad.errors_as_sentence
@@ -51,16 +50,17 @@ module Admin
       @display_ad = DisplayAd.find(params[:id])
 
       if @display_ad.destroy
-        render json: { message: "Display Ad has been deleted!" }, status: :ok
+        render json: { message: I18n.t("admin.display_ads_controller.deleted") }, status: :ok
       else
-        render json: { error: "Something went wrong with deleting the Display Ad." }, status: :unprocessable_entity
+        render json: { error: I18n.t("admin.display_ads_controller.wrong") }, status: :unprocessable_entity
       end
     end
 
     private
 
     def display_ad_params
-      params.permit(:organization_id, :body_markdown, :placement_area, :published, :approved)
+      params.permit(:organization_id, :body_markdown, :placement_area, :published, :approved, :name, :display_to,
+                    :tag_list, :type_of, :exclude_article_ids, :audience_segment_id)
     end
 
     def authorize_admin
