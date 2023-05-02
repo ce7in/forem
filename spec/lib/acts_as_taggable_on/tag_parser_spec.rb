@@ -28,8 +28,8 @@ RSpec.describe ActsAsTaggableOn::TagParser, type: :lib do
     end
 
     it "allows non-english characters" do
-      tags = %w[Optimización Καλημέρα Français]
-      expect(create_tag_parser(tags)).to eq(%w[optimización καλημέρα français])
+      tags = %w[Optimización Καλημέρα Français Türkçe]
+      expect(create_tag_parser(tags)).to eq(%w[optimización καλημέρα français türkçe])
     end
 
     it "returns nothing if nothing is received" do

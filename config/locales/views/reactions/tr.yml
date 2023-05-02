@@ -1,0 +1,37 @@
+---
+tr:
+  views:
+    reactions:
+      category:
+        hands: Eller
+        like: Beğen
+        readinglist: Okuma listesi
+        thinking: Düşünüyorum
+        thumbsup: Beğen
+        thumbsdown: Beğenme
+        unicorn: Unicorn
+        vomit: Bayrak
+        lightbulb: Işık fikri
+        raised_hands: Kaldırılmış eller
+        rocket: Roket
+        exploding_head: Patlayan kafa
+        fire: Ateş
+      drawer_button: Tepki ekle
+      summary:
+        count_html:
+          one: "%{count}%{start}\_tepki%{end}"
+          other: "%{count}%{start}\_tepki%{end}"
+        title: Tepkiler
+      like:
+        title: Beğen
+        aria_label: Beğen
+        icon: Favori kalp düğmesi
+        text: Beğen
+      unicorn:
+        title: Unicorn
+        aria_label: Unicorn ile tepki ver
+      readingList:
+        title: Kaydet
+        aria_label: Okuma listesine ekle
+        icon: Kaydet düğmesi
+        text: Kaydet

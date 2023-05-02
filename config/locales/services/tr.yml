@@ -1,0 +1,115 @@
+---
+tr:
+  services:
+    analytics_service:
+      no_stats: Bu makalenin istatistiklerini göremezsiniz
+    article_with_video_creation_service:
+      unpublished_video: Yayınlanmamış Video ~ %{rand}
+    authentication:
+      authenticator:
+        not_allowed: Üzgünüm, ancak e-posta adresinizin etki alanına izin verilmiyor. Bu Forem, sınırlı kaydı yalnızca belirli e-posta etki alanlarına veya bu özel etki alanına katılmaktan bu etki alanını engellemiş olabilir.
+      providers:
+        apple:
+          name: "%{first} %{last}"
+        not_available: %{name} sağlayıcısı mevcut değil!
+        not_enabled: %{name} sağlayıcısı etkin değil!
+    badges:
+      award_beloved_comment:
+        message: "Ünlüsünüz! İşte tanındığınız [yorumunuz](%{comment}). 😄"
+      award_streak:
+        longest: 16 hafta! Mümkün olan en uzun yazma serisini başardınız. Bu, gelecekte özel görevler için uygun hale getirir. Topluluğumuza harika katkılarınızı sürdürün!
+        message:
+          one: "Bu seriyi başardığınız için tebrikler! Tutumlu yazmak zordur. Alabileceğiniz bir sonraki seri rozeti %{count} Hafta Rozetidir. 😉"
+          other: "Bu seriyi başardığınız için tebrikler! Tutumlu yazmak zordur. Alabileceğiniz bir sonraki seri rozeti %{count} Hafta Rozetidir. 😉"
+      award_yearly_club:
+        message:
+          one: %{community} doğum gününüz kutlu olsun! Zaman ne çabuk geçiyor, %{count} yıl oldu bile!
+          other: %{community} doğum gününüz kutlu olsun! Zaman ne çabuk geçiyor, %{count} yıl oldu bile!
+      congrats: Tebrikler!!!
+      thank_you: Katkılarınız için çok teşekkürler!
+      community_wellness:
+        first: Yapıcı bir sohbete katıldığınız için teşekkürler! Bu hafta iki veya daha fazla yorum gönderdiniz. Seriyi sürdürmek için devam edin!
+        longest: 32 hafta! Topluluk Sağlığı rozeti için mümkün olan en uzun seriyi başardınız. Topluluğa harika katılım gösterdiniz ve topluluğumuza harika katkılarınızı sürdürün!
+        other: Topluluk Sağlığı Rozeti için %{weeks} haftalık seri başarısında tebrikler! Seriyi sürdürmek için yapıcı yorumları devam ettirin!
+    broadcasts:
+      welcome_notification:
+        generator:
+          welcome: 'Hoş Geldin Bildirimi: %{key}'
+    error_messages:
+      clean:
+        parse_error: Ön maddede YAML ayrıştırma sorunu yaşandı. Belki bir tırnak veya iki nokta üst üstü gibi bir şeyi kaçırmak gerekiyor. Sorun yaşarsanız %{email} adresine e-posta gönderin.
+    html:
+      parser:
+        enter_fullscreen_mode: Tam ekran moduna geç
+        exit_fullscreen_mode: Tam ekran modundan çık
+    markdown_processor:
+      parser:
+        invalid_markdown_detected: Geçersiz markdown tespit edildi!
+    moderator:
+      banish_user:
+        spam_account: spam hesabı
+      manage_activity_and_roles:
+        need_super: Bu işlemi yapmak için süper yönetici durumuna ihtiyacınız var
+      merge_user:
+        duplicate: Kullanıcının iki hesapta da yinelenen kimlik doğrulama yöntemleri var. Lütfen kontrol edin ve kullanıcının artık kullanmadığı kimliği silin. Bu genellikle zaten silinmiş olan sosyal hesap veya silinecek kullanıcıya bağlı kimlik doğrulama yöntemidir.
+        multiple: Silinecek kullanıcının zaten iki veya daha fazla kimlik doğrulama yöntemi var. Emin misiniz bu kullanıcının silinmesi gerektiğine? Eğer öyleyse, bir süper yönetici bunu konsoldan güvende yapmak için gereklidir.
+        same_user: Aynı iki kullanıcı kimliğini birleştiremezsiniz
+    notifications:
+      new_comment:
+        new: "💬 Yeni Yorum"
+      new_mention:
+        new: "🗣️ Yeni Bahsetme"
+    payments:
+      customer:
+        usd: usd
+      errors:
+        select_payment_method: "Lütfen bir ödeme yöntemi seçin"
+      process_credit_purchase:
+        charge:
+          one: %{count} kredi satın alımı.
+          other: %{count} kredi satın alımı.
+    rate_limit_checker:
+      invalid_key: 'Geçersiz Önbellek Anahtarı: benzersiz bir bileşen yok'
+      limit_reached:
+        one: Hız sınırına ulaşıldı, %{count} saniye sonra tekrar deneyin
+        other: Hız sınırına ulaşıldı, %{count} saniye sonra tekrar deneyin
+    slack:
+      messengers:
+        article_fetched_feed:
+          body: |
+            RSS ile Alınan Yeni Makale: %{title}
+            %{url}
+        article_published:
+          body: |
+            Yeni Makale Yayınlandı: %{title}
+            %{url}
+        feedback:
+          anonymous_report: "*Anonim rapor:"
+          final_message: |-
+            %{user_detail}
+            Kategori: %{category}
+            Dahili Rapor: %{reports_url}
+            *_ Bildirilen URL: %{reported_url} _*
+            -----
+            *Mesaj:* %{message}
+          body: |
+            *Oturum açmış kullanıcı:*
+            raporlayan: %{username} - %{url}
+            eposta: <mailto:%{email}|%{email}>
+        potential_spammer:
+          body: 'Potansiyel spam kullanıcı! %{url}
+
+            '
+    spam:
+      article_handler:
+        suspended_too_many: Kullanıcı, otomatik kusmuk tarafından tetiklenen çok fazla spam içeren makaleler nedeniyle askıya alındı.
+    user_subscriptions:
+      create_from_controller_params:
+        source_not_found: Kaynak bulunamadı.
+        email_mismatch: Abone e-posta uyuşmazlığı.
+    users:
+      remove_role:
+        remove_self: Yöneticiler, kendilerinden rolleri kaldıramaz.
+        remove_super: Süper Yönetici rolleri kaldırılamaz.
+        error: Bu rolü kaldırırken bir sorun yaşandı. %{e_message}
+

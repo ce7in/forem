@@ -1,0 +1,33 @@
+---
+tr:
+  devise:
+    failure:
+      invited: Bekleyen bir davetiyeniz var, hesabınızı oluşturmayı tamamlamak için kabul edin.
+    invitations:
+      edit:
+        header: Parolanızı ayarlayın
+        submit_button: Hadi Başlayalım
+      invitation_removed: Davetiyeniz kaldırıldı.
+      invitation_token_invalid: Sağlanan davetiye belirteci geçerli değil!
+      new:
+        header: Davetiye gönder
+        submit_button: Bir davetiye gönder
+      no_invitations_remaining: Kalmış davetiye yok
+      send_instructions: %{email} adresine bir davetiye e-postası gönderildi.
+      updated: Parolanız başarıyla ayarlandı. Şimdi oturum açtınız.
+      updated_not_active: Parolanız başarıyla ayarlandı.
+    mailer:
+      invitation_instructions:
+        accept_instructions: Bu bağlantıya tıklayarak daveti kabul edebilirsiniz
+        accept: Daveti Kabul Et
+        accept_until: Bu davetiye, %{due_date} tarihinden sonra sona erecektir.
+        hello: Merhaba
+        ignore: Eğer daveti kabul etmek istemiyorsanız, lütfen bu e-postayı yoksayın. Yukarıdaki bağlantıya erişip parolanızı ayarlayana kadar hesabınız oluşturulmayacaktır.
+        someone_invited_you: %{url} adresindeki %{community_name} topluluğuna katılmaya davet edildiniz.
+        subject: Davetiye talimatları
+  time:
+    formats:
+      devise:
+        mailer:
+          invitation_instructions:
+            accept_until_format: "%B %d, %Y %I:%M %p"

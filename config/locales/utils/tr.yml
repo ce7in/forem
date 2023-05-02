@@ -1,0 +1,14 @@
+---
+tr:
+  xml:
+    opensearch:
+      short_name: "%{community} Arama"
+      description: "%{community} içinden yazıları bulun."
+    user:
+      image: "%{user} profil resmi"
+  json:
+    author: Aktif %{community} yazarı
+  mailer:
+    adjust: E-posta ayarlarınızı ayarlayın
+    adjust_only_html: Böyle e-postalar almak istemiyorsanız e-posta ayarlarınızı %{path} adresinden ayarlayabilirsiniz.
+    unsubscribe: Abonelikten ayrılın

@@ -1,0 +1,142 @@
+---
+tr:
+  models:
+    api_secret:
+      api_limit_reached: Kullanıcı başına 10 API sırı limitine ulaşıldı
+    application_record:
+      uninferrable: %{class} için bir süsleyici çıkarılamadı.
+    article:
+      a_post_by: %{user_name} tarafından bir gönderi
+      video_unpermitted: izinsiz üye tarafından eklenemez
+      video_processing: video hâlâ işleniyor durumdayken true olarak ayarlanamaz
+      cannot_search_tags_for: '%{tag} için etiket araması yapılamaz'
+      cannot_search_tags_for_tags: '%{tags} için etiket araması yapılamaz'
+      unique_coauthor: ortak yazar kimlikleri benzersiz olmalı
+      too_many_tags: maksimum 4 etiket sınırını aşıyor
+      is_too_long: çok uzun.
+      invalid_date: geçerli veya geçmiş tarihle DD/MM/YYYY formatında girilmelidir
+      series_unpermitted: yayınlamak için izniniz olan bir seri olmalıdır
+      invalid_coauthor: geçerli kullanıcı kimlikleri olmalıdır
+      same_author: yazarla aynı kullanıcı olmamalıdır
+      must_not_have_spaces: boşluk içermemelidir
+      published: Yayınlandı
+      unique_url: zaten alınmış. Daha fazla bilgi için %{email} adresine e-posta gönderin.
+      future_or_current_published_at: sadece gelecek veya şimdiki yayınlanma tarihi izinlidir
+      immutable_published_at: zaten yayınlanmış makaleler için published_at güncellemesi yapılamaz
+      mention_too_many:
+        one: Bir gönderide %{count} kullanıcıdan fazlasını anımsayamazsınız!
+        other: Bir gönderide %{count} kullanıcıdan fazlasını anımsayamazsınız!
+    audience_segment:
+      type_ofs:
+        manual: Başka yerde yönetilir
+        trusted: Güvenilirdir
+        posted: En az bir gönderiye sahip
+        no_posts_yet: Henüz gönderi yok
+        dark_theme: Koyu tema etkinleştirildi
+        light_theme: Açık tema etkinleştirildi
+        no_experience: Deneyim seviyesi ayarlanmadı
+        experience1: Deneyim seviyesi bir
+        experience2: Deneyim seviyesi iki
+        experience3: Deneyim seviyesi üç
+        experience4: Deneyim seviyesi dört
+        experience5: Deneyim seviyesi beş
+    broadcast:
+      single_active: Yalnızca bir aktif duyuru yayını olabilir
+    comment:
+      deleted: '[silindi]'
+      has_been_deleted: '%{type} silindi.'
+      hidden: '[gönderi yazarı tarafından gizlendi]'
+      is_not_valid: geçerli değil.
+      locked: Bu Gönderide tartışma kilitli
+      published_article: yayınlanmış bir makale değil
+      type:
+        Article: Makale
+        item: öğe
+        PodcastEpisode: Podcast bölümü
+      suspended_too_many: Çok fazla istenmeyen etkileşim nedeniyle kullanıcı askıya alındı, otomatik kusma tetiklendi.
+      mention_too_many:
+        one: Bir yorumda %{count} kullanıcıdan fazlasını anımsayamazsınız!
+        other: Bir yorumda %{count} kullanıcıdan fazlasını anımsayamazsınız!
+    feedback_message:
+      reported: '(siz) daha önce bu URL'yi bildirdiniz.'
+    github_issue:
+      issue_comment_not_found: Sorun yorumu %{issue_id} bulunamadı
+      issue_not_found: Sorun %{issue_id} bulunamadı
+    html_variant:
+      no_edits: yayınlandıktan ve onaylandıktan sonra değiştirilemez
+    identity:
+      no_email_msg: E-posta bulunamadı. Hatalardan kaçınmak için %{provider} hesabınızı yeniden bağlayın.
+    listing:
+      too_many_tags: maksimum 8 etiket sınırını aşıyor
+      too_many_linebreaks: çok fazla satır sonu var. En fazla 12'ye izin verilir.
+      image_not_allowed: resim içermesi izin verilmez.
+      liquid_not_allowed: sıvı etiketler içermesi izin verilmez.
+    mention:
+      is_not_valid: geçerli değil.
+    organization:
+      integer_only: Yalnızca tam sayı. İşaret izin verilmez.
+      reserved_word: '%<value>s rezerve edilmiş bir kelimedir. Organizasyonunuzu kaydetme konusunda yardım almak için site yöneticileriyle iletişime geçin.'
+    page:
+      body_must_exist: body_html veya body_json bulunmuyorsa mevcut olmalıdır.
+    podcast:
+      slug_is_reserved: özel kelime rezerve edilmiştir
+    podcast_episode_appearance:
+      provided_role_is_not_valid: sağlanan rol geçerli değil
+    poll_skip:
+      cannot_vote_more_than_once: bir anketinde birden fazla oy kullanamazsınız
+    poll_vote:
+      cannot_vote_more_than_once: bir anketinde birden fazla oy kullanamazsınız
+    profile_pin:
+      only_five: toplamda beşten fazla sabitlenmiş gönderi olamaz
+      pin_unpermitted: iğne için uygun izinler olmalıdır
+    rating_vote:
+      not_permitted: bu eylemi gerçekleştirmeye izin verilmiyor.
+    reaction:
+      is_not_valid: geçerli değil.
+    response_template:
+      user_nil_only: kullanıcı kimliği ilişkilendirilemez.
+      comment_markdown: Yorum şablonları, içerik türü olarak Markdown kullanmalıdır.
+      email_text: E-posta şablonları, içerik türü olarak düz metin veya HTML kullanmalıdır.
+      limit_reached: Kullanıcı başına 30 yanıt şablonu limitine ulaşıldı
+    settings:
+      campaign:
+        share_your_project: Projenizi paylaşın
+      community:
+        message: '<' veya '>' karakterini içermemelidir
+        new_forem: Yeni Forem
+        user: kullanıcı
+      general:
+        community_sponsors: Topluluk Sponsorları
+        the_community_mascot: Topluluk maskotu
+      user_experience:
+        message: '3 veya 6 karakterli bir hex olmalıdır (# ile başlayarak)'
+    tag:
+      alias_for: alias_for mevcut bir etikete başvurmalıdır
+    tag_adjustment:
+      too_many_tags: Makale başına en fazla 4 etiket.
+      unpermitted: bu etiketleri ayarlamak için ayrıcalığa sahip değil
+      not_live: kaldırma için seçilen etiket şu anki canlı etiket değil.
+      unique: zaten ayarlanmış bir etiket olamaz
+    tweet:
+      tweet_not_found: Tweet bulunamadı
+      authentication_error: Kimlik doğrulama hatası; muhtemelen eksik Twitter anahtarları hakkında Forem yöneticinize başvurun
+    user:
+      could_not_send: onay gönderilemedi. %{e_message}
+      password_not_matched: şifre doğrulamasıyla eşleşmiyor
+      has_been_banished: sürgün edildi.
+      is_taken: '%{username} alındı.'
+      user_could_not_be_saved: Kullanıcı kaydedilemedi. %{e_message}
+      username_is_reserved: kullanıcı adı rezerve edilmiştir
+    user_block:
+      cant_be_the_same: blocked_id ile aynı olamaz
+    user_subscription:
+      non_apple: Apple özel aktarımı ile abone olamazsınız. Lütfen e-postayı güncelleyin.
+      source_not_found: Kaynak bulunamadı. Lütfen %{source} 'nızın aktif olduğundan emin olun!
+      not_enabled: Kullanıcı abonelikleri kaynak için etkin değildir.
+    users:
+      deleted_user:
+        name: '[Silinmiş Kullanıcı]'
+      setting:
+        invalid_hex: geçerli bir hex renk değil
+        invalid_rss: geçerli bir RSS/Atom beslemesi değil
+

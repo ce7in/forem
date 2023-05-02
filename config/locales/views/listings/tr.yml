@@ -1,0 +1,80 @@
+---
+tr:
+  views:
+    listings:
+      meta:
+        description: "%{community} Listesi"
+      heading: Listeler
+      back: Geri
+      delete:
+        subtitle: Bu listeyi silmek istediğinizden emin misiniz?
+        description:
+          text_html: Bu işlemi geri alamazsınız, belki de sadece %{action} istersiniz?
+          edit: düzenle
+          unpublish: yayından kaldır
+        edit: Düzenle
+        submit: Sil
+        unpublish: Yayından kaldır
+      edit:
+        heading: Listeyi Düzenle
+        bump:
+          subtitle: Listeyi yeniden yükseltin
+          button: Listeyi yeniden yükselt
+          description: Listeyi ilk yayınlandığı fiyatla yeniden yükseltebilirsiniz.
+          last: 'Son Yayınlanan/Yükseltilen: %{date}'
+        notice: Sadece taslakların veya 24 saat içinde listelemenin veya yeniden yükseltmenin başlığı / metni / etiketleri düzenleyebilirsiniz.
+        not_published:
+          text_html: Bu liste %{not} yayınlanmış.
+          aside_html: Bu liste %{not} yayınlanmış
+          not: değil
+        publish: Listeyi yayınla
+        unpublish: Listeden yayını kaldır
+        update: Listeyi güncelle
+        update_draft: Taslağı güncelle
+      to_edit: Düzenle
+      errors:
+        one: 'Bu listeyi kaydetmek için 1 hata tespit edildi:'
+        other: "%{count} hata nedeniyle bu liste kaydedilemedi:"
+      expired: Bu liste süresi dolmuştur.
+      form:
+        body_markdown:
+          description: 400 karakter maksimum, 12 satır kesme maksimum, resimlere izin verilmez, *markdown teşvik edilir*. Gerekiyorsa bir iletişim yöntemi ekleyin.
+          placeholder: "..."
+        category:
+          label: Kategori
+          placeholder: Konferans CFP (1 Kredi)
+          summary: Kategori ayrıntıları/kuralları
+        expiry:
+          description: Zaman duyarlı etkinlikler, son tarihler vb. için geçerli ise.
+        location:
+          description: 32 karakter maksimum, düz metin
+          label: Konum (etkinlikler için geçerli ise)
+          placeholder: New York
+        no_credit: Bir liste oluşturmak için en az bir krediniz olmalıdır.
+        organization:
+          description: Bir kuruluş adına yayınlamak, kuruluşun kredilerini harcar.
+          none: Yok
+        publish: Listeyi yayınla
+        purchase: Kredi Satın Al
+        save: Taslağı Kaydet
+        save_notice: Taslak kaydetmek için kredi ücreti alınmaz.
+        tags:
+          placeholder: En fazla 8 etiket ekle...
+        title:
+          placeholder: 128 karakter maksimum, düz metin
+      nav:
+        aria_label: Listeler
+        create: Oluştur
+        manage: Yönet
+      new:
+        meta:
+          title: Yeni İlan
+        heading: Topluluk İlanı Oluştur
+        buy: Daha fazla satın al
+        disclaimer:
+          subtitle: Feragatname
+          description1: "%{community} yöneticileri doğruluğu sağlamak için etiketleri ve kategorileri değiştirebilir. Ayrıca, uygun olmayan ilanları kaldırabilir ve geri ödeme yapabiliriz."
+          description2: İlanlar yayınlanmalarından veya "bump" yapmalarından 30 gün sonra süresi doluyor.
+        organization: Kuruluş kredileri
+        personal: Kişisel krediler
+      preview_icon: DEV logo

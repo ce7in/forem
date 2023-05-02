@@ -1,0 +1,10 @@
+---
+tr:
+  views:
+    pagination:
+      aria_next: "Sonraki sayfa"
+      aria_previous: "Önceki sayfa"
+  helpers:
+    page_entries_info:
+      more_pages:
+        display_entries: "%{first}&nbsp;-&nbsp;%{last}, toplam %{total}"

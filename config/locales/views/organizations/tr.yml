@@ -1,0 +1,43 @@
+---
+tr:
+  views:
+    organizations:
+      empty: 404 bio bulunamadı
+      external:
+        icon: Harici bağlantı simgesi
+      follow: Takip et
+      github:
+        icon: GitHub logosu
+      joined:
+        icon: Katılım tarihi
+        text_html: "%{date} tarihinde katıldı"
+      location:
+        icon: Konum
+      logo: "%{org} profil resmi"
+      size: Çalışanlar
+      sponsor:
+        text: "%{level} Topluluk Sponsoru ❤️"
+        level:
+          gold: Altın
+          silver: Gümüş
+          bronze: Bronz
+          tag: Etiket
+          media: Medya
+          devrel: Devrel
+      stack: Yığınımız
+      story: Hikayemiz
+      side:
+        post:
+          icon: Gönderi
+          text:
+            one: 1 yayınlanan gönderi
+            other: "%{count} yayınlanan gönderi"
+        member:
+          icon: Üye
+          text:
+            one: 1 üye
+            other: "%{count} üye"
+      support: Destek e-postası
+      team: Ekibi Tanıyın
+      twitter:
+        icon: Twitter logosu

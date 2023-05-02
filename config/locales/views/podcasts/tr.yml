@@ -1,0 +1,36 @@
+---
+tr:
+  views:
+    podcasts:
+      meta:
+        title: Podcast'ler
+        description: %{member} için teknik podcast'leri keşfedin
+        og:
+          title: %{community} üzerindeki Podcast'ler
+      browse: Göz atın
+      heading: Podcast'ler
+      close: "×"
+      form:
+        heading: Bir Podcast Öner
+        errors:
+          one: 'Podcast oluştururken 1 hata oluştu:'
+          other: "Podcast oluştururken %{count} hata oluştu:"
+        owner: Bu podcast'in sahibi benim
+        return: "< podcast'lere geri dön"
+        suggest: Öner
+      list: podcast'ler
+      listen: Dinlemek için buraya tıklayın / indirin
+      source: Bölüm kaynağı
+      statuses:
+        ssl_failed: Podcast'in feed_url'si alınırken SSL sertifikası doğrulanamadı
+        unparsable: Podcast'in rss'si ayrıştırılamadı
+        unplayable: Bu podcast, tarayıcıda oynatılamayabilir
+        unreachable: Podcast'in feed_url'si erişilebilir değil
+      speed: 1x
+      tag: podcast
+      initializing: başlatılıyor...
+      unsupported: Tarayıcınız ses öğesini desteklemiyor.
+      featured_shows: Öne Çıkan Gösteriler
+      latest_episodes: En Son Bölümler
+      suggest_a_podcast: Podcast Önerin
+      view_all_podcasts: Tüm podcast'leri görüntüle

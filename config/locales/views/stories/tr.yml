@@ -1,0 +1,25 @@
+---
+tr:
+  views:
+    stories:
+      meta:
+        description_tagged: "%{tag} içerikleri %{name} üzerinde"
+        page: " Sayfa %{page}"
+        rss: "%{name} RSS Beslemesi"
+      heading: Gönderiler
+      discuss: "#tartış"
+      follow: Takip et
+      menu:
+        aria_left: nav-buton-sol
+        aria_right: nav-buton-sağ
+      sort:
+        aria_label: Gönderileri görüntüleme şekli
+        aria_tagged: Etiketlenmiş gönderileri görüntüleme şekli
+        relevant: İlgili
+        week: Hafta
+        month: Ay
+        year: Yıl
+        infinity: Sonsuz
+        latest: En yeni
+        signin_html: "👋 <a href=\"%{path}\">Oturum açın</a> relevant, en yeni veya en popüler gönderilere göre sıralama yapmak için."
+        top: Popüler

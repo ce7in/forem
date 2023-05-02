@@ -1,0 +1,25 @@
+---
+tr:
+  views:
+    manager:
+      meta:
+        title: %{title} Yönet
+      error:
+        pins: "Aman Allah'ım! %{error} 😬"
+      tools:
+        heading: 'Araçlar:'
+        subtitle: 'Gönderinin Deneyim Seviyesi:'
+        text_html: "Gönderiniz daha çok bir acemi mi yoksa ileri seviye bir kitle için mi yazılmıştır? Bu seviyeyi, en çok fayda sağlayacak insanlara gönderiyi göstermeye yardımcı olan <em>yumuşak</em> bir gösterge olarak ayarlayın."
+      nav:
+        dashboard: Kontrol Paneli
+        text: "👉 Gönderinizi Yönetin"
+      rating:
+        heading: Gönderinin Deneyim Seviyesi
+        text: Bu gönderi kimler için en uygun?
+        lower: "👈 Acemi"
+        higher: "Uzman 👉"
+      tips:
+        heading: 'İpuçları:'
+        text_1: Kendi tweetinizi gönderi hakkında yazın, neden yazdığınızı veya insanların neden faydalı bulabileceğini kişisel olarak açıklayın. Sizi yeniden tweetleyebiliriz.
+        text_2_html: 'Bağlantı toplayıcılarına (örneğin <a href="https://www.reddit.com">Reddit</a>) paylaşın. En konuyla ilgili altredditleri seçmeye çalışın, örneğin <a href="https://www.reddit.com/r/javascript">/r/javascript</a> veya <a href="https://www.reddit.com/r/python">/r/python</a> vb. <em>Uyarı: pislikler ve trolller gizleniyor olabilir.</em>'
+        text_3: İş arkadaşlarınızla veya yerel topluluklarla paylaşın. İnsanları yorumlar için size sorular sormaya teşvik edin. Ek tartışmaları başlatmak için harika bir yol.

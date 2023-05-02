@@ -1,0 +1,210 @@
+---
+tr:
+  lib:
+    constants:
+      settings:
+        authentication:
+          allowed:
+            description: Sadece belirli e-postaların kayıt olmasına izin ver? (virgülle ayrılmış liste)
+            placeholder: dev.to, forem.com, codenewbie.org
+          apple_client:
+            description: Apple Developer Portal'da yapılandırılan Kimlik Doğrulama Hizmeti için "Uygulama Paketi" kodu
+          apple_key:
+            description: Apple Developer Portal'da yapılandırılan Kimlik Doğrulama Hizmeti için "Anahtar Kimliği"
+          apple_pem:
+            description: Apple Developer Portal'da yapılandırılan Kimlik Doğrulama Hizmeti için "PEM" anahtarı
+          apple_team:
+            description: Apple Geliştirici Hesabınızın "Takım Kimliği"
+          blocked:
+            description: Belirtilen alan adlarından kaydı engelleyin? (virgülle ayrılmış liste)
+          display_list:
+            description: İzin verilen alan adlarının listesini göstermek ister misiniz yoksa özel mi tutmak istiyorsunuz?
+          facebook_key:
+            description: Facebook Developer Portal'daki Uygulama sayfasının Temel Ayarlar bölümündeki "Uygulama Kimliği"
+          facebook_secret:
+            description: Facebook Developer Portal'daki Uygulama sayfasının Temel Ayarlar bölümündeki "Uygulama Sırrı"
+          forem_key:
+            description: Forem anahtarı
+          forem_secret:
+            description: Forem sırrı
+          github_key:
+            description: GitHub Oauth Uygulamaları portalındaki "İstemci Kimliği"
+          github_secret:
+            description: GitHub Oauth Uygulamaları portalındaki "İstemci Sırrı"
+          google_key:
+            description: Google Cloud Platform portalındaki OAuth 2.0 sayfasındaki "İstemci Kimliği"
+          google_secret:
+            description: Google Cloud Platform portalındaki OAuth 2.0 sayfasındaki "İstemci Sırrı"
+          invite_only:
+            description: Yalnızca e-posta ile davet edilen kullanıcılar bu topluluğa katılabilir.
+          providers:
+            description: Kullanıcılar nasıl oturum açabilir?
+          recaptcha_secret:
+            description: Kötüye kullanımı bildirmek için kullanılan Google reCAPTCHA için gizli anahtarı ekleyin
+            placeholder: Google reCAPTCHA gizli anahtarı nedir?
+          recaptcha_site:
+            description: Kötüye kullanımı bildirmek için kullanılan Google reCAPTCHA için site anahtarını ekleyin
+            placeholder: Google reCAPTCHA site anahtarı nedir?
+          require_recaptcha:
+            description: İnsanlar topluluğunuzda yeni bir hesap oluştururken bir captcha doldurmak zorunda kalacaklar
+          twitter_key:
+            description: Twitter geliştirici portalındaki tüketici anahtarlarının "API anahtarı" kısmı.
+          twitter_secret:
+            description: Twitter geliştirici portalındaki tüketici anahtarlarının "API gizli anahtarı" kısmı.
+        campaign:
+          articles_approval:
+            placeholder: Kampanya hikayeleri onayla yan menüde gösterilsin mi?
+          articles_expiry:
+            description: Kampanya yan menüsünde görüntülenecek makalelerin süresi dolma süresini (hafta olarak) belirler
+          call_to_action:
+            description: Bu metin, kampanya yan menüsündeki eylem çağrısı düğmesini doldurur
+            placeholder: Projeyi paylaş
+          display_name:
+            description: Bu metin, kampanyaya başlık, vb. ile ilgili olarak görüntülenir.
+            placeholder: Harika kampanyam
+          featured:
+            description: Hangi etiketli gönderilerin kampanya yan menüsünde öne çıkarılacağı (virgülle ayrılmış, yalnızca harfler)
+            placeholder: 'Kampanya etiketleri listesi: virgülle ayrılmış, sadece harfler örn. shecoded,theycoded'
+          hero_html:
+            description: Kahraman HtmlVariant adı
+          sidebar_enabled:
+            placeholder: Kampanya yan menüsü etkinleştirildi mi?
+          sidebar_image:
+            placeholder: Kampanya yan menüsünün üstünde kullanılır
+          url:
+            description: https://url.com/lander
+            placeholder: URL kampanya yan menü resmi bağlantısı
+        community:
+          copyright:
+            description: Bu forem'in başlatıldığı yılı işaretlemek için kullanılır.
+          description:
+            description: Meta açıklama etiketlerinde vb. kullanılır.
+            placeholder: Kibar ve hoşgörülü insanların harika topluluğu.
+          emoji:
+            description: Site adının yanında başlık etiketlerinde kullanılır
+          member:
+            description: Bir üyenin ne olarak adlandırılacağını belirler, örn. geliştirici, hobi sahibi vb.
+            placeholder: kullanıcı
+          name:
+            description: Foreminiz için kullanılan ana ad, örn. DEV, DEV Community, The DEV Community, vb.
+            placeholder: Yeni Forem
+          staff:
+            description: Otomatik 'personel' olarak hareket eden Hesap Kimliği - esas olarak hoş geldiniz konusu için kullanılır.
+          tagline:
+            description: Kayıt olma modülünde kullanılır.
+            placeholder: Kod paylaşan, güncel kalan ve kariyerlerini büyüten insanların buluşma noktasıyız.
+        general:
+          ahoy_tracking:
+            description: Ziyaret ve etkinlikleri takip edin - veriler veritabanınızda saklanır. Bu yapılandırmanın değişikliklerinin etkili olması için yeniden başlatma gereklidir.
+          contact_email:
+            description: İletişim bağlantıları için kullanılır. Lütfen kullanıcıların sizinle veya ekibinizle iletişime geçebileceği bir e-posta adresi sağlayın.
+          credit:
+            large:
+              description: Büyük kredi satın alımı için fiyat (100 - 999 kredi).
+            medium:
+              description: Orta kredi satın alımı için fiyat (10 - 99 kredi).
+            small:
+              description: Küçük kredi satın alımı için fiyat (<10 kredi).
+            xlarge:
+              description: Çok büyük kredi satın alımı için fiyat (1000 kredi veya daha fazla).
+          favicon:
+            description: Site favicon olarak kullanılır
+          ga_tracking:
+            description: Google Universal Analytics İzleme Kimliği, örn. UA-XXXXXXXX-1
+          ga_analytics_4:
+            description: Google Analytics 4 Ölçüm Kimliği, örn. G-XXXXXXXXX
+          hashtag:
+            description: Topluluk twitter hashtag olarak kullanılır
+            placeholder: '#DEVTopluluk'
+          health:
+            description: Sağlık kontrolü uç noktalarınızla kimlik doğrulama yapmak için kullanılır.
+            placeholder: güvenli bir belirteç
+          logo_png:
+            description: Giriş modallerinde, başlangıçta, Apple dokunmatik simgelerinde kullanılan ikincil logo. En az 512x512px olması önerilir
+          logo_svg:
+            description: Şu anda Forem'in sol üst köşesinde kullanılan logo budur. Ancak, sürüm sonrası yukarıdaki Logo lehine kullanımdan kaldırılacaktır.
+          mailchimp_api:
+            description: Mailchimp hesabına bağlanmak için kullanılan API anahtarı. Mailchimp arka uçta bulunur
+          mailchimp_mod:
+            description: Topluluk Moderatörleri Bülten Kimliği
+          mailchimp_news:
+            description: Ana Bülten Kimliği, aynı zamanda Audience ID olarak da bilinir
+          mailchimp_tag_mod:
+            description: Etiket Moderatörleri Bülten Kimliği
+          main_social:
+            description: Ana sosyal ağlar ve OpenGraph'teki ana görsel. 16:9 (600x337px, 1200x675px) en boy oranı önerilir
+          mascot_image:
+            description: Maskot resmi olarak kullanılır.
+          mascot_user:
+            description: Maskot hesabının Kullanıcı Kimliği
+          meta_keywords:
+            description: 'Geçerli anahtar kelimelerin listesi: virgülle ayrılmış, sadece harfler örn. mühendislik, geliştirme'
+          onboarding:
+            description: Başlangıç ekranı arka planı
+          payment:
+            description: 'Site genelinde web para kazanma için kullanılır. Ayrıntılar için bkz: https://github.com/forem/forem/pull/6345'
+          periodic:
+            description: Periyodik e-posta özetlerinin ne sıklıkta gönderileceğini belirler (günde)
+          prefer_manual:
+            description: Otomatik öneri mevcut olduğunda bile her zaman önerilen kullanıcıları takip etmek için önerilen kişilere gösterin
+          sidebar:
+            description: Ana sayfada sağ taraftaki kenar çubuğunda hangi etiketlerin gösterileceğini belirler
+            placeholder: Geçerli, virgülle ayrılmış etiketler örn. yardım, tartış, beşyaşındakiçocuğagibianlat, meta
+          stripe_api:
+            description: 'Ödemeleri almak için gizli Stripe anahtarı. Ayrıntılar için bkz: https://stripe.com/docs/keys'
+          stripe_key:
+            description: 'Ödemeleri almak için genel Stripe anahtarı. Ayrıntılar için bkz: https://stripe.com/docs/keys'
+          tags:
+            description: Yeni kullanıcıların başlangıçta hangi etiketleri önerdiğini belirler (virgülle ayrılmış, yalnızca harf)
+            placeholder: 'Geçerli etiketler listesi: virgülle ayrılmış, yalnızca harf örn. başlangıççılar, javascript, ruby, swift, kotlin'
+          users:
+            description: Başlangıçta yeni kullanıcılara takip etmeleri önerilen kullanıcıları belirler (virgülle ayrılmış, yalnızca harf). Lütfen bu kullanıcıların son zamanlarda aktif yorum yapanlar veya üreticiler önerilemediğinde gösterileceğini unutmayın
+            placeholder: 'Geçerli kullanıcı adları listesi: virgülle ayrılmış, yalnızca harf örn. ben, jess, peter, maestromac, andy, liana'
+          video:
+            description: AWS video kodlamasına VideoStatesController aracılığıyla izin veren gizli anahtar
+        rate_limit:
+          new_days:
+            description: Kullanıcının yeni kabul edildiği gün sayısı. Varsayılan değer 3 gündür, ancak bunu tamamen devre dışı bırakarak 0 girişi yapabilirsiniz.
+          spam:
+            description: Spam uyarıları tetikleyen tekil (büyük/küçük harf duyarsız) ifadeler, virgülle ayrılmış.
+            placeholder: size en yakın kullanılmış arabalar, pokemon go hile
+        smtp:
+          address:
+            description: Uzak posta sunucusunun adresi
+            placeholder: örn. smtp.gmail.com
+          authentication:
+            description: Eğer posta sunucunuz kimlik doğrulama gerektiriyorsa, burada kimlik doğrulama türünü belirtmelisiniz
+            placeholder: örn. plain, login veya cram_md5
+          domain:
+            description: Eğer bir HELO alanı belirtmeniz gerekiyorsa, burada yapabilirsiniz
+          password:
+            description: Eğer posta sunucunuz kimlik doğrulama gerektiriyorsa, sunucunuzdan parolayı kopyalayın
+          port:
+            description: Posta sunucunuzun çalıştığı bağlantı noktası
+            placeholder: '25'
+          user_name:
+            description: Eğer posta sunucunuz kimlik doğrulama gerektiriyorsa, sunucunuzdan kullanıcı adını kopyalayın
+          from_email:
+            description: E-postaların gönderileceği e-posta adresi
+          reply_to:
+            description: Kullanıcıların yanıt verebileceği e-posta adresi
+        user_experience:
+          default_font:
+            description: Varsayılan okuma yazı tipini belirler (kayıtlı kullanıcılar bunu UX ayarlarında değiştirebilir)
+          default_locale:
+            description: Forem için varsayılan dil ve yerelleştirme belirlenir (şu anda deneysel beta aşamasında)
+          feed_strategy:
+            description: 'Uygulamanın temel besleme algoritması yaklaşımını belirler: temel veya büyük_forem_deneysel (sadece 10.000+ üyeli topluluklar için kullanılmalıdır)'
+            placeholder: temel
+          feed_style:
+            description: Kullanıcıların gördüğü varsayılan beslemeyi belirler (zengin içerik, daha minimal vb.)
+            placeholder: temel, zengin veya kompakt
+          home_feed:
+            description: Kimlik doğrulamasız ana sayfada gösterilecek gönderinin minimum puanı.
+          index_minimum_score:
+            description: Arama motorları tarafından indekslenecek gönderinin minimum puanı.
+          primary_hex:
+            description: Butonların vb. arka plan/sınırını belirler. Beyaz metinle kontrast olacak kadar koyu olmalıdır.
+          tag_feed:
+            description: Varsayılan etiket sayfasında gösterilecek gönderinin minimum puanı.
+

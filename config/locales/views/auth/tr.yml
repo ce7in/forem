@@ -1,0 +1,81 @@
+---
+tr:
+  views:
+    auth:
+      background: forem arka planı
+      create:
+        aria_label: Yeni hesap oluştur
+        text: Hesap oluştur
+      creator:
+        text1: Forem yolculuğuna başlayalım!
+        text2: İlk olarak yönetici hesabınızı oluşturun.
+        text3: Sonra Forem kurulumunu size anlatacağız.
+        hint:
+          aria_label: Kullanıcı adını düzenle
+          icon: Kullanıcı adını düzenle
+          text_html: "%{start}Kullanıcı adınız\_%{end}%{button}"
+        submit: Hesabımı oluştur
+      already_have_an_account: Zaten bir hesabınız var mı?
+      sign_in: Giriş yap
+      login:
+        aria_label: Giriş yap
+        text: Giriş yap
+        continue: Devam et
+        forgot: Şifremi unuttum
+      provider:
+        text: "%{provider} ile %{action} yap"
+        login: Devam et
+        signup: Kayıt ol
+        email:
+          icon: e-posta
+          text: E-posta ile kayıt ol
+      register:
+        errors:
+          one: Ups! %{count} bir sorun bulduk
+          other: Ups! %{count} birkaç sorun bulduk
+        allow:
+          one_html: Kayıt sadece <strong>@%{domain}</strong> e-postalarla sınırlıdır.
+          list: Kayıt yalnızca aşağıdaki e-postalarla sınırlıdır
+        create: Hesabınızı oluşturun
+        field:
+          name:
+            aria_label: Ad
+            label: Ad
+          username:
+            aria_label: Kullanıcı adı
+            desc: Kullanıcı adı yalnızca harfler, sayılar ve alt çizgiler içerebilir. En fazla 30 karakter olabilir.
+            label: Kullanıcı adı
+          email:
+            aria_label: E-posta
+            label: E-posta
+            placeholder: john@example.com
+          password:
+            aria_label: Şifre
+            desc: Minimum 8 karakter
+            label: Şifre
+            placeholder: "••••••••"
+            hide: Şifreyi gizle
+            show: Şifreyi göster
+          confirm:
+            aria_label: Şifre Onayı
+            label: Şifre Onayı
+          required: "* - zorunlu"
+        secret:
+          label: Yeni Forem Gizli Anahtar
+          placeholder: Forem barındırıcınız tarafından sağlandığı gibi
+          hide: Yeni Forem gizli anahtarını gizle
+          show: Yeni Forem gizli anahtarını göster
+        submit: Kayıt ol
+      wizard:
+        meta:
+          title: Forem ile başlamanın vakti geldi
+        heading: Forem yolculuğunuza başlayalım
+        step_1: Hesap oluşturun. Bu, ilk süper yönetici hesabı olacaktır.
+        step_2_html: Aşağıda kaydolduktan sonra topluluğunuzu %{path} adres
+        step_3: Bir yönetici olarak yapabileceğiniz çok şey var, ancak öğrenme eğrisi var.
+        step_4: Herhangi bir şey hakkında emin değilseniz, Forem ekibine ulaşın!
+        step_5: "Toplulukları güçlendirmek için 🌱"
+      tagline: Kodlayanların paylaştığı, güncel kaldığı ve kariyerlerini geliştirdiği bir yeriz.
+      title:
+        text_html: "%{name} %{label} inanılmaz %{maybe_size}bir topluluktur"
+        size: "%{num} "

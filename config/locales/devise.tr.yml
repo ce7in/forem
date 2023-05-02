@@ -1,0 +1,66 @@
+---
+tr:
+  devise:
+    confirmations:
+      confirmed: E-posta adresiniz başarıyla doğrulandı.
+      send_instructions: E-posta adresinizi doğrulamak için gereken talimatların yer aldığı bir e-posta birkaç dakika içinde alacaksınız.
+      send_paranoid_instructions: E-posta adresiniz veritabanımızda mevcutsa, e-posta adresinizi doğrulamak için talimatların yer aldığı bir e-posta birkaç dakika içinde alacaksınız.
+    failure:
+      already_authenticated: Zaten oturum açtınız.
+      inactive: Hesabınız henüz aktif değil.
+      invalid: Giriş yapılamıyor.
+      last_attempt: Hesabınızın kilitlenmeden önce bir deneme hakkınız daha var.
+      locked: Giriş yapılamıyor.
+      not_found_in_database: Giriş yapılamıyor.
+      timeout: Oturumunuzun süresi doldu. Lütfen devam etmek için tekrar oturum açın.
+      unauthenticated: Devam etmeden önce oturum açmalı veya kaydolmalısınız.
+      unconfirmed: Devam etmeden önce e-posta adresinizi doğrulamanız gerekmektedir.
+    mailer:
+      confirmation_instructions:
+        subject: Doğrulama talimatları
+      email_changed:
+        subject: E-posta Değiştirildi
+      password_change:
+        subject: Şifre Değiştirildi
+      reset_password_instructions:
+        subject: Şifre sıfırlama talimatları
+      unlock_instructions:
+        subject: Kilidi açma talimatları
+    omniauth_callbacks:
+      failure: "%{kind} nedeniyle sizi doğrulayamadık: \"%{reason}\"."
+      success: %{kind} hesabından başarıyla doğrulandı.
+    passwords:
+      no_token: Şifre sıfırlama e-postası olmadan bu sayfaya erişemezsiniz. Şifre sıfırlama e-postasından geldiyseniz, lütfen sağlanan tam URL'yi kullandığınızdan emin olun.
+      reset_instructions_sent: Şifre sıfırlama talimatlarınız gönderildi.
+      send_instructions: Şifrenizi sıfırlamak için talimatların yer aldığı bir e-posta birkaç dakika içinde alacaksınız.
+      send_paranoid_instructions: E-posta adresiniz veritabanımızda mevcutsa, şifre kurtarma bağlantısı birkaç dakika içinde e-posta adresinize gönderilecektir.
+      updated: Şifreniz başarıyla değiştirildi. Şimdi oturum açtınız.
+      updated_not_active: Şifreniz başarıyla değiştirildi.
+    registrations:
+      destroyed: Hoşça kal! Hesabınız başarıyla iptal edildi. Yakında tekrar görmeyi umuyoruz.
+      signed_up: Hoşgeldiniz! Başarıyla kaydoldunuz.
+      signed_up_but_inactive: Başarıyla kaydoldunuz. Ancak, hesabınız henüz aktifleştirilmediği için oturum açamadık.
+      signed_up_but_locked: Başarıyla kaydoldunuz. Ancak, hesabınız kilitli olduğu için oturum açamadık.
+      signed_up_but_unconfirmed: Doğrulama bağlantısının bulunduğu bir ileti, e-posta adresinize gönderildi. Lütfen bağlantıyı takip ederek hesabınızı etkinleştirin.
+      update_needs_confirmation: Hesabınızı başarıyla güncellediniz, ancak yeni e-posta adresinizi doğrulamamız gerekiyor. Lütfen e-postanızı kontrol edin ve yeni e-posta adresinizi doğrulamak için doğrulama bağlantısını takip edin.
+      updated: Hesabınız başarıyla güncellendi.
+      updated_but_not_signed_in: Hesabınız başarıyla güncellendi, ancak şifreniz değiştirildiğinden tekrar oturum açmanız gerekmektedir.
+    sessions:
+      already_signed_out: Başarıyla çıkış yapıldı.
+      signed_in: Başarıyla oturum açıldı.
+      signed_out: Başarıyla çıkış yapıldı.
+    unlocks:
+      send_instructions: Hesabınızın kilidini açma talimatlarının bulunduğu bir e-posta birkaç dakika içinde alacaksınız.
+      send_paranoid_instructions: Hesabınız mevcutsa, birkaç dakika içinde kilidini açma talimatlarının bulunduğu bir e-posta alacaksınız.
+      unlocked: Hesabınızın kilidi başarıyla açıldı. Lütfen devam etmek için oturum açın.
+  errors:
+    messages:
+      already_confirmed: zaten doğrulanmıştı, lütfen oturum açmayı deneyin
+      confirmation_period_expired: %{period} içinde doğrulanmalıdır, lütfen yeni bir tane isteyin
+      expired: süresi doldu, lütfen yeni bir tane isteyin
+      not_found: bulunamadı
+      not_locked: kilitli değildi
+      not_saved:
+        one: 'Bu %{resource} kaydedilmesini önleyen 1 hata:'
+        other: 'Bu %{resource} kaydedilmesini önleyen %{count} hatalar:'
+

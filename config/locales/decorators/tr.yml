@@ -1,0 +1,5 @@
+---
+tr:
+  decorators:
+    article_decorator:
+      tagged_with: " %{cached_tag_list} ile etiketlendi."

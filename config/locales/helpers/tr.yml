@@ -1,0 +1,242 @@
+---
+tr:
+  helpers:
+    label:
+      listing:
+        body_markdown: Gövde Markdown
+        expires_at: Özel Son Kullanma Tarihi
+        location: Konum
+        organization_id: Bir organizasyon altında gönder
+        tag_list: Etiketler
+        title: Başlık
+      organization:
+        name: İsim
+        slug: Kullanıcı adı
+        profile_image: Profil resmi
+        nav_image: Açık temalar için logo
+        dark_nav_image: Koyu temalar için logo
+        twitter_username: Twitter kullanıcı adı
+        github_username: GitHub kullanıcı adı
+        url: Web sitesi url
+        tag_line: Etiket satırı
+        summary: Özet
+        location: Konum
+        email: Destek e-postası
+        company_size: Organizasyon büyüklüğü
+        story: Hikayemiz
+        tech_stack: Kullandığımız teknolojiler
+        cta_body_markdown: Gövde metni
+        cta_button_text: Bağlantı metni
+        cta_button_url: Bağlantı url
+        proof: Kanıt
+      podcast:
+        android_url: Android url
+        description: Açıklama
+        feed_url: Feed url
+        image: Resim
+        itunes_url: Itunes url
+        main_color_hex: Ana renk hex
+        overcast_url: Overcast url
+        pattern_image: Desen resmi
+        slug: Özel isim
+        soundcloud_url: Soundcloud url
+        title: Başlık
+        twitter_username: Twitter kullanıcı adı
+        website_url: Web sitesi url
+      response_template:
+        title: Başlık
+        content: Yorum metni (Markdown)
+      user:
+        name: İsim
+        email: E-posta
+        username: Kullanıcı adı
+        profile_image: Profil resmi
+      users_notification_setting:
+        email_newsletter: Bana haftalık bülten e-postaları gönder
+        email_digest_periodic: Etiketlerimden en iyi yayınların periyodik özetini bana gönder
+        email_tag_mod_newsletter: Bana etiket moderatörü bülten e-postaları gönder
+        email_community_mod_newsletter: Bana topluluk moderatörü bülten e-postaları gönder
+        email_comment_notifications: Birisi bir yorum dizisinde bana yanıt verdiğinde bana e-posta gönder
+        email_follower_notifications: Yeni birisi beni takip ettiğinde bana e-posta gönder
+        email_mention_notifications: Birisi beni bahsettiğinde bana e-posta gönder
+        email_badge_notifications: Bir rozet aldığımda bana e-posta gönder
+        email_unread_notifications: %{community} üzerinde okunmamış bildirimlerim olduğunu hatırlatan ara sıra e-postalar gönder
+        mobile_mention_notifications: Birisi beni bahsettiğinde bana bir push bildirimi gönder
+        mobile_comment_notifications: Birisi bir yorum dizisinde bana yanıt verdiğinde bana bir push bildirimi gönder
+        welcome_notifications: %{community} deneyimimi nasıl geliştireceğime dair ara sıra ipu        çlar gönder
+        reaction_notifications: İçeriğime, yorumlar veya gönderiler gibi, birisi tepki gösterdiğinde bildirimler gönder
+        mod_roundrobin_notifications: Bana ara sıra topluluk başarısı mod bildirimleri gönder
+      users_setting:
+        feed_url: RSS Feed URL
+    placeholder:
+      organization:
+        name: Acme Inc.
+        slug: acmeinc
+        url: https://yoursite.com
+        location: Halifax, Nova Scotia
+        email: mail@example.com
+        company_size: "..."
+        story: "..."
+        tech_stack: "..."
+        cta_body_markdown: "..."
+        cta_button_text: Acme Sitesini Ziyaret Et
+        cta_button_url: https://example.com
+        proof: "..."
+      response_template:
+        title: "..."
+      user:
+        name: John Doe
+        email: john.doe@example.com
+        username: johndoe
+        feed_url: https://yoursite.com/feed
+    application_helper:
+      app_logo: Uygulama logosu
+      follow:
+        aria_label:
+          Organization: 'Organizasyonu takip et: %{name}'
+          Tag: 'Etiketi takip et: %{name}'
+          User: 'Kullanıcıyı takip et: %{name}'
+          default: 'Takip et %{type}: %{name}'
+        text:
+          Organization: Takip Et
+          Tag: Takip Et
+          User: Takip Et
+          default: Takip Et
+      required: Gerekli
+      subtitle:
+        week: Bu haftanın en iyi gönderileri
+        month: Bu ayın en iyi gönderileri
+        year: Bu yılın en iyi gönderileri
+        infinity: Tüm gönderiler
+        latest: En yeni gönderiler
+      title_text: "%{title} - %{timeframe}"
+    articles_helper:
+      logo: "%{service_name} logosu"
+      most_comments: En Fazla Yorum
+      most_reactions: En Fazla Tepki
+      most_views: En Fazla Görüntülenme
+      recently_created: Son Oluşturulanlar
+      recently_published: Son Yayınlananlar
+    authentication_helper:
+      any_of_those: bunlardan herhangi biri
+      email_password: E-posta & Parola
+      reminder: 'Hatırlatma: Hesabınızı doğrulamak için %{method} kullanmıştınız, bu nedenle giriş yaparken %{dem} kullanın.'
+      that: şu
+      invite_only: Davetli Modunu devre dışı bırakana kadar bunu yapamazsınız
+    comments_helper:
+      ama: ama
+      ask_me_anything: Bana Her Şeyi Sor
+      author: Yazar
+      nbsp_likes_html:
+        one: "&nbsp;begeni"
+        other: "&nbsp;begeni"
+    feedback_messages_helper:
+      offender:
+        body: |
+          Merhaba,
+
+          %{community} Davranış Kuralları ve/veya Kullanım Şartları'nı ihlal ettiğinize dair dikkatimize sunulan bilgiler var.
+
+          Bu davranış devam ederse, %{community} hesabınızı askıya almak zorunda kalabiliriz.
+
+          Eğer bir hata olduğunu düşünüyorsanız, lütfen bu e-postaya yanıt verin ve biz tekrar inceleyeceğiz.
+
+          %{community} Ekibi
+        subject: "%{community} Davranış Kuralları İhlali"
+      reporter:
+        body: |
+          Merhaba,
+
+          %{community} Davranış Kuralları ve/veya Kullanım Şartlarımıza aykırı olabilecek içeriği işaret ettiğiniz için teşekkür ederiz. Raporunuzu inceliyoruz ve uygun önlem alacağız.
+
+          Tüm kullanıcılar için olumlu ve kapsayıcı bir ortam sağlamaya çalışırken yardımınızı takdir ediyoruz!
+
+          %{community} Ekibi
+        subject: "%{community} Rapor"
+      affected:
+        body: |
+          Merhaba,
+
+          Gönderinizdeki başkaları tarafından yapılan yorumların bazılarının %{community} Davranış Kuralları ve/veya Kullanım Şartlarımızı ihlal ettiğini fark ettik. Bu tür davranışlara tolerans göstermiyoruz ve uygun önlem alıyoruz.
+
+          Harika olmaya devam edin ve lütfen herhangi bir sorunuz varsa bize e-posta gönderin! Açık ve kapsayıcı bir topluluk oluşturmaya devam ederken tüm geri bildirimleri ve fikirleri memnuniyetle karşılıyoruz.
+
+          %{community} Ekibi
+        subject: %{community}'den Nezaket Bildirimi
+    listing_helper:
+      option:
+        one: "%{cl_name} (%{count} Kredi)"
+        other: "%{cl_name} (%{count} Kredi)"
+    organization_helper:
+      option: "%{org_name} (%{unspent})"
+    rate_limit_checker_helper:
+      day:
+        one: gün
+        other: günler
+      general: Yeni bir üye (%{timeframe} veya daha az) herhangi bir 5 dakikalık süre içinde kaç tane %{thing} oluşturabilir?
+      published:
+        title: Oluşturulan gönderi sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre içinde kaç gönderi oluşturabilir?
+      antispam:
+        title: Yeni bir üye tarafından oluşturulan gönderi sayısını sınırla
+      update:
+        title: Bir gönderiye yapılan güncelleme sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre içinde kaç güncelleme yapabilir? Değişiklik yapıldığında API belgelerini güncelleyin.
+      upload:
+        title: Yüklenen resim sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre içinde kaç resim yükleyebilir?
+      user:
+        title: Birinin hesabında yapabileceği değişiklik sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre iç        inde hesabında kaç değişiklik yapabilir?
+      follow:
+        title: Birinin günlük takip edebileceği takipçi sayısını sınırla
+        description: Birisi bir günde kaç kişiyi takip edebilir?
+      reaction:
+        title: Bir gönderiye veya yoruma verilen tepki sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre içinde bir gönderiye veya yoruma kaç kez tepki verebilir?
+      feedback:
+        title: Birinin kötüye kullanımı raporlama sayısını sınırla
+        description: Birisi herhangi bir 5 dakikalık süre içinde kaç kez kötüye kullanımı raporlayabilir?
+      comment:
+        title: Oluşturulan yorum sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre içinde kaç yorum oluşturabilir?
+      comment_antispam:
+        title: Yeni bir üye tarafından oluşturulan yorum sayısını sınırla
+      mention:
+        title: Bir gönderi veya yoruma yapılan @-bahsetme sayısını sınırla
+        description: Birisi bir gönderi veya yorumda başka kullanıcıları kaç kez @-bahsetme yapabilir?
+      listing:
+        title: Oluşturulan liste sayısını sınırla
+        description: Birisi herhangi bir 1 dakikalık süre içinde kaç liste oluşturabilir?
+      organization:
+        title: Oluşturulan organizasyon sayısını sınırla
+        description: Birisi herhangi bir 5 dakikalık süre içinde kaç organizasyon oluşturabilir?
+      subscription:
+        title: Birinin posta listesi etiketine abone olma sayısını sınırla
+        description: Birisi herhangi bir 30 saniyelik süre içinde kaç kez posta listesine abone olabilir?
+      recipient:
+        title: Gönderilen genel e-postaların sayısını sınırla
+        description: Herhangi bir 2 dakikalık süre içinde birisine kaç e-posta gönderebiliriz?
+      confirmation:
+        title: Gönderilen doğrulama e-postalarının sayısını sınırla
+        description: Herhangi bir 2 dakikalık süre içinde birisine kaç kez doğrulama e-postası gönderebiliriz?
+      thing:
+        posts: gönderiler
+        comments: yorumlar
+    settings_helper:
+      advanced: İleri
+      beginner: Başlangıç
+      expert: Uzman
+      mid_level: Orta düzey
+      novice: Acemi
+    social_link_helper:
+      n_a: Y/N
+    admin:
+      user_helper:
+        today: Bugün, %{date}
+        yesterday: Dün, %{date}
+        org_join: ", "
+        org_overflow:
+          one: "%{orgs} & %{count} diğer"
+          other: "%{orgs} & %{count} diğerleri"
+

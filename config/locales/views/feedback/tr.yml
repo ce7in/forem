@@ -1,0 +1,20 @@
+---
+tr:
+  views:
+    feedback:
+      meta:
+        title: Geri Bildirim
+      heading: Raporunuz için teşekkür ederiz.
+      home: Ana sayfaya dön
+      form:
+        rude_or_vulgar: Kaba veya argo
+        harassment: Taciz veya nefret söylemi
+        spam: Spam veya telif hakkı sorunu
+        listings: Uygunsuz ilan mesajı/kategori
+        other: Diğer
+        url: Rapor edilen URL
+        message:
+          subtitle: Mesaj
+          description: Lütfen durumu anlamamıza ve yönetmemize yardımcı olacak herhangi ek bilgi veya bağlam sağlayın.
+          placeholder: "..."
+        submit: Geri Bildirim Gönder

@@ -1,0 +1,19 @@
+---
+tr:
+  validators:
+    bytesize_validator:
+      non_negative: ":maksimum bir negatif tamsayı olamaz"
+    color_contrast_validator:
+      must_be_darker: erişilebilirlik için daha koyu olmalıdır
+    emoji_only_validator:
+      invalid_emoji: geçersiz emoji veya emoji olmayan karakterler içeriyor
+    existing_published_article_id_validator:
+      default: geçerli bir yayınlanmış makale tanımlayıcısı olmalıdır
+    profile_validator:
+      bio_too_long: Bio çok uzun
+    cross_model_slug_validator:
+      is_taken: zaten kullanılmıştır
+      is_invalid: geçersiz
+      is_reserved: ayrılmış
+    valid_domain_csv_validator:
+      invalid_list_format: geçerli alan adlarının virgülle ayrılmış bir listesi olmalıdır

@@ -1,0 +1,152 @@
+---
+tr:
+  admin:
+    articles_controller:
+      saved: Makale kaydedildi!
+      pinned: Makale Sabitlendi!
+      unpinned: Makale Sabitleme Kaldırıldı!
+    badge_achievements_controller:
+      deleted: Rozet başarısı silindi!
+      rewarded: Rozetler ödüllendiriliyor. Görev kısa süre içinde tamamlanacak.
+      congrats: Tebrikler!
+      award: Ödüllendirmek için bir rozet seçin
+      wrong: Bir şeyler ters gitti.
+    badges_controller:
+      created: Rozet oluşturuldu!
+      updated: Rozet güncellendi!
+    broadcasts_controller:
+      created: Yayın oluşturuldu!
+      deleted: Yayın silindi!
+      updated: Yayın güncellendi!
+      wrong: Yayını silmeyle ilgili bir şeyler ters gitti.
+    consumer_apps_controller:
+      created: '%{app} oluşturuldu!'
+      deleted: '%{app} silindi!'
+      updated: '%{app} güncellendi!'
+      wrong: %{app} silmeyle ilgili bir şeyler ters gitti.
+    display_ads_controller:
+      created: Görüntüleme Reklamı oluşturuldu!
+      deleted: Görüntüleme Reklamı silindi!
+      updated: Görüntüleme Reklamı güncellendi!
+      wrong: Görüntüleme Reklamını silmeyle ilgili bir şeyler ters gitti.
+    gdpr_delete_requests_controller:
+      deleted: Başarıyla silindi olarak işaretlendi
+    extensions_controller:
+      update_success: Uzantılar güncellendi.
+    html_variants_controller:
+      fork: '%{name} FORK-%{rand}'
+      created: HTML Varyantı oluşturuldu!
+      deleted: HTML Varyantı silindi!
+      updated: HTML Varyantı güncellendi!
+      wrong: HTML Varyantını silmeyle ilgili bir şeyler ters gitti.
+    invitations_controller:
+      duplicate: 'Davetiye gönderilmedi. Zaten %{email} e-postası olan kayıtlı bir kullanıcı var.'
+      create_success: Davetiye, kullanıcının e-postasına gönderildi.
+      destroy_success: %{email} için davet iptal edildi.
+      resend_success: %{email} adresine davetiye yeniden gönderildi.
+    listing_categories_controller:
+      created: Liste Kategorisi oluşturuldu!
+      updated: Liste Kategorisi güncellendi!
+      deleted: Liste Kategorisi silindi!
+    listings_controller:
+      updated: Liste başarıyla güncellendi
+      destroyed: "'%{title}' başarıyla yok edildi"
+      no_credit: Yeterli kredi yok
+    mods_controller:
+      trusted: '%{username} artık Güvenilir bir role sahip!'
+    navigation_links_controller:
+      deleted: Navigasyon Bağlantısı %{link} silindi
+      created: 'Başarıyla oluşturulan navigasyon bağlantısı: %{link}'
+      updated: 'Başarıyla güncellenen navigasyon bağlantısı: %{link}'
+    organization_memberships_controller:
+      not_exist: 'Organizasyasyon #%{org_id} mevcut değil.'
+      wrong: Kullanıcının %{org} organizasyonundan kaldırılmasıyla ilgili bir şeyler ters gitti.
+      added: Kullanıcı başarıyla %{org} organizasyonuna eklendi.
+      removed: Kullanıcı başarıyla %{org} organizasyonundan kaldırıldı.
+      updated: Kullanıcı başarıyla %{type} olarak güncellendi.
+    organizations_controller:
+      credit_updated: Krediler başarıyla güncellendi.
+    pages_controller:
+      updated: Sayfa başarıyla güncellendi.
+      created: Sayfa başarıyla oluşturuldu.
+      deleted: Sayfa başarıyla silindi.
+      code_of_conduct:
+        title: Davranış Kuralları
+        description: Bu platformda nasıl davranılması gerektiğini açıklayan bir sayfa
+      privacy_policy:
+        title: Gizlilik Politikası
+        description: Gizlilik politikasını açıklayan bir sayfa
+      terms_of_use:
+        title: Kullanım Şartları
+        description: Uygulamanın kullanım şartlarını açıklayan bir sayfa
+    podcasts_controller:
+      new_owner_added: Yeni sahip eklendi!
+      no_such_user: Böyle bir kullanıcı yok
+      scheduled: "Podcast'in bölümleri alınması planlandı (%{title}, #%{id})"
+      updated: Podcast güncellendi
+    profile_field_groups_controller:
+      deleted: Grup %{group} silindi
+      updated: Grup %{group} güncellendi
+      created: 'Başarıyla oluşturulan grup: %{group}'
+    profile_fields_controller:
+      created: Profil alanı %{field} oluşturuldu
+      deleted: Profil alanı %{field} silindi
+      updated: Profil alanı %{field} güncellendi
+    response_templates_controller:
+      saved: 'Yanıt Şablonu: "%{title}" başarıyla kaydedildi.'
+      updated: Yanıt şablonu "%{title}" güncellendi.
+      deleted: Yanıt şablonu "%{title}" silindi.
+    secrets_controller:
+      not_in_vault: Kasada Değil
+      updated: %{key} anahtarı, Kasada başarıyla güncellendi.
+      value: '%{first8}******'
+    settings_controller:
+      confirmation: Kullanıcı adım @%{username} ve bu işlem %100 güvenli ve uygundur.
+    spaces_controller:
+      update_success: Mekan güncellendi.
+    tags:
+      moderators_controller:
+        not_found: 'Kullanıcı ID #%{user_id} bulunamadı'
+        not_found_or: 'Kullanıcı ID #%{user_id} bulunamadı veya hesaplarında hatalar var: %{errors}'
+        removed: '@%{username} - ID #%{user_id} etiket moderatörü olarak kaldırıldı.'
+        added: '%{username} etiket moderatörü olarak eklendi!'
+    tags_controller:
+      created: '%{tag_name} oluşturuldu!'
+      updated: '%{tag_name} etiketi başarıyla güncellendi!'
+      update_fail: 'Etiket güncellemesi başarısız oldu: %{errors}'
+    tools_controller:
+      article_busted: 'Makale #%{article} başarıyla düzeltildi'
+      user_busted: 'Kullanıcı #%{user} başarıyla düzeltildi'
+      link_busted: '%{link} başarıyla düzeltildi'
+    users_controller:
+      exported: Veriler %{receiver} adresine aktarıldı. İşlem kısa süre içinde tamamlanacak.
+      email_fail: E-posta gönderilemedi!
+      email_sent: E-posta gönderildi!
+      verify_sent: Doğrulama e-postası gönderildi!
+      full_delete_html: '@%{user} (e-posta: %{email}, kullanıcı_id: %{id}) tamamen silindi. Eğer bu bir GDPR silme işlemiyse, onları Mailchimp ve Google Analytics'ten silin ve %{the_page} üzerinde onaylayın.'
+      no_email: e-posta yok
+      parameter_missing: Hem konu hem de içerik gereklidir.
+      role_removed: 'Kullanıcıdan %{role} rolü başarıyla kaldırıldı!'
+      identity_removed: %{provider} kimliği başarıyla silindi ve yedeklendi.
+      the_page: sayfa
+      banished: Bu kullanıcı arka planda sürgün ediliyor. İşlem yakında tamamlanacak.
+      unlocked: Kullanıcı hesabı kilidi açıldı!
+      unpublished: Gönderiler arka planda yayından kaldırılıyor. İşlem yakında tamamlanacak.
+      updated: Kullanıcı güncellendi
+      updated_json: Başarılı! %{username} güncellendi.
+      credits_added: Krediler eklendi!
+      credits_removed: Krediler kaldırıldı.
+    welcome_controller:
+      thread_content: |
+        ---
+        title: Hoş Geldiniz İletisi - v0
+        published: false
+        description: Kendinizi topluluğa tanıtın!
+        tags: hoşgeldiniz
+        ---
+
+        Merhaba! %{community} topluluğuna hoş geldiniz!
+
+        ![İNTERNETE HOŞ GELDİNİZ](https://slack-imgs.com/?c=1&url=http%3A%2F%2Fmedia0.giphy.com%2Fmedia%2FzhbrTTpmSCYog%2Fgiphy-downsized.gif)
+
+        Kendinizi topluluğa tanıtmak için aşağıya bir yorum bırakın!✌️

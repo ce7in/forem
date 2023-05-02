@@ -1,0 +1,58 @@
+---
+tr:
+  views:
+    credits:
+      meta:
+        title: Krediler
+      ledger:
+        class:
+          listing: İlan
+        category: Kategori
+        item: Ürün
+        cost: Maliyet (kredi)
+        date: Tarih
+        misc: Çeşitli öğeler
+      listing:
+        create: İlan Oluştur
+        dashboard: İlanlar Paneline Git
+      new:
+        meta:
+          title: Kredi Satın Al
+        heading: @%{name} için kredi satın alın
+        hook:
+          text_html: Krediler, %{community} ilanları gibi gelecekteki ürünler ve hizmetler için kullanılır.
+          listings: "%{community} ilanları"
+        form:
+          amount:
+            label: Satın Alınacak Miktar
+            placeholder: Herhangi bir miktar girin
+          method:
+            label: Ödeme Yöntemi
+            number: "**** **** **** %{last}"
+            exp: "%{aa}/%{yy}"
+            add: Yeni Kart Ekle
+          submit: Satın Almayı Tamamla
+          submitting: Gönderiliyor...
+          note_org: "*Tüm org yöneticileri tarafından sahip olunan kredilere erişilebilir."
+        switch:
+          org: %{name} için değiştir
+          user: Kişisel satın almaya değiştir
+        status:
+          subtitle:
+            org: %{name} kaç kredisi var?
+            user: Şu anda kaç kredim var?
+          desc:
+            org: "%{name} %{count} krediye sahip."
+            user: "%{count} kredin var."
+        how:
+          subtitle: Nasıl kredi kazanabilirim?
+          desc_html: Üyeler, kazandığınız her profil rozeti için <strong>5 kredi</strong> alırlar.
+      purchase: Ek kredi satın al
+      tag: 'Etiket: %{name}'
+      status:
+        user:
+          one: "Harcamak için %{count} kişisel krediniz var"
+          other: "Harcamak için %{count} kişisel krediniz var"
+        org_html:
+          one: "%{name} %{num} krediye sahip"
+          other: "%{name} %{num} krediye sahip"

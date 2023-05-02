@@ -1,0 +1,96 @@
+---
+tr:
+  views:
+    users:
+      meta:
+        og:
+          title: "%{user} — %{community} Profili"
+      comments_locked_cta:
+        title: "%{user} ile bağlantı kurmak istiyor musunuz?"
+        description: "%{user} ile bağlantı kurmak için bir hesap oluşturun. Hesabınız varsa aşağıdan giriş yaparak devam edebilirsiniz."
+        create_account: Hesap Oluştur
+        already_have_an_account: Zaten hesabınız var mı?
+        sign_in: Giriş Yap
+      comments:
+        all:
+          one: Tüm %{count} yorum
+          other: Tüm %{count} yorum
+        last:
+          one: Son %{count} yorum
+          other: Son %{count} yorum
+        recent: Son yorumlar
+        view: Tüm aktiviteyi görüntüle
+        view_all:
+          one: %{count} yorumun tümünü görüntüle
+          other: %{count} yorumun tümünü görüntüle
+        view_last:
+          one: Son 1 yorumu görüntüle
+          other: Son %{count} yorumu görüntüle
+      github:
+        heading: GitHub Depoları
+        fork: Forkla
+        stars:
+          one: 1 yıldız
+          other: "%{count} yıldız"
+      pin_icon: Sabitle
+      pinned: Sabitlenmiş
+      profile_fields:
+        bio:
+          label: Biyografi
+          placeholder: Kısa bir biyografi...
+        display_email_on_profile: E-postayı profilimde göster
+        location:
+          label: Konum
+          placeholder: Halifax, Nova Scotia
+        website:
+          label: Website URL'si
+          placeholder: https://siteniz.com
+        education: Eğitim
+        currently learning: Şu anda öğreniyor
+        currently hacking on: Şu anda hackleniyor
+        available for: Uygun
+        skills/languages: Beceriler/Diller
+        work: İş
+      side:
+        comment:
+          icon: Yorum
+          text:
+            one: 1 yorum yazıldı
+            other: "%{count} yorum yazıldı"
+        org: Kuruluşlar
+        post:
+          icon: Yayın
+          text:
+            one: 1 yayınlanan gönderi
+            other: "%{count} yayınlanan gönderi"
+        tag:
+          icon: Etiket
+          text:
+            one: 1 takip edilen etiket
+            other: "%{count} takip edilen etiket"
+      signout:
+        meta:
+          title: Çıkış Onayla - %{community}
+        heading: Çıkış yapmak istediğinizden emin misiniz?
+        'yes': Evet, çıkış yap
+      block: @%{user}'ı engelle
+      details: "%{user} profili ayrıntıları"
+      dropdown: Kullanıcı eylemleri
+      email_icon: E-posta adresi
+      empty: 404 biyografi bulunamadı
+      flag: @%{user}'ı işaretle
+      follow: Takip et
+      joined:
+        icon: Katılma
+        text_html: "Katılım tarihi: %{date}"
+      location_icon: Konum
+      logo: "%{user} profil resmi"
+      more: "@%{user} hakkında daha fazla bilgi"
+      send_pm:
+        code: davranış kuralları
+        notice_html: Tüm özel etkileşimler %{code} tarafından belirlenen kurallara uygun olmalıdır.
+        placeholder: Mesajınızı buraya yazın...
+        submit: Gönder
+      social: "%{service} web sitesi"
+      unflag: @%{user} için işareti kaldır
+      website: Kişisel web sitesi

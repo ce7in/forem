@@ -1,0 +1,44 @@
+---
+tr:
+  views:
+    liquids:
+      github:
+        view: GitHub'da görüntüle
+      medium:
+        logo: Medium Logosu
+      poll:
+        show_results: Sadece sonuçları göster
+      reddit:
+        author: 'Yazar: %{author}'
+        see: Tam Gönderiyi Görüntüle
+      stackexchange:
+        answer:
+          text_html: "%{title} hakkında %{answer} yanıt"
+          answer: yanıt
+        answers: 'Yanıtlar: %{count}'
+        comments: 'Yorumlar: %{count}'
+        open:
+          answer: Tam Yanıtı Aç
+          article: Tam Makaleyi Aç
+          question: Tam Soruyu Aç
+      twitter:
+        view: Twitter'da görüntüle
+      user_subscription:
+        confirm:
+          subtitle: Aboneliği onayla
+          button_text: Aboneliği onayla
+          cancel_text: İptal
+          text_html: "E-posta adresinizi, kullanıcı adınızı, adınızı ve %{community} profil URL'nizi %{username} ile paylaşacaksınız. Bunun yaptıktan sonra bunu geri alamazsınız."
+        logged_out: "Önce %{community} hesabınıza giriş yapmalısınız."
+        sign_in: Giriş Yap
+        subscribe:
+          apple:
+            button: Abone Ol
+            desc_html: "Merhaba! Görünüşe göre %{community} hesabınızı oluştururken bir özel yönlendirme e-posta adresi kullanarak Apple'a kaydoldunuz. Abone olmak isterseniz, önce %{update} ile farklı bir e-posta adresine güncelleyin."
+            update: Ayarlar'da e-posta adresinizi güncelleyin
+          button: Abone Ol
+          desc_html: "Aboneliği %{community} hesabınızla ilişkili e-posta adresiyle yapacaksınız. Farklı bir e-posta adresi kullanmak için %{update} yapabilirsiniz."
+          update: Ayarlar'da e-posta adresinizi güncelleyin
+      wikipedia:
+        logo: Wikipedia Logosu
+        view: Vikipedi'de görüntüle

@@ -1,0 +1,26 @@
+---
+tr:
+  views:
+    actions:
+      copy:
+        text: Kopyalandı
+        button: Bağlantıyı kopyala
+      more:
+        title: Daha fazla...
+        aria_label: Gönderi paylaşım seçenekleri
+      share:
+        facebook:
+          text: Facebook'ta paylaş
+        hackernews:
+          text: Hacker News'te paylaş
+        linkedin:
+          text: LinkedIn'de paylaş
+        mastodon:
+          text: Mastodon'da paylaş
+        reddit:
+          text: Reddit'te paylaş
+        twitter:
+          text: Twitter'da paylaş
+          query: '"%{article}" %{author} tarafından'
+        link: Gönderiyi Paylaş...
+        report: İhlal Bildirimi Yap

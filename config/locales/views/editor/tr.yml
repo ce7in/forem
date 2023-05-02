@@ -1,0 +1,28 @@
+---
+tr:
+  views:
+    editor:
+      meta:
+        title: Gönderiyi Düzenle
+      heading:
+        new: Yeni Gönderi
+      create: Gönderi Oluştur
+      close:
+        icon: Kapat
+        title: Düzenleyiciyi kapat
+      cover_image:
+        add: Kapak resmi ekle
+        change: Değiştir
+      edit: Düzenle
+      modes: Gönderi görünümü modları
+      new_title: Yeni gönderi başlığı buraya...
+      preview: Önizleme
+      video:
+        progress:
+          heading: "⏳ Video Kodlama İşlemi Devam Ediyor ⏳"
+          notice_1: Bu işlem bittiğinde bir e-posta alacaksınız.
+          notice_2: Bu normal bir yayınlanmamış gönderi. Başlık / etiket / gövde / vb. ekleyin ve ardından video işlemi bittikten sonra yayınlandı olarak işaretleyin.
+        submit_image:
+          button: Değişikliği Gönder
+          text: 'Önizleme Resim Adresi:'
+          placeholder: Yeni Önizleme Resmi Adresi

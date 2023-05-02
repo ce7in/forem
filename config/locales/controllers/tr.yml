@@ -1,0 +1,126 @@
+---
+tr:
+  api_secrets_controller:
+    generated: 'API Anahtarınız oluşturuldu: %{secret}'
+    revoked: API Anahtarınız iptal edildi.
+  application_controller:
+    bad_request: 'Hata: Geçersiz İstek'
+    not_authorized: 'Hata: yetkisiz'
+    please_sign_in: Lütfen oturum açın
+  articles_controller:
+    deleted: Makale başarıyla silindi.
+  comments_controller:
+    create:
+      success: oluşturuldu
+      failure: yorum zaten mevcut
+      authorization_error: Yetkileriniz askıya alındı.
+    delete:
+      error: Bir şeyler yanlış gitti; Yorum silinmedi.
+      notice: Yorum başarıyla silindi.
+    markdown: 'Markdown hatası: %{error}'
+    markdown_html: "<p>😔 Markdown'da bir hata var</p><hr><p>%{error}</p>"
+    moderated: Moderasyon eylemi nedeniyle izin verilmedi
+  confirmations_controller:
+    email_sent: E-posta gönderildi! E-posta onay talimatlarını almakta sorun yaşıyorsanız, %{email} adresinden destek ekibiyle iletişime geçin.
+  credits_controller:
+    done:
+      one: "%{count} yeni kredi satın alındı!"
+      other: "%{count} yeni kredi satın alındı!"
+  devices_controller:
+    not_found: Bulunamadı
+  discussion_locks_controller:
+    locked: Tartışma başarıyla kilitlendi!
+    unlocked: Tartışma başarıyla kilidi açıldı!
+  email_subscriptions_controller:
+    badge_notifications: rozet bildirimleri
+    comment_notifications: yorum bildirimleri
+    digest_emails: "%{community} özet e-postaları"
+    follower_notifications: takipçi bildirimleri
+    mention_notifications: bahsetme bildirimleri
+    this_list: bu liste
+    unread_notifications: okunmamış bildirimler
+  feedback_messages_controller:
+    error_fill: "Formların doldurulduğundan emin olun. 🤖 Diğer olası hatalar: %{errors}"
+    n_a: N/A
+    submitted: Raporunuz gönderildi
+  follows_controller:
+    already_followed: zaten takip ediliyor
+    daily_limit: Günlük hesap takip limitine ulaşıldı!
+    followed: takip edildi
+    unfollowed: takip bırakıldı
+  github_repos_controller:
+    repo_not_found: GitHub deposu bulunamadı
+    github_unauthorized: 'GitHub Yetkisiz: %{e_message}'
+  image_uploads_controller:
+    server_error: Bir sunucu hatası oluştu!
+  listings_controller:
+    deleted: İlan başarıyla silindi.
+    no_credit: Yeterli kredi bulunmuyor
+  omniauth_callbacks_controller:
+    log_in_error: 'Oturum açma hatası: %{e}'
+    username_taken: kullanıcı adı zaten alınmış
+  organizations_controller:
+    secret_updated: Kuruluş gizli anahtarı güncellendi
+    deletion_scheduled: "%{organization_name}" silinmesi planlandı. Silindiğinde bilgilendirileceksiniz.
+    not_deleted: Kuruluşunuz silinmedi; bir yönetici olmalısınız, organizasyondaki tek üye olmalısınız ve organizasyonla bağlantılı hiçbir makale bulunmamalıdır.
+    created: Kuruluşunuz başarıyla oluşturuldu ve yönetici oldunuz.
+    updated: Kuruluşunuz başarıyla güncellendi.
+  podcasts_controller:
+    podcast_suggested: Podcast önerildi
+  profiles_controller:
+    updated: Profiliniz güncellendi
+  rating_votes_controller:
+    not_upserted_successfully: Başarıyla Upsert Edilemedi
+  registrations_controller:
+    error:
+      recaptcha: Recaptcha'yı tamamlamalısınız ✅
+      domain: izin verilen alanlarda bulunmuyor.
+  response_templates_controller:
+    response_template_error: 'Yanıt şablonu hatası: %{errors}'
+    created: "%{title} adlı yanıt şablonunuz oluşturuldu."
+    deleted: "%{title} adlı yanıt şablonunuz silindi."
+    updated: "%{title} adlı yanıt şablonunuz güncellendi."
+  social_previews_controller:
+    fonts: Roboto|Roboto+Condensed
+  stories:
+    pinned_articles_controller:
+      not_found: bulunamadı
+  stories_controller:
+    404_bio_not_found: 404 biyografi bulunamadı
+    searching: "...arama"
+  stripe_active_cards_controller:
+    cannot_remove: Aktif bir üyeliğiniz olduğu sürece kartı kaldıramazsınız. Lütfen önce üyeliğinizi iptal edin.
+    cannot_update: Fatura bilgilerinizi güncellerken bir sorun oluştu.
+    updated: Fatura bilgileriniz güncellendi
+    removed: Kartınız başarıyla kaldırıldı.
+  tag_adjustments_controller:
+    failure: 'Başarısızlık: %{errors}'
+    destroyed: Etiket ayarı kaldırıldı
+  tags_controller:
+    tag_successfully_updated: "Etiket başarıyla güncellendi! 👍 "
+  users_controller:
+    removed_admin: "%{name} artık yönetici değil."
+    removed_member: "%{name} artık organizasyonunuzun bir parçası değil."
+    added_admin: "%{name} şimdi yönetici."
+    provide_email: Hesabınızı silmek için lütfen bir e-posta adresi verin.
+    provide_email_delete: Hesabınızı silmek için lütfen bir e-posta adresi verin
+    send_export: " İhracat kısa süre içinde e-posta ile gönderilecek."
+    invalid_secret: Verilen organizasyon sırrı geçersiz.
+    username_blank: Kullanıcı adı boş olamaz
+    deletion_in_progress: Hesap silme işlemini zaten talep ettiniz. Lütfen e-postanızı daha fazla talimat için kontrol edin.
+    joined_org: %{organization_name} kuruluşuna katıldınız.
+    left_org: Kuruluşunuzdan ayrıldınız.
+    deletion_requested: Hesap silme talep ettiniz. Lütfen e-postanızı daha fazla talimat için kontrol edin.
+    log_in_to_delete: Hesap silme işlemine devam etmek için oturum açmış olmalısınız.
+    deletion_scheduled: Hesap silme işleminiz planlandı. Silindiğinde bilgilendirileceksiniz.
+    removed_identity: %{provider} hesabınız başarıyla kaldırıldı.
+    updated_config: Yapılandırmanız güncellendi. Tüm değişiklikleri görmek için yenileyin.
+    updated_profile: Profiliniz başarıyla güncellendi.
+    token_expired: Token süreniz doldu, lütfen yeni bir tane isteyin. Hesap silme başlatıldıktan sonra tokenler yalnızca 12 saat geçerlidir.
+    notifications_settings_updated: Bildirim ayarlarınız güncellendi.
+  video_states_controller:
+    related_article_not_found: İlgili makale bulunamadı
+    video_state_updated: Video durumu güncellendi
+
+
+

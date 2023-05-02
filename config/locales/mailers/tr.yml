@@ -1,0 +1,33 @@
+---
+tr:
+  mailers:
+    digest_mailer:
+      from: Özet
+      more_top_posts: daha fazla en üstteki %{community} gönderileri
+      more_top_posts_based: ilginize göre daha fazla en üstteki %{community} gönderileri
+      more_top_posts_from: topluluktan daha fazla en üstte okuma yazıları
+      more_trending_posts: daha fazla popüler %{community} gönderileri
+      more_trending_posts_picked: size özel daha fazla popüler %{community} gönderileri
+      other_posts: diğer beğenebileceğiniz yazılar
+      other_community_posts: diğer %{community} yazıları, beğenebileceğiniz
+      other_top_posts: diğer en üstteki %{community} yazıları
+      other_trending_posts: diğer popüler %{community} yazıları
+    notify_mailer:
+      account_deleted: "%{community} - Hesap Silme Onayı"
+      deletion_requested: "%{community} - Hesap Silme İsteği"
+      trusted: Tebrikler! %{community} 'da artık "güvenilir" bir kullanıcısınız!
+      moderator: 'Tebrikler! #%{tag_name} için artık bir moderatörsünüz'
+      new_follower: sizi %{community} 'da takip etmeye başladı
+      new_mention: "%{name}, %{type} içinde sizi bahsetti"
+      org_deleted: "%{community} - Organizasyon Silme Onayı"
+      new_reply: "%{name}, %{type} içinde size yanıt verdi"
+      feedback: %{community} üzerindeki raporunuz için teşekkür ederiz
+      export: İçerik dışa aktarma işleminiz tamamlandı
+      unread_notifications:
+        one: "🔥 %{community} 'da %{count} okunmamış bildiriminiz var"
+        other: "🔥 %{community} 'da %{count} okunmamış bildiriminiz var"
+      new_badge: Bir rozet kazandınız
+      video_upload: Video yüklemeniz tamamlandı
+    verification_mailer:
+      from: "%{community} E-Posta Doğrulama <%{email}>"
+      verify_ownership: %{community} Hesap Sahipliğinizi Doğrulayın

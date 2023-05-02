@@ -1,0 +1,60 @@
+---
+tr:
+  views:
+    tags:
+      meta:
+        title: Etiketler
+        description: %{community} üzerinde takip edilebilecek etiketler
+        og:
+          description: "%{community} harika!"
+      heading:
+        default: Popüler etiketler
+        search_results: %{q} için arama sonuçları
+      search:
+        aria_labels:
+          search_input: Etiket arama terimi
+          submit: Etiketleri ara
+        placeholder: Etiket ara
+      edit:
+        meta:
+          title: %{tag} Düzenle
+        admin: "Yönetici"
+        help: "Yardım"
+        view: "Görüntüle"
+        form:
+          pretty_name:
+            label: Güzel ad
+            placeholder: Bu, gösterim sayfasının üstündeki adıdır.
+          bg_color_hex:
+            label: Etiket rengi
+          short_summary:
+            label: Kısa özet
+            placeholder: Bu etiketin ne hakkında olduğuna dair kısa bir genel bakış.
+          wiki_body_markdown:
+            label: Wiki gövde markdown
+            placeholder: Bu, bir 'hakkında' bölümüdür. İstediğiniz gibi bir SSS, ek kaynaklar, vb. ekleyin.
+          rules_markdown:
+            label: Kurallar markdown
+            placeholder: İsteğe bağlıdır - örneğin, gönderim kuralları gibi kullanılabilir.
+          submit: Kaydet
+      follow: Takip et
+      following_tags: Takip edilen etiketler
+      moderator:
+        text_html: "virgülle ayrılmış, boşluk isteğe bağlıdır. Örnek: %{code}"
+        code: 123
+        placeholder: "virgülle ayrılmış, boşluk isteğe bağlıdır. Örnek: 1,2,3"
+      published:
+        one: 1 gönderi yayınlandı
+        other: "%{count} gönderi yayınlandı"
+      sidebar:
+        about: '#%{tag} hakkında'
+        admin: Yönetici
+        edit: Düzenle
+        guidelines: gönderim kuralları
+        moderate: Moderatör
+        mods: etiket moderatörleri
+        new: Yeni Gönderi Oluştur
+        older: '#%{tag} Önceki Gönderiler'
+        published:
+          one: 1 Gönderi Yayınlandı
+          other: "%{count} Gönderi Yayınlandı"

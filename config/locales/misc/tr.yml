@@ -1,0 +1,41 @@
+---
+tr:
+  create_mascot:
+    name: Maskot
+    error: Maskot zaten ayarlandı
+  broadcast:
+    welcome:
+      ask_question: "Sloan burada! 👋 Henüz bir soru sormadığınızı fark ettim. Soru sormak kolaydır; başlamak için etiket sayfasındaki 'Gönderi Oluştur' düğmesine tıklayın!"
+      customize_experience: "Sloan burada! 👋 DEV deneyiminizi özelleştirebileceğinizi biliyor muydunuz? <a href='settings/customization'>Yazı Tipi ve Tema</a> ayarlarınızı değiştirmeyi deneyin ve en uygun stili bulun!"
+      customize_feed: "Merhaba tekrar! 👋 Artık DEV topluluğunun bir parçası olduğunuza göre, odaklanmamız gereken şey kişiselleştirilmiş içerik. Beslemenizi özelleştirmeye yardımcı olacak bazı etiketleri <a href='/tags'>takip ederek</a> başlayabilirsiniz! 🎉"
+      discuss_and_ask: "Sloan burada! 👋 Henüz bir soru sormadığınızı veya bir tartışma başlatmadığınızı fark ettim. Her ikisini de yapmak kolaydır; başlamak için etiket sayfasındaki 'Gönderi Oluştur' düğmesine tıklayın!"
+      download_app: "Son bir ipucu daha! 👋 DEV mobil uygulamasını indirdiniz mi? Tüm favori DEV içeriğinize istediğiniz zaman erişmek için <a href='https://dev.to/downloads'>indirmeyi</a> düşünün!"
+      set_up_profile: "DEV'e hoş geldiniz! 👋 Ben Sloan, topluluk maskotu ve başlamak için size yardımcı olmaya buradayım. Profilinizi <a href='/settings'>ayarlamaya</a> başlayarak başlayalım!"
+      start_discussion: "Sloan burada! 👋 Henüz bir tartışma başlatmadığınızı fark ettim. Tartışma başlatmak kolaydır; başlamak için etiket sayfasındaki 'Gönderi Oluştur' düğmesine tıklayın!"
+      welcome_thread: "Sloan burada tekrar! 👋 DEV, dost bir topluluktur. Neden kendinizi <a href='/welcome'>hoş geldiniz konusuna</a> bir yorum bırakarak tanıtmıyorsunuz?"
+    connect:
+      apple: "Harika gidiyorsunuz! 🎉 Bir Apple hesabınız var mı? <a href='/settings'>Bağlayabilirsiniz</a>."
+      facebook: "Harika gidiyorsunuz! 🎉 Bir Facebook hesabınız var mı? <a href='/settings'>Bağlayabilirsiniz</a>."
+      forem: "Harika gidiyorsunuz! 🎉 Bir Forem hesabınız var mı? <a href='/settings'>Bağlayabilirsiniz</a>."
+      github: "İyi gidiyorsun! 🎉 GitHub hesabın var mı? Profilindeki repolarından herhangi birini sabitlemek için <a href='/settings'>bağlamayı</a> düşünebilirsin."
+      google: "Çok iyisin! 🎉 Google hesabın var mı? Düşünüp <a href='/settings'>bağlantı kurmayı</a> deneyebilirsin."
+      twitter: "Çok iyisin! 🎉 Twitter hesabın var mı? Paylaştığımız gönderilerde seni @mention etmek için hesabını <a href='/settings'>bağlantılandırmayı</a> düşünebilirsin. Böylece Twitter hesabımız <a href='https://twitter.com/thePracticalDev'>@thePracticalDev</a> üzerinden seni etiketleyebiliriz."
+  errors:
+    authentication:
+      errors:
+        suspended: Önceki %{community_name} hesabın askıya alınmış görünüyor. Bu nedenle, %{community_name} ve topluluğuyla yeni bir hesap oluşturmanı önlemek için önlemler aldık. Yanıldığını düşünüyorsan %{community_email} adresine e-posta gönder ve tekrar bakacağız.
+    fastly_config:
+      must_be_array: 'configs: Dizgi tipinde olmalıdır'
+      invalid_config: Geçersiz Fastly yapılandırması - %{invalid_config}. Yalnızca %{valid_configs_join} geçerlidir.
+  policies:
+    application_policy:
+      must_be_logged_in: giriş yapmış olmalıdır
+      you_must_be_logged_in: Giriş yapmış olmanız gerekiyor
+      your_account_is_suspended: Hesabınız askıya alınmıştır
+    liquid_tag_policy:
+      no_user_found: Kullanıcı bulunamadı
+      not_permitted: Kullanıcı bu sıvı etiketini kullanmak için izinli değil
+  uploaders:
+    base_uploader:
+      too_many_frames: GIF çok fazla kare içeriyor. En fazla kare sayısı %{frame_max} olarak ayarlanmıştır.
+      timeout: Resim işleme süresi aşıldı.

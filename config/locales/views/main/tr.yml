@@ -1,0 +1,70 @@
+---
+tr:
+  views:
+    main:
+      aria_home: "%{community} Anasayfa"
+      header:
+        create_account: Hesap oluştur
+        login: Giriş yap
+        nav:
+          aria_label: Menü
+        moderation:
+          aria_label: Moderasyon
+          icon: Moderasyon
+        notifications:
+          aria_label: Bildirimler
+          icon: Bildirimler
+        skip: İçeriğe atla
+      modal:
+        create_account:
+          aria_label: Yeni hesap oluştur
+          text: Hesap oluştur
+        login:
+          aria_label: Giriş yap
+          text: Giriş yap
+      nav:
+        admin: Yönetim
+        dashboard: Kontrol Paneli
+        placeholder: "..."
+        list: Okuma listesi
+        moderator_center: Moderatör Merkezi
+        other: Diğer
+        settings: Ayarlar
+      nav_name:
+        About: Hakkında
+        Code of Conduct: Davranış Kuralları
+        Contact: İletişim
+        FAQ: Sıkça Sorulan Sorular
+        Home: Anasayfa
+        Listings: İlanlar
+        Podcasts: Podcast'ler
+        Privacy Policy: Gizlilik Politikası
+        Reading List: Okuma Listesi
+        Tags: Etiketler
+        Terms of use: Kullanım Koşulları
+        Videos: Videolar
+      side:
+        listings:
+          heading: İlanlar
+          all: Hepsi
+          new: İlan oluştur
+        trend: trend rehber/kaynaklar
+        recent: son sorgulanma
+      tags:
+        aria_label: Etiket önceliğini özelleştir
+        follow: Takip et
+        my_tags: Benim Etiketlerim
+        popular_tags: Popüler Etiketler
+      footer:
+        built:
+          text_html: %{forem} üzerinde oluşturuldu — %{opensource} yazılımı %{dev} ve diğer kapsayıcı toplulukları destekler.
+          forem: Forem
+          opensource: açık kaynak
+          dev: DEV
+        desc_html: "%{community} — %{desc}"
+        logo: Forem logosu
+        powered:
+          text_html: %{rails} ile sevgiyle yapıldı. %{community} <span title="telif hakkı">&copy;</span> %{copyright}.
+          rails: Ruby on Rails
+      create_post: Yeni yazı oluştur
+      signout: Çıkış Yap
