@@ -136,22 +136,34 @@ export const articleWithReactions = {
       position: 1,
     },
     {
+      slug: 'thumbsup',
+      name: 'Thumbs Up',
+      icon: 'thumb-up',
+      position: 2,
+    },
+    {
+      slug: 'thumbsdown',
+      name: 'Thumps Down',
+      icon: 'thumb-down',
+      position: 3,
+    },
+    {
       slug: 'unicorn',
       name: 'Unicorn',
       icon: 'multi-unicorn',
-      position: 2,
+      position: 4,
     },
     {
       slug: 'raised_hands',
       name: 'Raised Hands',
       icon: 'raised-hands',
-      position: 4,
+      position: 5,
     },
     {
       slug: 'fire',
       name: 'Fire',
       icon: 'fire',
-      position: 5,
+      position: 6,
     },
   ],
 };

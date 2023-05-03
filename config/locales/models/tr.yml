@@ -58,7 +58,7 @@ tr:
         one: Bir yorumda %{count} kullanıcıdan fazlasını anımsayamazsınız!
         other: Bir yorumda %{count} kullanıcıdan fazlasını anımsayamazsınız!
     feedback_message:
-      reported: '(siz) daha önce bu URL'yi bildirdiniz.'
+      reported: "Daha önce bu adresi bildirdiniz."
     github_issue:
       issue_comment_not_found: Sorun yorumu %{issue_id} bulunamadı
       issue_not_found: Sorun %{issue_id} bulunamadı
@@ -102,7 +102,7 @@ tr:
       campaign:
         share_your_project: Projenizi paylaşın
       community:
-        message: '<' veya '>' karakterini içermemelidir
+        message: "'<' veya '>' karakterini içermemelidir"
         new_forem: Yeni Forem
         user: kullanıcı
       general:
@@ -139,4 +139,3 @@ tr:
       setting:
         invalid_hex: geçerli bir hex renk değil
         invalid_rss: geçerli bir RSS/Atom beslemesi değil
-

@@ -2290,7 +2290,9 @@
                 "unicorn",
                 "exploding_head",
                 "raised_hands",
-                "fire"
+                "fire",
+                "thumbsup",
+                "thumbsdown"
               ]
             }
           },
@@ -2359,7 +2361,9 @@
                 "unicorn",
                 "exploding_head",
                 "raised_hands",
-                "fire"
+                "fire",
+                "thumbsup",
+                "thumbsdown"
               ]
             }
           },

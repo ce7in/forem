@@ -144,6 +144,8 @@ RSpec.describe Reaction do
         { category: "fire", count: 0 },
         { category: "raised_hands", count: 0 },
         { category: "readinglist", count: 0 },
+        { category: "thumbsup", count: 0 },
+        { category: "thumbsdown", count: 0 },
       ]
       expect(described_class.count_for_article(article.id)).to contain_exactly(*expected_result)
     end

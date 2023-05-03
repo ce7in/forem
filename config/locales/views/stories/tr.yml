@@ -7,11 +7,11 @@ tr:
         page: " Sayfa %{page}"
         rss: "%{name} RSS Beslemesi"
       heading: Gönderiler
-      discuss: "#tartış"
+      discuss: "#tartışma"
       follow: Takip et
       menu:
-        aria_left: nav-buton-sol
-        aria_right: nav-buton-sağ
+        aria_left: nav-button-left
+        aria_right: nav-button-right
       sort:
         aria_label: Gönderileri görüntüleme şekli
         aria_tagged: Etiketlenmiş gönderileri görüntüleme şekli

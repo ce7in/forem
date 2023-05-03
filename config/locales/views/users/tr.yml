@@ -73,12 +73,12 @@ tr:
           title: Çıkış Onayla - %{community}
         heading: Çıkış yapmak istediğinizden emin misiniz?
         'yes': Evet, çıkış yap
-      block: @%{user}'ı engelle
+      block: "@%{user}'ı engelle"
       details: "%{user} profili ayrıntıları"
       dropdown: Kullanıcı eylemleri
       email_icon: E-posta adresi
       empty: 404 biyografi bulunamadı
-      flag: @%{user}'ı işaretle
+      flag: "@%{user}'ı işaretle"
       follow: Takip et
       joined:
         icon: Katılma
@@ -92,5 +92,5 @@ tr:
         placeholder: Mesajınızı buraya yazın...
         submit: Gönder
       social: "%{service} web sitesi"
-      unflag: @%{user} için işareti kaldır
+      unflag: "@%{user} için işareti kaldır"
       website: Kişisel web sitesi

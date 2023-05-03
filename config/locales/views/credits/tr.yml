@@ -18,7 +18,7 @@ tr:
       new:
         meta:
           title: Kredi Satın Al
-        heading: @%{name} için kredi satın alın
+        heading: "@%{name} için kredi satın alın"
         hook:
           text_html: Krediler, %{community} ilanları gibi gelecekteki ürünler ve hizmetler için kullanılır.
           listings: "%{community} ilanları"

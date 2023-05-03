@@ -61,7 +61,7 @@ tr:
     username_taken: kullanıcı adı zaten alınmış
   organizations_controller:
     secret_updated: Kuruluş gizli anahtarı güncellendi
-    deletion_scheduled: "%{organization_name}" silinmesi planlandı. Silindiğinde bilgilendirileceksiniz.
+    deletion_scheduled: "%{organization_name} silinmesi planlandı. Silindiğinde bilgilendirileceksiniz."
     not_deleted: Kuruluşunuz silinmedi; bir yönetici olmalısınız, organizasyondaki tek üye olmalısınız ve organizasyonla bağlantılı hiçbir makale bulunmamalıdır.
     created: Kuruluşunuz başarıyla oluşturuldu ve yönetici oldunuz.
     updated: Kuruluşunuz başarıyla güncellendi.
@@ -121,6 +121,3 @@ tr:
   video_states_controller:
     related_article_not_found: İlgili makale bulunamadı
     video_state_updated: Video durumu güncellendi
-
-
-

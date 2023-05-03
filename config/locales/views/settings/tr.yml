@@ -3,279 +3,275 @@ tr:
   views:
     settings:
       meta:
-        title: Settings
+        title: Ayarlar
       account:
-        connect: Connect %{provider} Account
-        emails: Account emails
-        primary: Primary email
-        provider_email: "%{provider} email"
-        provider_profile: "%{provider} profile settings"
+        connect: "%{provider} Hesabını Bağla"
+        emails: Hesap e-postaları
+        primary: Birincil e-posta
+        provider_email: "%{provider} e-posta"
+        provider_profile: "%{provider} profil ayarları"
         delete:
-          heading: Delete account
-          desc1: 'Deleting your account will:'
+          heading: Hesabı Sil
+          desc1: 'Hesabınızı silmek:'
           desc1a: |
-            Delete your profile, along with your authentication associations.
+            Profilinizi ve kimlik doğrulama ilişkilerinizi siler.
 
-            This does not include applications permissions. You will have to remove them yourself:
-          desc1b: Delete any and all content you have, such as articles, comments, or your reading list.
-          desc1c: Allow your username to become available to anyone.
-          desc2_html: Please, %{provide} to fully delete your account.
-          provide: provide an email
-          submit: Delete Account
+            Bu, uygulama izinlerini içermez. Bunları kendiniz kaldırmanız gerekir:
+          desc1b: Sahip olduğunuz tüm içeriği siler, örneğin makaleler, yorumlar veya okuma listeniz.
+          desc1c: Kullanıcı adınızın başkaları tarafından kullanılabilir hale gelmesine izin verir.
+          desc2_html: Lütfen hesabınızı tamamen silmek için %{provide}.
+          provide: bir e-posta sağlayın
+          submit: Hesabı Sil
         export:
-          heading: Export content
-          desc: You can request an export of all your content. Currently we only support the export of your posts and comments, if you have any. They will be emailed to your inbox.
-          label: Request an export of your content
-          requested: You have recently requested an export of your content. Please check your email.
-          submit: Submit Data Request
+          heading: İçeriği Dışa Aktar
+          desc: İçeriğinizin tümünün bir dışa aktarılmasını isteyebilirsiniz. Şu anda sadece gönderilerinizin ve yorumlarınızın dışa aktarılmasını destekliyoruz, varsa. Bunlar gelen kutunuza e-posta ile gönderilecektir.
+          label: İçeriğinizi dışa aktarmak için istekte bulunun
+          requested: Yakın zamanda içeriğinizin dışa aktarılması için talepte bulundunuz. Lütfen e-postanızı kontrol edin.
+          submit: Veri İsteğini Gönder
         remove:
-          heading: Remove OAuth Associations
-          desc1: You can remove one of your authentication methods. We'll still need one to authenticate you.
-          desc2: 'Removing an OAuth association will:'
-          desc2a: remove your ability to sign in with that account
-          desc2b: remove the associated URL from your profile
+          heading: OAuth İlişkilendirmelerini Kaldır
+          desc1: Kimlik doğrulama yöntemlerinizden birini kaldırabilirsiniz. Sizi doğrulamak için yine de bir tane kullanmamız gerekecek.
+          desc2: 'Bir OAuth ilişkilendirmesini kaldırmak:'
+          desc2a: o hesapla oturum açma yeteneğini kaldırır
+          desc2b: ilişkili URL'yi profilinizden kaldırır
           desc3: |
-            Note that this does not revoke our OAuth app access;
-            you will have to do so in your settings for the specific provider:
-          confirm: Are you absolutely sure you want to remove your %{provider} account?
-          submit: Remove %{provider}
+            Bu, OAuth uygulama erişimimizi iptal etmez;
+            bunu belirli sağlayıcının ayarlarında kendiniz yapmanız gerekir:
+          confirm: "%{provider} hesabınızı kaldırmak istediğinizden kesinlikle emin misiniz?"
+          submit: "%{provider} Kaldır"
       billing:
-        heading: Billing
-        add: Add Credit Card
-        another: "+ Add Another Credit Card"
-        cards: Your Credit Cards
-        exp: Expires %{month} / %{year}
-        label: Add Card
-        number: "%{brand} ending in %{last}"
-        make: Make primary
-        primary: primary
-        remove: Remove card
-      characters: "Available characters used: "
+        heading: Faturalandırma
+        add: Kredi Kartı Ekle
+        another: "+ Başka Bir Kredi Kartı Ekle"
+        cards: Kredi Kartlarınız
+        exp: Son kullanma tarihi %{month} / %{year}
+        label: Kart Ekle
+        number: "%{brand} sonu %{last}"
+        make: Birincil yap
+        primary: birincil
+        remove: Kartı Kaldır
+      characters: "Kullanılabilir karakterler: "
       complete:
-        heading: Confirm your email to complete your profile.
-        desc: While you're at it, go ahead and fill everything out.
-        github: Connect your github account as well to complete your identity.
-        twitter: Connect your twitter account as well to complete your identity.
+        heading: Profilinizi tamamlamak için e-postanızı onaylayın.
+        desc: Bu arada, devam edin ve her şeyi doldurun.
+        github: Kimliğinizi tamamlamak için GitHub hesabınızı da bağlayın.
+        twitter: Kimliğinizi tamamlamak için Twitter hesabınızı da bağlayın.
       custom:
-        adjacent: Permit Nearby External Sponsors (When publishing)
-        announce: Announcements
-        announce_desc: Announcements inform you on important site-wide information, like updates and events.
-        announce_field: Display Announcements (When browsing)
-        appearance: Appearance
-        basic: Basic markdown
-        content: Content
-        editor: Editor Version
-        fixed: Fixed to window
-        font: Base Reading Font
-        level: What is your approximate experience level (1-5)?
-        level_desc: This will not be displayed on your profile or anywhere publicly. It helps gently determine what content you are shown along with tags you follow etc.
+        adjacent: Yakındaki Harici Sponsorlara İzin Ver (Yayınlarken)
+        announce: Duyurular
+        announce_desc: Duyurular, güncellemeler ve etkinlikler gibi önemli site genelindeki bilgileri size bildirir.
+        announce_field: Duyuruları Görüntüle (Gezinirken)
+        appearance: Görünüm
+        basic: Basit markdown
+        content: İçerik
+        editor: Editör Sürümü
+        fixed: Sabit pencere
+        font: Temel Okuma Yazı Tipi
+        level: Yaklaşık deneyim seviyeniz nedir (1-5)?
+        level_desc: Bu, profilinizde veya herhangi bir yerde kamuoyuna gösterilmeyecektir. Takip ettiğiniz etiketlerle birlikte hangi içeriğin gösterileceğini belirlemeye yardımcı olur.
         navbar: Site Navbar
-        rich: Rich + markdown
-        save: Save
-        sponsor: Sponsors
-        sponsor_desc_html: You have the option to disable billboards from external sponsors. Our wonderful partners help sustain the platform, and we strive to ensure that their presence is constructive and valuable to the community, but you are welcome to make use of this setting if you wish. More details in our <a href="/billboards">billboards FAQ</a>.
-        sponsor_field: Display External Sponsors (When browsing)
-        static: Static top of page
-        theme: Site Theme
-        writing: Writing
-      danger: Danger Zone
+        rich: Zengin + markdown
+        save: Kaydet
+        sponsor: Sponsorlar
+        sponsor_desc_html: Harici sponsorların reklamlarını devre dışı bırakma seçeneğine sahipsiniz. Harika ortaklarımız platformu sürdürmemize yardımcı olur ve onların varlığının topluluk için yapıcı ve değerli olmasını sağlamaya çalışırız, ancak isterseniz bu ayarı kullanabilirsiniz. Daha fazla ayrıntı için <a href="/billboards">billboards SSS</a> adresine bakın.
+        sponsor_field: Harici Sponsorları Görüntüle (Gezinirken)
+        static: Sayfa başında statik
+        theme: Site Teması
+        writing: Yazma
+      danger: Tehlike Bölgesi
       destroy:
-        heading: Destroy your account
-        desc: 'Deleting your account will:'
-        desc_1_html: delete your profile, along with your Twitter and/or GitHub associations. This does not include app permissions. You will have to remove them yourself on %{twitter} and %{github}.
-        desc_2: delete any and all content you have, such as articles, comments, or your reading list.
-        desc_3: allow your username to become available to anyone.
-        click: click here
-        confirm_html: 'For confirmation, type the words: <code>%{word}</code>'
-        ghost_html: If you would like to keep your content under the %{ghost} account, please %{click}
-        github: GitHub profile settings
-        submit: Delete account
-        to_delete: 'To delete your account:'
-        twitter: Twitter profile settings
-        type: Type in your username
-        username: username
-        word: delete my account
-      email: Email verification.
+        heading: Hesabınızı silin
+        desc: 'Hesabınızı silmek:'
+        desc_1_html: Profilinizi, Twitter ve/veya GitHub ilişkilendirmelerinizle birlikte siler. Bu, uygulama izinlerini içermez. %{twitter} ve %{github} üzerinde kendiniz kaldırmalısınız.
+        desc_2: Sahip olduğunuz tüm içeriği siler, örneğin makaleler, yorumlar veya okuma listeniz.
+        desc_3: Kullanıcı adınızın başkaları tarafından kullanılabilir hale gelmesine izin verir.
+        click: buraya tıklayın
+        confirm_html: 'Onay için, şu kelimeleri yazın: <code>%{word}</code>'
+        ghost_html: Eğer içeriğinizi %{ghost} hesabı altında tutmak istiyorsanız, lütfen %{click}
+        github: GitHub profil ayarları
+        submit: Hesabı sil
+        to_delete: 'Hesabınızı silmek için:'
+        twitter: Twitter profil ayarları
+        type: Kullanıcı adınızı yazın
+        username: kullanıcı adı
+        word: hesabımı sil
+      email: E-posta doğrulama.
       errors:
         org:
-          one: '1 error prohibited your organization profile from being saved:'
-          other: "%{count} errors prohibited your organization profile from being saved:"
+          one: '1 hata, kuruluş profilinizin kaydedilmesini engelledi:'
+          other: "%{count} hata, kuruluş profilinizin kaydedilmesini engelledi:"
         profile:
-          one: '1 error prohibited your profile from being saved:'
-          other: "%{count} errors prohibited your profile from being saved:"
+          one: '1 hata, profilinizin kaydedilmesini engelledi:'
+          other: "%{count} hata, profilinizin kaydedilmesini engelledi:"
       extensions:
         api:
-          heading: "%{community} API Keys"
-          desc_html: You can generate personal API keys to use for authentication with the %{community} API.  The API is still in its beta stage. The %{doc} contains further information.
+          heading: "%{community} API Anahtarları"
+          desc_html: Kişisel API anahtarları oluşturarak %{community} API ile kimlik doğrulama için kullanabilirsiniz. API hala beta aşamasındadır. %{doc} daha fazla bilgi içerir.
           active:
-            heading: Active API keys (never share these!)
-            created: 'Created: %{time}'
-          doc: documentation
+            heading: Aktif API anahtarları (asla paylaşmayın!)
+            created: 'Oluşturuldu: %{time}'
+          doc: belgeler
           gen:
-            heading: Generate a new Key
-            label: Description
-            text: What's this API key for?
-            placeholder: My Project Name
-            submit: Generate API Key
-          revoke: Revoke
+            heading: Yeni Anahtar Oluştur
+            label: Açıklama
+            text: Bu API anahtarı ne için?
+            placeholder: Projem Adı
+            submit: API Anahtarı Oluştur
+          revoke: İptal et
         comment:
-          heading: Comment templates
-          desc_html: Create and save <strong>comment templates</strong> that you can reuse.
-          add: Add new comment template
-          confirm: 'Are you sure you want to delete: %{template}?'
-          create: Create a new response template
-          cue: Memorable cue for template
-          edit: Edit
-          edit_template: Edit comment template
-          remove: Remove
-          save: Save template
-          saved: Saved templates
-          trusted: Trusted user templates
+          heading: Yorum şablonları
+          desc_html: Yeniden kullanabileceğiniz <strong>yorum şablonları</strong> oluşturun ve kaydedin.
+          add: Yeni yorum şablonu ekle
+          confirm: '%{template} şablonunu silmek istediğinize emin misiniz?'
+          create: Yeni yanıt şablonu oluştur
+          cue: Şablon için akılda kalıcı ipucu
+          edit: Düzenle
+          edit_template: Yorum şablonunu düzenle
+          remove: Kaldır
+          save: Şablonu kaydet
+          saved: Kaydedilen şablonlar
+          trusted: Güvenilir kullanıcı şablonları
         github:
           heading: GitHub
-          desc1: Pin your GitHub repositories to your profile.
-          desc2: Repositories will disappear from your profile if you remove the OAuth association with GitHub.
+          desc1: GitHub depolarınızı profilinize sabitleyin.
+          desc2: GitHub ile OAuth ilişkilendirmesini kaldırırsanız, depolar profilinizden kaybolacaktır.
         rss:
-          heading: Publishing to %{community} from RSS
-          desc1_html: Posts will land in your %{dashboard} <strong>as drafts</strong>, and then you can publish from there.
-          desc2: Formatting will typically look good, but you may have to make manual fixes. In the case of Medium, you may have to manually fix embeds.
-          desc3_html: To find out more about how drafts are created from your feed, read this %{guide}.
-          desc4: Your feed will be fetched every time you submit this form and updates will be automatically fetched periodically thereafter.
-          desc5_html: 'FYI: Medium RSS feed URLs are <em>https://medium.com/feed/@your_username</em>'
-          desc6: By submitting your RSS Feed URL, you agree that you own and/or have permission to syndicate the associated content.
-          dashboard: dashboard
-          fetch: Fetch feed now
-          guide: guide
-          last_html: 'Last Fetched: %{time}'
-          mark_canonical_html: Mark the RSS source as canonical URL by default <p class='crayons-field__description'>If you check this box, the post will automatically mark the feed source as the canonical URL.</p>
-          referential_html: Replace self-referential links with %{community}-specific links <p class='crayons-field__description'>If you check this box, the post will automatically change any URLs included in the post to refer to the version of that article on %{community} if available. This is primarily meant for folks migrating their entire blog onto %{community}.</p>
-          save: Save Feed Settings
-          submit: Submit Feed Settings
+          heading: RSS'den %{community} yayınlama
+          desc1_html: Gönderileriniz, %{dashboard} <strong>taslak olarak</strong> düşecek ve ardından oradan yayınlayabilirsiniz.
+          desc2: Biçimlendirme genellikle iyi görünecektir, ancak manuel düzeltmeler yapmanız gerekebilir. Medium'da olduğu gibi, gömülü içerikleri manuel olarak düzeltebilirsiniz.
+          desc3_html: Beslemenizden nasıl taslaklar oluşturulduğunu öğrenmek için bu %{guide} rehberini okuyun.
+          desc4: Beslemeniz, bu formu her gönderdiğinizde alınacak ve güncellemeler, bu işlemin ardından otomatik olarak düzenli olarak alınacaktır.
+          desc5_html: '<em>https://medium.com/feed/@your_username</em> şeklindedir'
+          desc6: RSS Besleme URL'nizi göndererek, ilişkili içeriği yayınlamak için sahip olduğunuz ve/veya izin verdiğinizi kabul edersiniz.
+          dashboard: kontrol paneli
+          fetch: Beslemeyi şimdi al
+          guide: rehber
+          last_html: 'Son Alındı: %{time}'
+          mark_canonical_html: Varsayılan olarak RSS kaynağını kanonik URL olarak işaretleyin <p class='crayons-field__description'>Bu kutuyu işaretlerseniz, gönderi otomatik olarak besleme kaynağını kanonik URL olarak işaretleyecektir.</p>
+          referential_html: Kendi başına referans veren bağlantıları %{community} özgü bağlantılarla değiştirin <p class='crayons-field__description'>Bu kutuyu işaretlerseniz, gönderi, gönderide yer alan URL'lerin mümkün olduğunda o makalenin %{community} üzerindeki sürümüne atıfta bulunan bağlantıları otomatik olarak değiştirecektir. Bu, öncelikle bloglarını tamamen %{community} üzerine taşımak isteyen kişiler için düşünülmüştür.</p>
+          save: Besleme Ayarlarını Kaydet
+          submit: Besleme Ayarlarını Gönder
         web_monetization:
-          header: Web monetization
-          receive_payments: 'Receive micropayments for time spent reading your posts directly. '
-          learn_more: Learn more
-          payment_pointer: Payment Pointer
-          save_settings: Save Web Monetization Settings
-      finalize_html: You have requested a change to %{email}. Check your inbox for the verification link to finalize the change.
-      for_html: Settings for %{name}
+          header: Web para kazanma
+          receive_payments: 'Gönderilerinizi okuma süresi için direkt olarak mikro ödemeler alın. '
+          learn_more: Daha fazla bilgi
+          payment_pointer: Ödeme İşaretçisi
+          save_settings: Web Para Kazanma Ayarlarını Kaydet
+      finalize_html: "%{email} için bir değişiklik istediniz. Değişikliği tamamlamak için doğrulama bağlantısını içeren postayı kontrol edin."
+      for_html: "%{name} için Ayarlar"
       group:
-        user: User
-        Basic: Basic
-        Branding: Branding
-        Coding: Coding
-        Work: Work
-      new_org: New Organization
+        user: Kullanıcı
+        Basic: Temel
+        Branding: Markalaşma
+        Coding: Kodlama
+        Work: İş
+      new_org: Yeni Organizasyon
       notifications:
-        email: Email notifications
-        general: General notifications
-        general_desc_html: Notifications that only appear on the %{page}.
-        mobile: Mobile notifications
-        moderator: Moderator notifications
-        page: notifications page
-        save: Save
+        email: E-posta bildirimleri
+        general: Genel bildirimler
+        general_desc_html: Yalnızca %{page} üzerinde görünen bildirimler.
+        mobile: Mobil bildirimler
+        moderator: Moderatör bildirimleri
+        page: bildirimler sayfası
+        save: Kaydet
       org:
         admin:
-          admin: Admin
+          admin: Yönetici
           copy:
             button:
-              aria_label: Copy organization secret code to clipboard
-            icon: Copy to clipboard
+              aria_label: Kuruluş gizli kodunu panoya kopyala
+            icon: Panoya kopyala
             input:
-              aria_label: Organization secret (to be rotated regularly)
-            text: Copied to clipboard!
-          cta: Call-to-action box
-          cta_desc: Customizable text that appears to the right of every post for your organization.
+              aria_label: Düzenli olarak döndürülmesi gereken organizasyon sırrı
+            text: Panoya kopyalandı!
+          cta: Çağrı-aksiyon kutusu
+          cta_desc: Organizasyonunuzun her gönderisinin sağ tarafında görünen özelleştirilebilir metin.
           delete:
-            heading: Delete Organization
-            confirm: 'Are you absolutely sure you want to delete your organization: %{name}?'
+            heading: Organizasyonu Sil
+            confirm: '%{name} organizasyonunu silmek istediğinizden kesinlikle emin misiniz?'
             desc_html: |-
-              You can delete your organization if you:
+              Eğer:
               <ul>
-                <li>are the only member in the organization</li>
-                <li>are an admin of the organization</li>
-                <li>the organization has no posts</li>
-                <li>and the organization has no credits</li>
+                <li>organizasyonda tek üye sizseniz</li>
+                <li>organizasyonun yöneticisiyseniz</li>
+                <li>organizasyonun hiç gönderisi yoksa</li>
+                <li>ve organizasyonun hiç kredisi yoksa</li>
               </ul>
-            submit: Delete "%{name}"
-            questions_html: Questions? Email us at %{email} for help.
-            unmet: Your organization currently does not meet the above requirements. Please remove all other members and organization posts first.
-          details: Organization details
+              organizasyonunuzu silebilirsiniz.
+            submit: '"%{name}" Sil'
+            questions_html: Sorularınız mı var? Yardım için %{email} adresinden bize e-posta gönderin.
+            unmet: Organizasyonunuz şu anda yukarıdaki gereklilikleri karşılamıyor. Lütfen önce diğer tüm üyeleri ve organizasyon gönderilerini kaldırın.
+          details: Organizasyon detayları
           form:
-            slug: 'Your organization''s URL is: %{slug}'
-            tag_line: Limit of 60 characters
-            summary: Limit of 250 characters
-            location: Limit of 64 characters
-            email: Limit of 64 characters
-            company_size: Enter a number
-            story: Limit of 640 characters
-            tech_stack: Limit of 640 characters
-            cta_body_markdown: 'Limited markdown: _italic_ and **bold** is okay. Links, and headers etc. will not show up. 256 character limit.'
-            cta_button_text: Limit of 20 characters
-            submit: Save
+            slug: 'Organizasyonunuzun URL''si: %{slug}'
+            tag_line: 60 karakter sınırı
+            summary: 250 karakter sınırı
+            location: 64 karakter sınırı
+            email: 64 karakter sınırı
+            company_size: Bir sayı girin
+            story: 640 karakter sınırı
+            tech_stack: 640 karakter sınırı
+            cta_body_markdown: 'Sınırlı markdown: _italic_ ve **bold** kullanılabilir. Linkler ve başlıklar vb. görünmez. 256 karakter sınırı.'
+            cta_button_text: 20 karakter sınırı
+            submit: Kaydet
           gen:
-            confirm: Are you sure you want to generate a new secret? All outstanding secrets will be invalid.
-            text: You should rotate this regularly!
-            submit: Generate new secret
-          grow: Grow the team
-          invite: 'Invite teammates by sending them the secret and the following instructions:'
-          inst1_html: Sign up at %{url}
-          inst2_html: Navigate to %{url}
-          inst3_html: Paste the secret code below and click <b>Join Organization</b>
+            confirm: Tüm geçerli sırların geçersiz hale geleceği için yeni bir sır oluşturmak istediğinizden emin misiniz?
+            text: Bunu düzenli olarak döndürmelisiniz!
+            submit: Yeni sır oluştur
+          grow: Ekibi büyüt
+          invite: 'Gizli kodu ve aşağıdaki talimatları göndererek takım arkadaşlarınızı davet edin:'
+          inst1_html: "%{url} adresinde kaydolun"
+          inst2_html: "%{url} adresine gidin"
+          inst3_html: Aşağıdaki gizli kodu yapıştırın ve <b>Organizasyona Katıl</b> düğmesine tıklayın
           make:
-            confirm: Are you sure you want to give %{user} admin status?
-            title: Make admin
-            text: Make admin
-          members: Organization Members
+            confirm: "%{user} adlı kullanıcıya yönetici statüsü vermek istediğinizden emin misiniz?"
+            title: Yönetici yap
+            text: Yönetici yap
+          members: Organizasyon Üyeleri
           remove:
-            confirm: Are you sure you want remove %{user} from the organization?
-            title: Remove from org
-            text: Remove from org
+            confirm: "%{user} adlı kullanıcıyı organizasyondan çıkarmak istediğinizden emin misiniz?"
+            title: Organizasyondan çıkar
+            text: Organizasyondan çıkar
           revoke:
-            confirm: Are you sure you want to take away admin status from %{user}?
-            title: Revoke admin status
-            text: Revoke admin status
-          secret_code: 'Your secret code is:'
-          you: You
+            confirm: "%{user} adlı kullanıcının yönetici statüsünü geri almak istediğinizden emin misiniz?"
+            title: Yönetici statüsünü iptal et
+            text: Yönetici statüsünü iptal et
+          secret_code: 'Gizli kodunuz:'
+          you: Siz
         create:
-          heading: Create An Organization
-          notice: You must have your organization's permission to submit this form. Dishonesty may result in a permanent suspension.
-          proof: This is just a quick blurb indicating or link that shows that you clearly are associated with this organization.
-          required: Starred fields are required
-          slug: Your organization URL will be %{url}/{username}
-          submit: Create Organization
+          heading: Bir Organizasyon Oluştur
+          notice: Bu formu göndermek için organizasyonunuzun iznini almalısınız. Dürüst olmamak, kalıcı bir yasakla sonuçlanabilir.
+          proof: Bu, organizasyonla açıkça ilişkili olduğunuzu gösteren bir belirti veya bağlantıdır.
+          required: Yıldızlı alanlar zorunludur
+          slug: Organizasyon URL'niz %{url}/{username} şeklinde olacak
+          submit: Organizasyon Oluştur
         join:
-          heading: Join An Organization
-          desc: Provided to you by an org admin
-          label: Secret code
+          heading: Bir Organizasyona Katıl
+          desc: Bir org yöneticisi tarafından size verilen
+          label: Gizli kod
           placeholder: "..."
-          submit: Join Organization
+          submit: Organizasyona Katıl
         leave:
-          confirm: Are you sure you want to leave this organization?
-          submit: Leave Organization
-        divider: OR
+          confirm: Bu organizasyondan ayrılmak istediğinizden emin misiniz?
+          submit: Organizasyondan Ayrıl
+        divider: VEYA
       password:
-        heading: Set new password
+        heading: Yeni şifre belirle
         desc_html: |-
-          If your account was created using social account authentication, you may prefer to add an email
-          log in. If you signed up with a social media account, <a href="%{path}">
-          please reset the password</a> for your primary email address (%{email}) in
-          order to enable this. Please note that email login is in addition to social login rather than
-          a replacement for it, so your authenticated social account will continue to be linked to your
-          account.
-        current: Current password
-        confirm: Confirm new password
-        new: Password
-        submit: Set New Password
-      previous: There is an existing account authorized with that social account.
+          Hesabınız sosyal medya hesabı doğrulaması kullanarak oluşturulduysa, e-posta ile giriş yapmayı tercih edebilirsiniz. Sosyal medya hesabıyla kaydolduysanız, <a href="%{path}">
+          lütfen ana e-posta adresiniz (%{email}) için şifreyi sıfırlayın</a>
+          bunu etkinleştirmek için. E-posta girişi, sosyal girişin yerine geçmez, bu nedenle doğrulanmış sosyal hesabınız hesabınıza bağlı kalmaya devam eder.
+        current: Mevcut şifre
+        confirm: Yeni şifreyi onaylayın
+        new: Şifre
+        submit: Yeni Şifre Belirle
+      previous: Bu sosyal hesapla yetkilendirilmiş mevcut bir hesap bulunuyor.
       tab:
-        Profile: Profile
-        Customization: Customization
-        Notifications: Notifications
-        Account: Account
-        Billing: Billing
-        Organization: Organization
-        Extensions: Extensions
-      save_profile: Save Profile Information
-
-  Translate this en.yml file to Turkish by preserving the keys with the same mechanism. Put you response in a yml code block. Don't give me a plain text. Put your response to a code block.
+        Profil: Profil
+        Özelleştirme: Özelleştirme
+        Bildirimler: Bildirimler
+        Hesap: Hesap
+        Faturalandırma: Faturalandırma
+        Organizasyon: Organizasyon
+        Uzantılar: Uzantılar
+      save_profile: Profil Bilgilerini Kaydet

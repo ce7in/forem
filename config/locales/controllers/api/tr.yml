@@ -3,8 +3,8 @@ tr:
   api:
     v0:
       analytics_controller:
-        invalid_date_format: 'Başlangıç' veya 'bitiş' tarih parametreleri 'yyyy-aa-gg' formatında olmalıdır
-        start_missing: Gerekli 'başlangıç' parametresi eksik
+        invalid_date_format: "'Başlangıç' veya 'bitiş' tarih parametreleri 'yyyy-aa-gg' formatında olmalıdır"
+        start_missing: "Gerekli 'başlangıç' parametresi eksik"
       articles_controller:
         must_be_json: makale parametresi bir JSON nesnesi olmalıdır. Makaleyi %{type} olarak sağladınız
       follows_controller:

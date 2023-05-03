@@ -64,7 +64,7 @@ tr:
         desc_html: "%{community} — %{desc}"
         logo: Forem logosu
         powered:
-          text_html: "%{rails} ile sevgiyle yapıldı. %{community} <span title="telif hakkı">&copy;</span> %{copyright}."
+          text_html: '%{rails} ile sevgiyle yapıldı. %{community} <span title="telif hakkı">&copy;</span> %{copyright}."'
           rails: Ruby on Rails
       create_post: Yeni yazı oluştur
       signout: Çıkış Yap

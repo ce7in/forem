@@ -184,8 +184,8 @@ tr:
           empty1: "%{user} hakkında henüz bayrak alınmadı."
           empty2: "%{user} hakkında alınan bayraklar burada bulunacaktır."
           type:
-            article: Gönderi "%{title}"
-            comment: "%{title}" üzerine yorum
+            article: 'Gönderi "%{title}"'
+            comment: '"%{title}" üzerine yorum'
             profile: Kullanıcı profil
           origin_html: "%{user} tarafından işaretlendi"
         notes:
