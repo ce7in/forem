@@ -12,7 +12,7 @@ exploding_head:
   icon: exploding-head
 raised_hands:
   position: 4
-  icon: raised-hands
+  icon:
 fire:
   position: 5
   icon: fire

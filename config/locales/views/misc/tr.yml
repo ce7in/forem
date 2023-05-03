@@ -24,7 +24,7 @@ tr:
         install: Uygulamayı yükle
     email_subscriptions:
       unsubscribe:
-        heading: %{type} için aboneliğiniz iptal edildi. 😔
+        heading: "%{type} için aboneliğiniz iptal edildi. 😔"
         description_html: Artık bu tür e-postalar almayacaksınız. Yeniden abone olmak veya tüm e-posta tercihlerinizi yönetmek isterseniz, lütfen %{link} tıklayın.
         link: buraya tıklayın
       invalid:
@@ -48,7 +48,7 @@ tr:
         text: 'Önizleme:'
     onboardings:
       meta:
-        title: %{community}'a Hoş Geldiniz
+        title: "%{community}'a Hoş Geldiniz"
       heading: Artık topluluğun bir parçasısınız!
       subtitle: YAPABİLECEĞİNİZ ÖNERİLEN ŞEYLER
       close: Karşılama Mesajını Kapat
@@ -95,12 +95,12 @@ tr:
         description: "%{site} => Arama Sonuçları"
     series:
       meta:
-        description: %{site}'de %{title}'i görüntüle
+        description: "%{site}'de %{title}'i görüntüle"
       heading: "%{user}'ın Serileri"
       empty: Bu kullanıcının hiçbir serisi yok
       list:
         heading: "%{series} Serisi Makaleleri"
-        back: %{user}'ın Serilerine Geri Dön
+        back: "%{user}'ın Serilerine Geri Dön"
         empty: Bu seride hiçbir makale yok
     stats:
       meta:
@@ -125,14 +125,14 @@ tr:
       email: E-posta
       hot: Popüler
       location: Konum
-      more_from_html: %{actor}'dan Daha Fazla
+      more_from_html: "%{actor}'dan Daha Fazla"
       no_summary: Bu etikette gönderi yok
-      trending_html: %{app}'de Trend
+      trending_html: "%{app}'de Trend"
     videos:
       meta:
         title: Videolar
         og:
-          description: %{community}'deki tüm videolar
+          description: "%{community}'deki tüm videolar"
       heading: "%{community} Videoda"
       beta_html: "<strong>Video beta:</strong> %{contact}"
       upload: "🎥 Video Dosyası Yükle 🙌"
