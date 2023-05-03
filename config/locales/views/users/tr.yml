@@ -21,8 +21,8 @@ tr:
         recent: Son yorumlar
         view: Tüm aktiviteyi görüntüle
         view_all:
-          one: %{count} yorumun tümünü görüntüle
-          other: %{count} yorumun tümünü görüntüle
+          one: "%{count} yorumun tümünü görüntüle"
+          other: "%{count} yorumun tümünü görüntüle"
         view_last:
           one: Son 1 yorumu görüntüle
           other: Son %{count} yorumu görüntüle

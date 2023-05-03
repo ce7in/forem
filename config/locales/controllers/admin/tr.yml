@@ -23,7 +23,7 @@ tr:
       created: '%{app} oluşturuldu!'
       deleted: '%{app} silindi!'
       updated: '%{app} güncellendi!'
-      wrong: %{app} silmeyle ilgili bir şeyler ters gitti.
+      wrong: '%{app} silmeyle ilgili bir şeyler ters gitti'.
     display_ads_controller:
       created: Görüntüleme Reklamı oluşturuldu!
       deleted: Görüntüleme Reklamı silindi!
@@ -42,8 +42,8 @@ tr:
     invitations_controller:
       duplicate: 'Davetiye gönderilmedi. Zaten %{email} e-postası olan kayıtlı bir kullanıcı var.'
       create_success: Davetiye, kullanıcının e-postasına gönderildi.
-      destroy_success: %{email} için davet iptal edildi.
-      resend_success: %{email} adresine davetiye yeniden gönderildi.
+      destroy_success: '%{email} için davet iptal edildi.'
+      resend_success: '%{email} adresine davetiye yeniden gönderildi.'
     listing_categories_controller:
       created: Liste Kategorisi oluşturuldu!
       updated: Liste Kategorisi güncellendi!
@@ -98,7 +98,7 @@ tr:
       deleted: Yanıt şablonu "%{title}" silindi.
     secrets_controller:
       not_in_vault: Kasada Değil
-      updated: %{key} anahtarı, Kasada başarıyla güncellendi.
+      updated: '%{key} anahtarı, Kasada başarıyla güncellendi.'
       value: '%{first8}******'
     settings_controller:
       confirmation: Kullanıcı adım @%{username} ve bu işlem %100 güvenli ve uygundur.
@@ -127,7 +127,7 @@ tr:
       no_email: e-posta yok
       parameter_missing: Hem konu hem de içerik gereklidir.
       role_removed: 'Kullanıcıdan %{role} rolü başarıyla kaldırıldı!'
-      identity_removed: %{provider} kimliği başarıyla silindi ve yedeklendi.
+      identity_removed: '%{provider} kimliği başarıyla silindi ve yedeklendi.'
       the_page: sayfa
       banished: Bu kullanıcı arka planda sürgün ediliyor. İşlem yakında tamamlanacak.
       unlocked: Kullanıcı hesabı kilidi açıldı!

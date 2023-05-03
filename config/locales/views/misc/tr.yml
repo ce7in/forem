@@ -1,140 +1,138 @@
 ---
-en:
+tr:
   views:
     badges:
       meta:
-        title: Badges
+        title: Rozetler
       all:
-        one: Show one badge
-        other: Show all %{count} badges
-      heading: Badges
-      desc: Receive badges for being awesome! Click on a badge to see how you can earn it.
-      icon_close: Close
-      gotit: Got it
+        one: Bir rozet göster
+        other: Tüm %{count} rozeti göster
+      heading: Rozetler
+      desc: Harika olduğunuz için rozetler kazanın! Bir rozete tıklamak için nasıl kazanabileceğinizi görün.
+      icon_close: Kapat
+      gotit: Anladım
     campaign:
-      subtitle: Stories (%{count})
-      view: See all posts
+      subtitle: Hikayeler (%{count})
+      view: Tüm gönderileri görüntüle
     deep_links:
-      subtitle: Opening the mobile app...
+      subtitle: Mobil uygulama açılıyor...
       alert:
-        subtitle: Whoops! Did you get stuck trying to open the mobile app?
-        desc_html: Make sure it's installed and try again. If the problem persists contact %{email}
-        back: Take me back
-        again: Try again
-        install: Install the app
+        subtitle: Hop! Mobil uygulama açmaya çalışırken takıldınız mı?
+        desc_html: Yüklendiğinden emin olun ve tekrar deneyin. Sorun devam ederse %{email} ile iletişime geçin.
+        back: Beni geri götür
+        again: Tekrar dene
+        install: Uygulamayı yükle
     email_subscriptions:
       unsubscribe:
-        heading: "You have been unsubscribed from %{type}. 😔"
-        description_html: You will no longer receive emails like this. If you'd like to re-subscribe or manage your full email preferences, please %{link}.
-        link: click here
+        heading: %{type} için aboneliğiniz iptal edildi. 😔
+        description_html: Artık bu tür e-postalar almayacaksınız. Yeniden abone olmak veya tüm e-posta tercihlerinizi yönetmek isterseniz, lütfen %{link} tıklayın.
+        link: buraya tıklayın
       invalid:
-        heading: Token expired or invalid
-        description_html: Please %{signin} to manage your email preferences.
-        signin: sign-in
+        heading: Jeton süresi doldu veya geçersiz
+        description_html: Lütfen e-posta tercihlerinizi yönetmek için %{signin} yapın.
+        signin: oturum aç
     hamburger:
-      icon: Navigation menu
-      icon_close: Close
-      icon_left: Left menu
-      icon_right: Right menu
+      icon: Navigasyon menüsü
+      icon_close: Kapat
+      icon_left: Sol menü
+      icon_right: Sağ menü
     logo:
       color_1:
-        label: Brand color 1
-        description: Used for backgrounds, borders etc.
+        label: Marka rengi 1
+        description: Arka planlar, çerçeveler vb. için kullanılır.
       color_2:
-        label: Brand color 2
-        description_html: Used for texts (usually put on <em>Brand color 1</em>).
+        label: Marka rengi 2
+        description_html: Metinler için kullanılır (genellikle <em>Marka rengi 1</em> üzerine konulur).
       preview:
-        icon: App logo
-        text: 'Preview:'
+        icon: Uygulama logosu
+        text: 'Önizleme:'
     onboardings:
       meta:
-        title: Welcome to %{community}
-      heading: You're now a part of the community!
-      subtitle: SUGGESTED THINGS YOU CAN DO
-      close: Close Welcome Message
-      settings_html: "<span class=\"emoji\">💅🏼</span>Customize your profile"
-      welcome_html: "<span class=\"emoji\">😊</span>Join the Welcome thread"
-      write_html: "<span class=\"emoji\">✍🏾</span>Write your first %{community} post"
+        title: %{community}'a Hoş Geldiniz
+      heading: Artık topluluğun bir parçasısınız!
+      subtitle: YAPABİLECEĞİNİZ ÖNERİLEN ŞEYLER
+      close: Karşılama Mesajını Kapat
+      settings_html: "<span class=\"emoji\">💅🏼</span>Profilinizi özelleştirin"
+      welcome_html: "<span class=\"emoji\">😊</span>Hoşgeldin konusuna katılın"
+      write_html: "<span class=\"emoji\">✍🏾</span>İlk %{community} gönderinizi yazın"
     pins:
-      article: Pinned
-      pinned: "📌 Pinned! (pinned posts display chronologically, 5 max)"
-      removed: "🗑 Pin removed"
-      error: You can only have five pins
+      article: Sabitlenmiş
+      pinned: "📌 Sabitlendi! (sabitlenmiş gönderiler kronolojik olarak görüntülenir, en fazla 5)"
+      removed: "🗑 Sabitleme kaldırıldı"
+      error: Sadece beş sabitlemeye sahip olabilirsiniz
     profile:
       color:
-        label: Brand color
-        description: Used for backgrounds, borders etc.
+        label: Marka rengi
+        description: Arka planlar, çerçeveler vb. için kullanılır.
     reading_list:
       meta:
-        title: Reading List
-        description: My saved posts.
+        title: Okuma Listesi
+        description: Kaydedilmiş gönderilerim.
         og:
-          title: Reading List - %{community}
+          title: Okuma Listesi - %{community}
     search:
-      heading: Search results%{for}
-      for: " for %{query}"
-      placeholder: Search...
+      heading: Arama sonuçları%{for}
+      for: " için %{query}"
+      placeholder: Ara...
       icon:
-        aria_label: Search
-        title: Search
+        aria_label: Arama
+        title: Arama
       nav:
-        posts: Posts
-        podcasts: Podcasts
-        people: People
-        comments: Comments
-        my_posts: My posts only
-        tags: Tags
+        posts: Gönderiler
+        podcasts: Podcast'ler
+        people: Kişiler
+        comments: Yorumlar
+        my_posts: Sadece benim gönderilerim
+        tags: Etiketler
       sort:
-        aria_label: Search result sort options
-        relevance: Most Relevant
-        newest: Newest
-        oldest: Oldest
+        aria_label: Arama sonuçları sıralama seçenekleri
+        relevance: En İlgili
+        newest: En Yeniler
+        oldest: En Eski
       meta:
-        title: Search Results%{for}
-        for: " for %{query}"
-        description: "%{site} => Search Results"
+        title: Arama Sonuçları%{for}
+        for: " için %{query}"
+        description: "%{site} => Arama Sonuçları"
     series:
       meta:
-        description: View %{title} on %{site}
-      heading: "%{user}'s Series"
-      empty: This user doesn't have any series
+        description: %{site}'de %{title}'i görüntüle
+      heading: "%{user}'ın Serileri"
+      empty: Bu kullanıcının hiçbir serisi yok
       list:
-        heading: "%{series} Series' Articles"
-        back: Back to %{user}'s Series
-        empty: This series doesn't have any articles
+        heading: "%{series} Serisi Makaleleri"
+        back: %{user}'ın Serilerine Geri Dön
+        empty: Bu seride hiçbir makale yok
     stats:
       meta:
-        title: Stats for Your Article
-      heading_html: Stats for "%{article}"
+        title: Makaleniz İçin İstatistikler
+      heading_html: "%{article} için İstatistikler"
       period:
-        aria_label: Analytics period
-        week: Week
-        month: Month
-        infinity: Infinity
-      readers: Readers Summary
-      followers: New Followers Summary
-      reactions: "Reactions Summary ❤🦄🔖"
-      comments: "Comments Summary 💬"
+        aria_label: Analitik dönemi
+        week: Hafta
+        month: Ay
+        infinity: Sonsuz
+      readers: Okuyucuların Özeti
+      followers: Yeni Takipçi Özeti
+      reactions: "Tepki Özeti ❤🦄🔖"
+      comments: "Yorum Özeti 💬"
       traffic:
-        text: "Traffic Source Summary 🚦"
-        source: Source
-        views: Views
+        text: "Trafik Kaynağı Özeti 🚦"
+        source: Kaynak
+        views: Görüntüleme
     sticky:
-      joined: Joined
-      default_cta: Learn more
-      email: Email
-      hot: Hot
-      location: Location
-      more_from_html: More from %{actor}
-      no_summary: Posts in this tag
-      trending_html: Trending on %{app}
+      joined: Katılım Tarihi
+      default_cta: Daha fazla bilgi edinin
+      email: E-posta
+      hot: Popüler
+      location: Konum
+      more_from_html: %{actor}'dan Daha Fazla
+      no_summary: Bu etikette gönderi yok
+      trending_html: %{app}'de Trend
     videos:
       meta:
-        title: Videos
+        title: Videolar
         og:
-          description: All videos on %{community}
-      heading: "%{community} on Video"
-      beta_html: "<strong>Video is beta:</strong> %{contact}"
-      upload: "🎥 Upload Video File 🙌"
-
-Translate this with the same mechanism. Put you response in a yml code block.
+          description: %{community}'deki tüm videolar
+      heading: "%{community} Videoda"
+      beta_html: "<strong>Video beta:</strong> %{contact}"
+      upload: "🎥 Video Dosyası Yükle 🙌"

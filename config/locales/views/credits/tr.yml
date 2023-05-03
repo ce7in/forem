@@ -35,11 +35,11 @@ tr:
           submitting: Gönderiliyor...
           note_org: "*Tüm org yöneticileri tarafından sahip olunan kredilere erişilebilir."
         switch:
-          org: %{name} için değiştir
+          org: "%{name} için değiştir"
           user: Kişisel satın almaya değiştir
         status:
           subtitle:
-            org: %{name} kaç kredisi var?
+            org: "%{name} kaç kredisi var?"
             user: Şu anda kaç kredim var?
           desc:
             org: "%{name} %{count} krediye sahip."

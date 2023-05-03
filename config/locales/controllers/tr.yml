@@ -108,12 +108,12 @@ tr:
     invalid_secret: Verilen organizasyon sırrı geçersiz.
     username_blank: Kullanıcı adı boş olamaz
     deletion_in_progress: Hesap silme işlemini zaten talep ettiniz. Lütfen e-postanızı daha fazla talimat için kontrol edin.
-    joined_org: %{organization_name} kuruluşuna katıldınız.
+    joined_org: "%{organization_name} kuruluşuna katıldınız."
     left_org: Kuruluşunuzdan ayrıldınız.
     deletion_requested: Hesap silme talep ettiniz. Lütfen e-postanızı daha fazla talimat için kontrol edin.
     log_in_to_delete: Hesap silme işlemine devam etmek için oturum açmış olmalısınız.
     deletion_scheduled: Hesap silme işleminiz planlandı. Silindiğinde bilgilendirileceksiniz.
-    removed_identity: %{provider} hesabınız başarıyla kaldırıldı.
+    removed_identity: "%{provider} hesabınız başarıyla kaldırıldı."
     updated_config: Yapılandırmanız güncellendi. Tüm değişiklikleri görmek için yenileyin.
     updated_profile: Profiliniz başarıyla güncellendi.
     token_expired: Token süreniz doldu, lütfen yeni bir tane isteyin. Hesap silme başlatıldıktan sonra tokenler yalnızca 12 saat geçerlidir.

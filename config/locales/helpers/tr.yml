@@ -60,10 +60,10 @@ tr:
         email_follower_notifications: Yeni birisi beni takip ettiğinde bana e-posta gönder
         email_mention_notifications: Birisi beni bahsettiğinde bana e-posta gönder
         email_badge_notifications: Bir rozet aldığımda bana e-posta gönder
-        email_unread_notifications: %{community} üzerinde okunmamış bildirimlerim olduğunu hatırlatan ara sıra e-postalar gönder
+        email_unread_notifications: "%{community} üzerinde okunmamış bildirimlerim olduğunu hatırlatan ara sıra e-postalar gönder"
         mobile_mention_notifications: Birisi beni bahsettiğinde bana bir push bildirimi gönder
         mobile_comment_notifications: Birisi bir yorum dizisinde bana yanıt verdiğinde bana bir push bildirimi gönder
-        welcome_notifications: %{community} deneyimimi nasıl geliştireceğime dair ara sıra ipu        çlar gönder
+        welcome_notifications: "%{community} deneyimimi nasıl geliştireceğime dair ara sıra ipuçları gönder"
         reaction_notifications: İçeriğime, yorumlar veya gönderiler gibi, birisi tepki gösterdiğinde bildirimler gönder
         mod_roundrobin_notifications: Bana ara sıra topluluk başarısı mod bildirimleri gönder
       users_setting:
@@ -162,7 +162,7 @@ tr:
           Harika olmaya devam edin ve lütfen herhangi bir sorunuz varsa bize e-posta gönderin! Açık ve kapsayıcı bir topluluk oluşturmaya devam ederken tüm geri bildirimleri ve fikirleri memnuniyetle karşılıyoruz.
 
           %{community} Ekibi
-        subject: %{community}'den Nezaket Bildirimi
+        subject: "%{community}'den Nezaket Bildirimi"
     listing_helper:
       option:
         one: "%{cl_name} (%{count} Kredi)"

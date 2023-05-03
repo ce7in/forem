@@ -57,14 +57,14 @@ tr:
         popular_tags: Popüler Etiketler
       footer:
         built:
-          text_html: %{forem} üzerinde oluşturuldu — %{opensource} yazılımı %{dev} ve diğer kapsayıcı toplulukları destekler.
+          text_html: "%{forem} üzerinde oluşturuldu — %{opensource} yazılımı %{dev} ve diğer kapsayıcı toplulukları destekler."
           forem: Forem
           opensource: açık kaynak
           dev: DEV
         desc_html: "%{community} — %{desc}"
         logo: Forem logosu
         powered:
-          text_html: %{rails} ile sevgiyle yapıldı. %{community} <span title="telif hakkı">&copy;</span> %{copyright}.
+          text_html: "%{rails} ile sevgiyle yapıldı. %{community} <span title="telif hakkı">&copy;</span> %{copyright}."
           rails: Ruby on Rails
       create_post: Yeni yazı oluştur
       signout: Çıkış Yap

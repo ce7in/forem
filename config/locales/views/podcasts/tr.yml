@@ -4,9 +4,9 @@ tr:
     podcasts:
       meta:
         title: Podcast'ler
-        description: %{member} için teknik podcast'leri keşfedin
+        description: '%{member} için teknik podcast'leri keşfedin'
         og:
-          title: %{community} üzerindeki Podcast'ler
+          title: '%{community} üzerindeki Podcastler'
       browse: Göz atın
       heading: Podcast'ler
       close: "×"

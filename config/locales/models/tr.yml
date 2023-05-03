@@ -4,9 +4,9 @@ tr:
     api_secret:
       api_limit_reached: Kullanıcı başına 10 API sırı limitine ulaşıldı
     application_record:
-      uninferrable: %{class} için bir süsleyici çıkarılamadı.
+      uninferrable: "%{class} için bir süsleyici çıkarılamadı."
     article:
-      a_post_by: %{user_name} tarafından bir gönderi
+      a_post_by: "%{user_name} tarafından bir gönderi"
       video_unpermitted: izinsiz üye tarafından eklenemez
       video_processing: video hâlâ işleniyor durumdayken true olarak ayarlanamaz
       cannot_search_tags_for: '%{tag} için etiket araması yapılamaz'

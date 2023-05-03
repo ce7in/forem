@@ -1,154 +1,152 @@
 ---
-en:
+tr:
   views:
     moderations:
-      heading: Mod Center
+      heading: Moderasyon Merkezi
       actions:
         meta:
-          title: Moderating %{title}
-          title2: '[Moderate] %{title}'
-        heading: Moderate Post
-        subtitle: Rate the quality of this post
+          title: '%{title}i Moderasyonla'
+          title2: '[Moderasyon] %{title}'
+        heading: Gönderiyi Moderasyonla
+        subtitle: Bu gönderinin kalitesini değerlendirin
         abusive:
-          subtitle_html: Flag %{user} as Abusive
-          desc_html: This is the equivalent of flagging <b>all</b> of this user's posts and will lower their post scores.
+          subtitle_html: "%{user} kullanıcısını Tacizci olarak işaretle"
+          desc_html: Bu, bu kullanıcının <b>tüm</b> gönderilerini işaretlemekle eşdeğerdir ve gönderi puanlarını düşürür.
         adjust:
-          heading: Adjust tags
-          subtitle: Add or remove tags
-          aria_label: Open adjust tags section
-          icon: Adjust tags
-          add: Add tag
-          add_placeholder: Add a tag
-          reason: Reason for tag adjustment (optional)
-          remove: Remove tag
-          submit: Submit
+          heading: Etiketleri Ayarla
+          subtitle: Etiketleri ekleyin veya kaldırın
+          aria_label: Etiket ayarlama bölümünü açın
+          icon: Etiketleri ayarla
+          add: Etiket ekle
+          add_placeholder: Etiket ekle
+          reason: Etiket ayarı için neden (isteğe bağlı)
+          remove: Etiketi kaldır
+          submit: Gönder
         approve:
-          add: Mark as approved
-          remove: Remove approval
-        checkmark: Checkmark
-        close: Close moderator actions panel
+          add: Onayla olarak işaretle
+          remove: Onayı Kaldır
+        checkmark: İşaretle
+        close: Moderasyon işlemleri panelini kapat
         delete:
-          subtitle: Delete This Comment
-          button: Delete Comment
+          subtitle: Bu Yorumu Sil
+          button: Yorumu Sil
         edit:
-          post: Edit Post
-          article_admin: Admin:Article
-          comment_admin: Admin:Comment
-          user_admin: Admin:User
-          resource_admin: ResourceAdmin:Article
+          post: Gönderiyi Düzenle
+          article_admin: Yönetici:Makale
+          comment_admin: Yönetici:Yorum
+          user_admin: Yönetici:Kullanıcı
+          resource_admin: KaynakYöneticisi:Makale
         errors:
-          one: '1 error prohibited this block from being saved:'
-          other: '%{count} errors prohibited this block from being saved:'
+          one: 'Bu bloğun kaydedilmesini engelleyen 1 hata:'
+          other: '%{count} hata, bu bloğun kaydedilmesini engelledi:'
         experience:
-          heading: Set experience level
-          heading2: Experience Level of Post
-          subtitle: Curate the most appropriate audience for this post
-          aria_label: Open experience level section
-          icon: Book
-          desc_html: Who <em>might</em> find this post most valuable, based on overall experience level?
+          heading: Deneyim seviyesini belirle
+          heading2: Gönderinin Deneyim Seviyesi
+          subtitle: Bu gönderi için en uygun izleyiciyi belirleyin
+          aria_label: Deneyim seviyesi bölümünü açın
+          icon: Kitap
+          desc_html: Genel deneyim seviyesine dayanarak kimlerin bu gönderiyi en değerli bulabileceği?
           from: '%{lvl} - '
           level:
-            Advanced: Advanced
-            Beginner: Beginner
-            Expert: Expert
-            Mid-level: Mid-level
-            Novice: Novice
+            Advanced: Gelişmiş
+            Beginner: Başlangıç
+            Expert: Uzman
+            Mid-level: Orta Seviye
+            Novice: Acemi
         admin:
-          heading: Moderating actions
-          heading2: Moderating actions for %{user}
-          subtitle: Moderating actions for %{user}
-          aria_label: Open admin actions
-          icon: Crown
-        flag: Flag %{username}
-        unflag: Unflag %{username}
-        how: How does this work?
+          heading: Moderasyon işlemleri
+          heading2: "%{user} için moderasyon işlemleri"
+          subtitle: "%{user} için moderasyon işlemleri"
+          aria_label: Yönetici işlemlerini açın
+          icon: Taç
+        flag: "%{username} Kullanıcısını İşaretle"
+        unflag: "%{username} Kullanıcısının İşaretini Kaldır"
+        how: Bu nasıl çalışır?
         hidden:
-          subtitle: Hidden Comments
-          by: Comment by %{user}
+          subtitle: Gizli Yorumlar
+          by: Yorumu %{user} yaptı
         hint:
-          subtitle: All negative reactions are private.
+          subtitle: Tüm olumsuz reaksiyonlar özel tutulur.
           desc_html: |-
-            Use <b>High Quality</b> to move this content "up" for any reason (quality, usefulness, etc.).
+            Herhangi bir nedenle (kalite, yararlılık vb.) içeriği "yukarı" taşımak için <b>Yüksek Kalite</b> kullanın.
             <br />
-            Use <b>Low Quality</b> to move this content "down" for any reason (quality, usefulness, etc.).
+            Herhangi bir nedenle (kalite, yararlılık vb.) içeriği "aşağı" taşımak için <b>Düşük Kalite</b> kullanın.
             <br />
-            Use <b>Flag to Admins</b> for code of conduct violations (harassment, being a jerk, spam, etc.).
-        other: Other things you can do
-        add_reaction: Add a reaction
+            İhlal (taciz, kaba davranış, spam vb.) durumlarında <b>Yöneticilere İşaretle</b> kullanın.
+        other: Yapabilecekleriniz
+        add_reaction: Tepki ekle
         suspend:
-          suspend_title: Suspend %{username}
-          suspend_user: Suspend %{username}
-          suspend_modal_text: Once suspended, %{username} will not be able to comment or publish posts until their suspension is removed.
-          suspend_modal_button: Submit & Suspend
-          unsuspend_title: Unsuspend %{username}
-          unsuspend_user: Unsuspend %{username}
-          unsuspend_modal_text: Once unsuspended, %{username} will be able to comment and publish posts again.
-          unsuspend_modal_button: Submit & Unsuspend
-        suspicious: Suspicious
+          suspend_title: "%{username}'in hesabını askıya al"
+          suspend_user: "%{username}'in hesabını askıya al"
+          suspend_modal_text: Askıya alındıktan sonra %{username}, yorum yapamaz veya gönderi yayınlayamaz, askıya alma kaldırılana kadar.
+          suspend_modal_button: Gönder ve Askıya Al
+          unsuspend_title: "%{username}'in hesabını askıdan çıkar"
+          unsuspend_user: "%{username}'in hesabını askıdan çıkar"
+          unsuspend_modal_text: Askıdan çıkarıldıktan sonra %{username} tekrar yorum yapabilir ve gönderi yayınlayabilir.
+          unsuspend_modal_button: Gönder ve Askıdan Çıkar
+        suspicious: Şüpheli
         tag:
-          subtitle: Tag Adjustments
-          add: Add
-          added_html: '<b>Currently added tag:</b> %{tag}'
-          live_html: '<b>Current live tags:</b> %{tags}'
-          reason: Reason for adjustment (Be super kind) - Only the reason is needed, the notification will take care of the rest.
-          remove: Remove
-          removed_html: '<b>Currently removed tag:</b> %{tag}'
-          select: Select Tag
-          submit: Submit Tag Adjustment
-          tag_name: Tag Name
+          subtitle: Etiket Ayarları
+          add: Ekle
+          added_html: '<b>Şu anda eklenen etiket:</b> %{tag}'
+          live_html: '<b>Mevcut canlı etiketler:</b> %{tags}'
+          reason: Ayarlama nedeni (Çok nazik olun) - Sadece neden gereklidir, bildirim geri kalanıyla ilgilenecektir.
+          remove: Kaldır
+          removed_html: '<b>Şu anda kaldırılan etiket:</b> %{tag}'
+          select: Etiket Seçin
+          submit: Etiket Ayarını Gönder
+          tag_name: Etiket Adı
           undo:
             button: '×'
-            confirm: Are you sure you want to undo the %{type} of the %{tag} tag?
+            confirm: "%{tag} etiketinin %{type} işlemini geri almak istediğinizden emin misiniz?"
             type:
-              addition: addition
-              removal: removal
-        thumb_down: Thumb down
-        thumb_up: Thumb up
-        toggle: Toggle section
-        feature: Feature Post
-        unfeature: Unfeature Post
-        unpublish: Unpublish Post
+              addition: eklenme
+              removal: kaldırılma
+        thumb_down: Aşağı İşaret
+        thumb_up: Yukarı İşaret
+        toggle: Bölümü Aç/Kapat
+        feature: Gönderiyi Öne Çıkar
+        unfeature: Gönderiyi Öne Çıkarmayı Kaldır
+        unpublish: Gönderiyi Yayından Kaldır
         unpublish_all:
-          title: Unpublish all posts
-          button: Unpublish all posts for %{username}
-          modal_text1: Once unpublished, all posts by %{username} will become hidden and only accessible to themselves.
-          modal_text2: If %{username} is not suspended, they can still re-publish their posts from their dashboard.
-          modal_button: Unpublish all posts
+          title: Tüm gönderileri yayından kaldır
+          button: "%{username} için tüm gönderileri yayından kaldır"
+          modal_text1: Yayından kaldırıldıktan sonra, %{username} tarafından yapılan tüm gönderiler gizlenecek ve yalnızca kendilerine erişilebilir olacak.
+          modal_text2: "%{username} askıya alınmamışsa yönetim panellerinden gönderilerini yeniden yayınlamaya devam edebilirler."
+          modal_button: Tüm gönderileri yayından kaldır
         unpublish_post:
-          modal_text1: Once unpublished, this post will become invisible to the public and only accessible to %{username}.
-          modal_text2: They can still re-publish the post if they are not suspended.
-        vote_down: Low Quality
-        flag_to_admins: Flag to Admins
-        vote_up: High Quality
+          modal_text1: Yayından kaldırıldıktan sonra, bu gönderi halka görünmez hale gelir ve sadece %{username} tarafından erişilebilir hale gelir.
+          modal_text2: Eğer kullanıcı askıya alınmadıysa, gönderiyi yeniden yayınlayabilirler.
+        vote_down: Düşük kalite
+        flag_to_admins: Yöneticilere bildir
+        vote_up: Yüksek kalite
         featured_past_day:
-          one: '%{count} post from the past day is featured.'
-          other: '%{count} posts from the past day are featured.'
-      all: All topics
+          one: '%{count} dünün öne çıkan gönderisi.'
+          other: '%{count} dünün öne çıkan gönderisi.'
+      all: Tüm konular
       aside:
-        all: All topics
-        code_of_conduct: Code of Conduct
-        external: External link
+        all: Tüm konular
+        code_of_conduct: Davranış Kuralları
+        external: Harici bağlantı
         feedback:
-          subtitle: Have feedback to improve your Mod experience?
-          description: Please email %{email}!
-        hello: 'Hello! 👋'
-        thanks: Thank you for helping to keep %{community} safe! ❤️
-        inbox: Inbox
-        resources: Resources
-        tag: Tag Moderation Guide
-        terms_and_conditions: Terms & Conditions
-        trusted: Trusted User Guide
-      author: Author
-      date: Date
+          subtitle: Mod deneyiminizi geliştirmek için geri bildirim mi vermek istiyorsunuz?
+          description: Lütfen %{email} adresine e-posta gönderin!
+        hello: 'Merhaba! 👋'
+        thanks: "%{community} topluluğunu güvende tutmaya yardımcı olduğunuz için teşekkür ederiz! ❤️"
+        inbox: Gelen Kutusu
+        resources: Kaynaklar
+        tag: Etiket Moderasyon Rehberi
+        terms_and_conditions: Şartlar ve Koşullar
+        trusted: Güvenilir Kullanıcı Rehberi
+      author: Yazar
+      date: Tarih
       notice:
-        subtitle: '%{community} Mods'
-        desc1_html: We periodically award some %{community} members with heightened privileges to help moderate the community.
-        desc2_html: Check out our %{code} and read through our %{trusted} and %{tag}.
-        desc3_html: If you'd like to assist us as a trusted user or tag mod, please email us at %{email} and let us know which role you're interested in and why. If it's tag moderation, please tell us what tags you'd like to moderate for.
-        desc4: P.S. You are not currently signed in.
-        code_of_conduct: Code of Conduct
-        tag: Tag Moderation Guide
-        trusted: Trusted User Guide
-      post: Post
-
-Translate this with the same mechanism. Put you response in a yml code block.
+        subtitle: '%{community} Moderatörleri'
+        desc1_html: '%{community} üyelerine zaman zaman artmış ayrıcalıklar vererek topluluğu denetlemelerine yardımcı oluyoruz.'
+        desc2_html: "%{code}mızı inceleyin ve %{trusted} ve %{tag}mizi okuyun."
+        desc3_html: Güvenilir kullanıcı veya etiket modu olarak bize yardımcı olmak isterseniz, lütfen bize %{email} adresinden e-posta gönderin ve hangi rolle ilgilendiğinizi ve nedenini belirtin. Etiket moderasyonuysa, hangi etiketleri yönetmek istediğinizi söyleyin.
+        desc4: "Not: Şu anda oturum açmadınız."
+        code_of_conduct: Davranış Kuralları
+        tag: Etiket Moderasyon Rehberi
+        trusted: Güvenilir Kullanıcı Rehberi
+      post: Gönderi

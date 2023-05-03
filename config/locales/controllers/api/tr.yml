@@ -9,8 +9,8 @@ tr:
         must_be_json: makale parametresi bir JSON nesnesi olmalıdır. Makaleyi %{type} olarak sağladınız
       follows_controller:
         followed:
-          one: %{count} kullanıcı takip edildi
-          other: %{count} kullanıcı takip edildi
+          one: "%{count} kullanıcı takip edildi"
+          other: "%{count} kullanıcı takip edildi"
       health_checks_controller:
         app_is_up: Uygulama çalışıyor!
         database_connected: Veritabanına bağlandı

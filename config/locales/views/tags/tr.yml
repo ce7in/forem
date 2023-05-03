@@ -4,12 +4,12 @@ tr:
     tags:
       meta:
         title: Etiketler
-        description: %{community} üzerinde takip edilebilecek etiketler
+        description: '%{community} üzerinde takip edilebilecek etiketler'
         og:
           description: "%{community} harika!"
       heading:
         default: Popüler etiketler
-        search_results: %{q} için arama sonuçları
+        search_results: '%{q} için arama sonuçları'
       search:
         aria_labels:
           search_input: Etiket arama terimi
@@ -17,7 +17,7 @@ tr:
         placeholder: Etiket ara
       edit:
         meta:
-          title: %{tag} Düzenle
+          title: '%{tag} Düzenle'
         admin: "Yönetici"
         help: "Yardım"
         view: "Görüntüle"

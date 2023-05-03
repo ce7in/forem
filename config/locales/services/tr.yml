@@ -11,8 +11,8 @@ tr:
       providers:
         apple:
           name: "%{first} %{last}"
-        not_available: %{name} sağlayıcısı mevcut değil!
-        not_enabled: %{name} sağlayıcısı etkin değil!
+        not_available: "%{name} sağlayıcısı mevcut değil!"
+        not_enabled: "%{name} sağlayıcısı etkin değil!"
     badges:
       award_beloved_comment:
         message: "Ünlüsünüz! İşte tanındığınız [yorumunuz](%{comment}). 😄"
@@ -23,8 +23,8 @@ tr:
           other: "Bu seriyi başardığınız için tebrikler! Tutumlu yazmak zordur. Alabileceğiniz bir sonraki seri rozeti %{count} Hafta Rozetidir. 😉"
       award_yearly_club:
         message:
-          one: %{community} doğum gününüz kutlu olsun! Zaman ne çabuk geçiyor, %{count} yıl oldu bile!
-          other: %{community} doğum gününüz kutlu olsun! Zaman ne çabuk geçiyor, %{count} yıl oldu bile!
+          one: "%{community} doğum gününüz kutlu olsun! Zaman ne çabuk geçiyor, %{count} yıl oldu bile!"
+          other: "%{community} doğum gününüz kutlu olsun! Zaman ne çabuk geçiyor, %{count} yıl oldu bile!"
       congrats: Tebrikler!!!
       thank_you: Katkılarınız için çok teşekkürler!
       community_wellness:
@@ -66,8 +66,8 @@ tr:
         select_payment_method: "Lütfen bir ödeme yöntemi seçin"
       process_credit_purchase:
         charge:
-          one: %{count} kredi satın alımı.
-          other: %{count} kredi satın alımı.
+          one: "%{count} kredi satın alımı."
+          other: "%{count} kredi satın alımı."
     rate_limit_checker:
       invalid_key: 'Geçersiz Önbellek Anahtarı: benzersiz bir bileşen yok'
       limit_reached:

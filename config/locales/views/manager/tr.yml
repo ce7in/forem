@@ -3,7 +3,7 @@ tr:
   views:
     manager:
       meta:
-        title: %{title} Yönet
+        title: '%{title} Yönet'
       error:
         pins: "Aman Allah'ım! %{error} 😬"
       tools:

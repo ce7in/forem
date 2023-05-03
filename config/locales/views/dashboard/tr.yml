@@ -3,152 +3,150 @@ en:
   views:
     dashboard:
       meta:
-        title: Dashboard - %{site}
-      heading: Dashboard
+        title: Gösterge Paneli - %{site}
+      heading: Gösterge Paneli
       actions:
         mobile:
-          posts: Posts (%{num})
-          followers: Followers (%{num})
-          following_tags: Following tags (%{num})
-          following_users: Following users (%{num})
-          following_orgs: Following organizations (%{num})
-          following_pods: Following podcasts (%{num})
-        posts: Posts
-        series: Series
-        followers: Followers
-        following_tags: Following tags
-        following_users: Following users
-        following_orgs: Following organizations
-        following_pods: Following podcasts
-        listings: Listings
-        analytics: Analytics
-        for_org: Analytics for %{org}
-        upload: Upload a video
+          posts: Gönderiler (%{num})
+          followers: Takipçiler (%{num})
+          following_tags: Takip Edilen Etiketler (%{num})
+          following_users: Takip Edilen Kullanıcılar (%{num})
+          following_orgs: Takip Edilen Organizasyonlar (%{num})
+          following_pods: Takip Edilen Podcastler (%{num})
+        posts: Gönderiler
+        series: Seriler
+        followers: Takipçiler
+        following_tags: Takip Edilen Etiketler
+        following_users: Takip Edilen Kullanıcılar
+        following_orgs: Takip Edilen Organizasyonlar
+        following_pods: Takip Edilen Podcastler
+        listings: Listeler
+        analytics: Analizler
+        for_org: "%{org} için Analizler"
+        upload: Video yükle
       analytics:
         meta:
-          title: Analytics
-        heading: Analytics Dashboard for %{name}
-        desc_1: Welcome to the Analytics Dashboard, the home of in-depth user metrics so that authors can make data-driven decisions about the %{members} ecosystem.
-        desc_2: This dashboard highlights deep insights especially relevant to %{members} relations, authors, and serious bloggers.
-        back: "👈 Back to Main Dashboard"
-        your: Your Dashboard
-        org: "%{org} Analytics Dashboard"
+          title: Analizler
+        heading: "%{name} için Analiz Gösterge Paneli"
+        desc_1: Analiz Gösterge Paneli'ne hoş geldiniz, yazarların %{members} ekosistemi hakkında veri odaklı kararlar alabilmeleri için ayrıntılı kullanıcı metriklerinin evi.
+        desc_2: Bu gösterge paneli özellikle %{members} ilişkileri, yazarlar ve ciddi blogcular için önemli olan derin bilgileri vurgular.
+        back: "👈 Ana Gösterge Paneline Geri Dön"
+        your: Senin Gösterge Panelin
+        org: "%{org} Analiz Gösterge Paneli"
       article:
         heading:
           text_html: "%{archived}%{title}"
-          archived: "[Archived] "
-        archived: Archived
-        published: 'Published:'
-        published_html: 'Published: %{date}'
-        edited: 'Edited:'
-        edited_html: 'Edited: %{date}'
-        series: 'Series:'
-        series_html: "<strong>Series:</strong> %{series}"
-        draft: Draft
-        scheduled: Scheduled
-        scheduled_at: 'Scheduled:'
+          archived: "[Arşivlendi] "
+        archived: Arşivlendi
+        published: 'Yayınlanma Tarihi:'
+        published_html: 'Yayınlanma Tarihi: %{date}'
+        edited: 'Düzenlenme Tarihi:'
+        edited_html: 'Düzenlenme Tarihi: %{date}'
+        series: 'Seriler:'
+        series_html: "<strong>Seriler:</strong> %{series}"
+        draft: Taslak
+        scheduled: Planlandı
+        scheduled_at: 'Planlanan Tarih:'
         reactions:
-          title: Reactions
-          icon: Reactions
+          title: Tepkiler
+          icon: Tepkiler
           text_html:
-            one: "%{num} reaction"
-            other: "%{num} reactions"
+            one: "%{num} tepki"
+            other: "%{num} tepki"
         comments:
-          title: Comments
-          icon: Comments
+          title: Yorumlar
+          icon: Yorumlar
           text_html:
-            one: "%{num} comment"
-            other: "%{num} comments"
+            one: "%{num} yorum"
+            other: "%{num} yorum"
         views:
-          title: Views
-          icon: Views
+          title: Görüntüleme
+          icon: Görüntüleme
           lt_25: "< 25"
           text_html:
-            one: "%{scale} view"
-            other: "%{scale} views"
-          u_25: under 25
+            one: "%{scale} görüntüleme"
+            other: "%{scale} görüntüleme"
+          u_25: 25'in altında
         subscriptions:
-          title: Subscriptions
-          icon: Data
-          number: Subscriptions (%{num})
-        delete: Delete
-        unpin: Unpin
+          title: Abonelikler
+          icon: Veri
+          number: Abonelikler (%{num})
+        delete: Sil
+        unpin: Sabitlemeyi kaldır
         pin:
-          title: Pin to profile
-          button: Pin to profile
-          text: Pin
+          title: Profiline sabitle
+          button: Profiline sabitle
+          text: Sabitle
         manage:
-          aria_label: 'Manage post: %{title}'
-          text: Manage
-        lock: Lock discussion
-        unlock: Unlock discussion
+          aria_label: 'Gönderiyi yönet: %{title}'
+          text: Yönet
+        lock: Tartışmayı kilitla
+        unlock: Tartışmayı kilidi aç
         edit:
-          aria_label: 'Edit post: %{title}'
-          text: Edit
+          aria_label: 'Gönderiyi düzenle: %{title}'
+          text: Düzenle
         more:
-          title: 'More options for post: %{title}'
-          icon: More...
-        stats: Stats
-        archive: Archive post
-        unarchive: Unarchive post
-        author: Author
-        author_is: 'AUTHOR: '
-        save: Save
-        submit: Submit author change
+          title: 'Gönderi için daha fazla seçenek: %{title}'
+          icon: Daha fazla...
+        stats: İstatistikler
+        archive: Gönderiyi arşivle
+        unarchive: Gönderiyi arşivden çıkar
+        author: Yazar
+        author_is: 'YAZAR: '
+        save: Kaydet
+        submit: Yazar değişikliğini gönder
       followers:
-        heading: Dashboard » Followers
-        empty: You don't have any followers yet...
+        heading: Gösterge Paneli » Takipçiler
+        empty: Henüz takipçiniz yok...
       following_orgs:
-        heading: Dashboard » Following organizations
-        empty: You don't follow any organizations yet...
+        heading: Gösterge Paneli » Takip Edilen Organizasyonlar
+        empty: Henüz bir organizasyon takip etmiyorsunuz...
       following_pods:
-        heading: Dashboard » Following podcasts
-        empty: You don't follow any podcasts yet...
+        heading: Gösterge Paneli » Takip Edilen Podcastler
+        empty: Henüz bir podcast takip etmiyorsunuz...
       following_tags:
-        heading: Dashboard » Following tags
-        adjust: Adjust tag weight to modify your home feed. Higher values mean more appearances for that tag.
+        heading: Gösterge Paneli » Takip Edilen Etiketler
+        adjust: Ana sayfanızdaki içerikleri değiştirmek için etiket ağırlığını ayarlayın. Daha yüksek değerler, etiketin daha sık görünmesi anlamına gelir.
         anti:
-          title: This tag has negative follow weight
-          text: Anti-follow
-        default: Default 1.0
-        empty_html: "<span>Follow tags to personalize your feed. You can explore popular tags <a href=%{link}>here</a></span>."
+          title: Bu etiketin negatif takip ağırlığı var
+          text: Anti-takip
+        default: Varsayılan 1.0
+        empty_html: "<span>Feed'inizi kişiselleştirmek için etiketleri takip edin. Popüler etiketleri <a href=%{link}>burada</a> keşfedebilirsiniz.</span>."
         number:
-          aria_label: "%{name} tag weight"
-        update: Update Weights
+          aria_label: "%{name} etiket ağırlığı"
+        update: Ağırlıkları Güncelle
       following_users:
-        heading: Dashboard » Following users
-        empty: You don't follow any users...
+        heading: Gösterge Paneli » Takip Edilen Kullanıcılar
+        empty: Henüz bir kullanıcı takip etmiyorsunuz...
       listings:
         meta:
-          title: Listings Dashboard
+          title: Listeler Gösterge Paneli
       posts:
-        heading: Posts
-        archived: Show archived
+        heading: Gönderiler
+        archived: Arşivlenenleri göster
         option:
-          creation-desc: Recently Created
-          published-desc: Recently Published
-          views-desc: Most Views
-          reactions-desc: Most Reactions
-          comments-desc: Most Comments
-          aria_label: Sort By
+          creation-desc: Son Eklenenler
+          published-desc: Son Yayınlananlar
+          views-desc: En Çok Görüntülenenler
+          reactions-desc: En Çok Tepki Verilenler
+          comments-desc: En Çok Yorumlananlar
+          aria_label: Şuna göre sırala
         org: "%{name} (%{num})"
-        personal: Personal
+        personal: Kişisel
         empty:
-          desc: This is where you can manage your posts, but you haven't written anything yet.
-          new: Write your first post now
+          desc: Burada gönderilerinizi yönetebilirsiniz, ancak henüz hiçbir şey yazmadınız.
+          new: İlk gönderinizi yazın
       subscriptions:
         meta:
-          title: Subscriptions %{title}
-        heading: Subscriptions
+          title: "%{title} Abonelikleri"
+        heading: Abonelikler
         subhead:
           text_html: "%{for} %{source}"
-          for: for
-        empty: You don't have any subscribers for this %{kind} yet...
+          for: için
+        empty: Bu %{kind} için henüz hiç aboneniz yok...
       summary:
-        reactions: Total post reactions
-        views: Total post views
-        listings: Listings created
-        credits: Credits available
+        reactions: Toplam gönderi tepkileri
+        views: Toplam gönderi görüntülenmeleri
+        listings: Oluşturulan listeler
+        credits: Kullanılabilir krediler
         lt_500: "< 500"
-
-Translate this with the same mechanism. Put you response in a yml code block.
